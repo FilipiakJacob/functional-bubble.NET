@@ -5,13 +5,16 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using Google.Android.Material.BottomNavigation;
+using System;
+using functional_bubble.NET.Classes;
+
 
 namespace functional_bubble.NET
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
-        TextView textMessage;
+        TextView textMessage; 
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -46,5 +49,5 @@ namespace functional_bubble.NET
             return false;
         }
     }
-}
 
+}
