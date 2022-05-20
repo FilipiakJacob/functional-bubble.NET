@@ -6,15 +6,16 @@ using Android.Widget;
 using AndroidX.AppCompat.App;
 using Google.Android.Material.BottomNavigation;
 using System;
-using functional_bubble.NET.Classes;
-
-
+using System.Collections.Generic;
 namespace functional_bubble.NET
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
     {
-        TextView textMessage; 
+        TextView textMessage;
+        private Button mBtnNewTask;
+        private List<Task> mItems;
+        private ListView mainListView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -22,10 +23,26 @@ namespace functional_bubble.NET
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
+            mainListView = FindViewById<ListView>(Resource.Id.MainView);
+            mItems = new List<Task>();
+
+            ListViewAdapter adapter = new ListViewAdapter(this, mItems);
+            mainListView.Adapter = adapter;
+
+            mBtnNewTask = FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
+            mBtnNewTask.Click += (object sender, EventArgs e) =>
+            {
+                //Method for creating DialogFragment, a form for creating new task
+                Dialog_NewTask newTaskDialog = new Dialog_NewTask();
+                newTaskDialog.Show(SupportFragmentManager,"Dialog");
+
+            };
+
             textMessage = FindViewById<TextView>(Resource.Id.message);
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

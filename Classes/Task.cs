@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace functional_bubble.NET.Classes
+namespace functional_bubble.NET
 {
     public class Task
     {
@@ -27,6 +27,7 @@ namespace functional_bubble.NET.Classes
         public Task()
         {
             gen_Id(); //Sets the Id
+            //Container :)
             input_data();
         }
         
