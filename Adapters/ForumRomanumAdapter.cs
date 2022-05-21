@@ -11,8 +11,19 @@ using System.Text;
 
 namespace functional_bubble.NET
 {
-    internal class ForumRomanymAdapter : BaseAdapter<Task>
+    public class ForumRomanymAdapter : BaseAdapter<Task>
     {
+        /*Quod spirat tenera malum mordente puella,
+        Quod de Corycio quae venit aura croco; 
+        Vinea quod primis floret cum cana racemis,
+        Gramina quod redolent quae modo carpsit ovis; 
+        Quod myrtis, quod messor Arabs, quod sucina trita, 
+        Pallidus Eoo ture quod ignis olet; 
+        Gleba quod aestivo leviter cum spargitur imbre,
+        Quod madidas nardo passa corona comas: 
+        Hoc tua, saeve puer Diadumene, basia fragrant.
+        Quid si tota dares illa sine invidia?
+         */
         private Context mContext;
         public Task mTask;
 

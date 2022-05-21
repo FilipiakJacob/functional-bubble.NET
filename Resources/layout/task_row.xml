@@ -4,27 +4,23 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="5px"
-    android:paddingBottom="2px"
-    android:paddingRight="5px"
+    android:background="@drawable/task_row_style"
+    android:padding="30px"
     android:weightSum="100"
     >
     <TextView
-        android:id="@+id/task_row_id"
-        android:text="ID"
+        android:id="@+id/task_row_title"
+        android:text="Title"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="10"/>
+        android:layout_weight="50"
+        android:textSize="30sp"/>
     <TextView
-        android:id="@+id/task_row_task"
-        android:text="Task"
+        android:id="@+id/task_row_description"
+        android:text="Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="10"/>
-    <TextView
-        android:id="@+id/task_row_priority"
-        android:text="Priority"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="10"/>
+        android:layout_weight="50"
+        android:textSize="30sp"/>
 </LinearLayout>

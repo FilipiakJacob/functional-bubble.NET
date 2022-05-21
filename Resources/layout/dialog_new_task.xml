@@ -9,8 +9,8 @@
     
 
     <EditText
-        android:hint="Label"
-        android:id="@+id/new_task_label"
+        android:hint="Title"
+        android:id="@+id/new_task_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="5"

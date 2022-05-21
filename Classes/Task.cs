@@ -41,7 +41,6 @@ namespace functional_bubble.NET
         public void gen_Id()
         ///Search the database for a free ID number and return it
         {
-            throw new NotImplementedException();
             int id = 0; //TODO: Search the database, find a free Id number.
             Id = id; 
         }

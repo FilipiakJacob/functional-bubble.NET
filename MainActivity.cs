@@ -32,16 +32,24 @@ namespace functional_bubble.NET
             mBtnNewTask = FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
             mBtnNewTask.Click += (object sender, EventArgs e) =>
             {
-                //Method for creating DialogFragment, a form for creating new task
-                Dialog_NewTask newTaskDialog = new Dialog_NewTask();
-                newTaskDialog.Show(SupportFragmentManager,"Dialog");
+                //Method for creating DialogFragment from Dialog_NewTask Class
+                Dialog_NewTask newTaskDialog = new Dialog_NewTask(); //Create a new Dialog Fragment
+                newTaskDialog.Show(SupportFragmentManager,"Dialog"); //Show on screen the Dialog Fragment
 
+                newTaskDialog.mNewTaskComplete += (object sender, onNewTaskEventArgs e) =>
+                {
+                    //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
+                    adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI
+                    adapter.NotifyDataSetChanged(); //Refresh Task UI
+                };
             };
+
 
             textMessage = FindViewById<TextView>(Resource.Id.message);
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
         }
+
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
