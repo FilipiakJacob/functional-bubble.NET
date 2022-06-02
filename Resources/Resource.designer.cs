@@ -3462,16 +3462,22 @@ namespace functional_bubble.NET
 			public const int notify_panel_notification_icon_bg = 2131230850;
 			
 			// aapt resource value: 0x7F080083
-			public const int plus_icon = 2131230851;
+			public const int penguin = 2131230851;
 			
 			// aapt resource value: 0x7F080084
-			public const int task_row_style = 2131230852;
+			public const int plus_icon = 2131230852;
 			
 			// aapt resource value: 0x7F080085
-			public const int tooltip_frame_dark = 2131230853;
+			public const int shop = 2131230853;
 			
 			// aapt resource value: 0x7F080086
-			public const int tooltip_frame_light = 2131230854;
+			public const int task_row_style = 2131230854;
+			
+			// aapt resource value: 0x7F080087
+			public const int tooltip_frame_dark = 2131230855;
+			
+			// aapt resource value: 0x7F080088
+			public const int tooltip_frame_light = 2131230856;
 			
 			static Drawable()
 			{
@@ -4606,19 +4612,25 @@ namespace functional_bubble.NET
 			public const int notification_template_part_time = 2131492927;
 			
 			// aapt resource value: 0x7F0C0040
-			public const int select_dialog_item_material = 2131492928;
+			public const int penguin_base = 2131492928;
 			
 			// aapt resource value: 0x7F0C0041
-			public const int select_dialog_multichoice_material = 2131492929;
+			public const int select_dialog_item_material = 2131492929;
 			
 			// aapt resource value: 0x7F0C0042
-			public const int select_dialog_singlechoice_material = 2131492930;
+			public const int select_dialog_multichoice_material = 2131492930;
 			
 			// aapt resource value: 0x7F0C0043
-			public const int support_simple_spinner_dropdown_item = 2131492931;
+			public const int select_dialog_singlechoice_material = 2131492931;
 			
 			// aapt resource value: 0x7F0C0044
-			public const int task_row = 2131492932;
+			public const int shop_base = 2131492932;
+			
+			// aapt resource value: 0x7F0C0045
+			public const int support_simple_spinner_dropdown_item = 2131492933;
+			
+			// aapt resource value: 0x7F0C0046
+			public const int task_row = 2131492934;
 			
 			static Layout()
 			{

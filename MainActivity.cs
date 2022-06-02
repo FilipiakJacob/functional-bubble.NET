@@ -7,6 +7,8 @@ using AndroidX.AppCompat.App;
 using Google.Android.Material.BottomNavigation;
 using System;
 using System.Collections.Generic;
+using AndroidX.Fragment.App;
+
 namespace functional_bubble.NET
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
@@ -17,8 +19,14 @@ namespace functional_bubble.NET
         private List<Task> mItems;
         private ListView mainListView;
 
+        //Create objects to reference the 3 main fragments
+        AndroidX.Fragment.App.Fragment fragmentShop;
+        AndroidX.Fragment.App.Fragment PenguinShop;
+
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
+
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
@@ -41,9 +49,11 @@ namespace functional_bubble.NET
                     //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
                     adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI
                     adapter.NotifyDataSetChanged(); //Refresh Task UI
+
                 };
             };
 
+            fragmentShop = new ShopBase();
 
             textMessage = FindViewById<TextView>(Resource.Id.message);
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
