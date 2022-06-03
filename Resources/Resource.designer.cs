@@ -4018,7 +4018,7 @@ namespace functional_bubble.NET
 			public const int radio = 2131296432;
 			
 			// aapt resource value: 0x7F0900B1
-			public const int replacableLayout = 2131296433;
+			public const int replacableContainer = 2131296433;
 			
 			// aapt resource value: 0x7F0900B2
 			public const int right = 2131296434;
@@ -4645,7 +4645,7 @@ namespace functional_bubble.NET
 			public const int task_row = 2131492934;
 			
 			// aapt resource value: 0x7F0C0047
-			public const int Todo_base = 2131492935;
+			public const int todo_base = 2131492935;
 			
 			static Layout()
 			{

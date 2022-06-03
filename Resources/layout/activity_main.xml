@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <RelativeLayout
+     <RelativeLayout
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/replacableLayout" />
+        android:id="@+id/replacableContainer" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
