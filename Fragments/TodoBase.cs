@@ -14,27 +14,35 @@ namespace functional_bubble.NET.Fragments
 {
     public class TodoBase : Fragment
     {
+        private Button mBtnNewTask;
+        private List<Task> mItems;
+        private ListView mainListView;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
         }
 
-        private Button mBtnNewTask;
-        private List<Task> mItems;
-        private ListView mainListView;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            /*
+            //Inflating view pretty much creates it in memory, without showing it on screen.
             View view = inflater.Inflate(Resource.Layout.todo_base, container, false);
-            mainListView = FindViewById<ListView>(Resource.Id.MainView);
-            mItems = new List<Task>();
+            return view;
+        }
 
+        
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        // OnViewCreated is called after OnCreateView and can access the inflated View to findById.
+        {
+            mainListView = view.FindViewById<ListView>(Resource.Id.MainView);
+            mItems = new List<Task>();
+            /*
             ListViewAdapter adapter = new ListViewAdapter(this, mItems);
             mainListView.Adapter = adapter;
 
-            mBtnNewTask = FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
+            mBtnNewTask = view.FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
             mBtnNewTask.Click += (object sender, EventArgs e) =>
             {
                 //Method for creating DialogFragment from Dialog_NewTask Class
@@ -50,10 +58,6 @@ namespace functional_bubble.NET.Fragments
                 };
             };
             */
-
-            View view = inflater.Inflate(Resource.Layout.todo_base, container, false);
-
-            return view;
         }
     }
 }
