@@ -165,7 +165,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Todo_base.xml">
+    <AndroidResource Include="Resources\layout\todo_base.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
