@@ -1,31 +1,28 @@
-﻿using Android.App;
+﻿//using Android.App; //Commented out because we dont need it
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
+using AndroidX.Fragment.App;
 using Google.Android.Material.BottomNavigation;
 using System;
 using System.Collections.Generic;
 
 
-
 namespace functional_bubble.NET
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener
+    [Android.App.Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
+    public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener //AppCompatActivity extends FragmentActivity, which we need for fragments
     {
         TextView textMessage;
         private Button mBtnNewTask;
         private List<Task> mItems;
         private ListView mainListView;
 
-       
-        
-
         //Declare objects to reference the 3 main fragments.
-        AndroidX.Fragment.App.Fragment fragmentShop;
-        AndroidX.Fragment.App.Fragment fragmentPenguin;
+        Fragment fragmentShop;
+        Fragment fragmentPenguin;
         //Declare the fragment manager. We're using fragments from AndroidX.Fragment.App
         //rather than the default ones, so the manager is from it too.
         AndroidX.Fragment.App.FragmentTransaction fragmentManager;
@@ -34,7 +31,7 @@ namespace functional_bubble.NET
 
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.shop_base);
+            SetContentView(Resource.Layout.activity_main);
             /*
             SetContentView(Resource.Layout.activity_main);
 
@@ -64,7 +61,7 @@ namespace functional_bubble.NET
             fragmentPenguin = new PenguinBase();
 
             fragmentManager = SupportFragmentManager.BeginTransaction();
-            fragmentManager.Add(Resource.Id.shop_layout, fragmentShop);
+            fragmentManager.Add(Resource.Id.replacableLayout, fragmentShop);
             fragmentManager.Commit();
 
 
@@ -88,12 +85,14 @@ namespace functional_bubble.NET
                     textMessage.SetText(Resource.String.title_home);
                     return true;
                 case Resource.Id.navigation_dashboard:
-                    fragmentManager.Replace(Resource.Id.shop_layout, fragmentShop);
+                    fragmentManager = SupportFragmentManager.BeginTransaction();
+                    fragmentManager.Replace(Resource.Id.replacableLayout, fragmentShop);
                     fragmentManager.Commit();
 
                     return true;
                 case Resource.Id.navigation_notifications:
-                    fragmentManager.Replace(Resource.Id.penguin_layout, fragmentPenguin);
+                    fragmentManager = SupportFragmentManager.BeginTransaction();
+                    fragmentManager.Replace(Resource.Id.replacableLayout, fragmentPenguin);
                     fragmentManager.Commit();
                     return true;
             }
