@@ -65,7 +65,6 @@
     <Compile Include="Adapters\ListViewAdapter.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
-    <Compile Include="Fragments\TodoBase.cs" />
     <Compile Include="Fragments\PenguinBase.cs" />
     <Compile Include="Fragments\ShopBase.cs" />
     <Compile Include="MainActivity.cs" />
@@ -161,11 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\shop_base.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\Todo_base.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
