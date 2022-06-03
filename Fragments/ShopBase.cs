@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using AndroidX.Fragment.App;
 
-namespace functional_bubble.NET
+namespace functional_bubble.NET.Fragments
 {
     public class ShopBase : Fragment
     {

@@ -18,15 +18,42 @@ namespace functional_bubble.NET.Fragments
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your fragment here
         }
+
+        private Button mBtnNewTask;
+        private List<Task> mItems;
+        private ListView mainListView;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+            /*
+            View view = inflater.Inflate(Resource.Layout.todo_base, container, false);
+            mainListView = FindViewById<ListView>(Resource.Id.MainView);
+            mItems = new List<Task>();
 
-            return base.OnCreateView(inflater, container, savedInstanceState);
+            ListViewAdapter adapter = new ListViewAdapter(this, mItems);
+            mainListView.Adapter = adapter;
+
+            mBtnNewTask = FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
+            mBtnNewTask.Click += (object sender, EventArgs e) =>
+            {
+                //Method for creating DialogFragment from Dialog_NewTask Class
+                Dialog_NewTask newTaskDialog = new Dialog_NewTask(); //Create a new Dialog Fragment
+                newTaskDialog.Show(SupportFragmentManager, "Dialog"); //Show on screen the Dialog Fragment
+
+                newTaskDialog.mNewTaskComplete += (object sender, onNewTaskEventArgs e) =>
+                {
+                    //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
+                    adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI
+                    adapter.NotifyDataSetChanged(); //Refresh Task UI
+
+                };
+            };
+            */
+
+            View view = inflater.Inflate(Resource.Layout.todo_base, container, false);
+
+            return view;
         }
     }
 }
