@@ -1,5 +1,4 @@
-﻿//using Android.App; //Commented out because we dont need it
-using Android.OS;
+﻿using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
@@ -74,7 +73,8 @@ namespace functional_bubble.NET
             {
                 case Resource.Id.navigation_home:
                     fragmentManager = SupportFragmentManager.BeginTransaction();
-                    fragmentManager.Replace(Resource.Id.replacableContainer, new TodoBase()); //There already is a fragment in the 
+                    fragmentManager.Replace(Resource.Id.replacableContainer, new TodoBase()); //There already is a fragment in the container. Replace() forces all
+                                                                                              //fragments in the container to destroy themselves and adds a new fragment.
                     fragmentManager.Commit();
                     return true;
 
