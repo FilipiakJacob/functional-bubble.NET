@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Adapters\ForumRomanumAdapter.cs" />
     <Compile Include="Adapters\ListViewAdapter.cs" />
+    <Compile Include="Classes\Database\database.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
     <Compile Include="MainActivity.cs" />
@@ -108,6 +109,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.8.116</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v4">
       <Version>28.0.0.3</Version>
     </PackageReference>
@@ -144,6 +148,9 @@
     <AndroidResource Include="Resources\drawable\task_row_style.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Classes\Database\database.db" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
