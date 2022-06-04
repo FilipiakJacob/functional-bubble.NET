@@ -43,11 +43,23 @@ namespace functional_bubble.NET
 
             mNewTaskTitle = view.FindViewById<EditText>(Resource.Id.new_task_title);
             mNewTaskDescription = view.FindViewById<EditText>(Resource.Id.new_task_description);
+
             mNewTaskPriority = view.FindViewById<Spinner>(Resource.Id.new_task_priority);
-            mBtnCreateTask = view.FindViewById<Button>(Resource.Id.new_task_button);
-            
+            mNewTaskPriority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (MNewTaskPriority_ItemSelected); //method called when an item from priority spinner is chosen
+
+
+            mBtnCreateTask = view.FindViewById<Button>(Resource.Id.new_task_button);            
             mBtnCreateTask.Click += MBtnCreateTask_Click; //Method executed when Confirmation Button is clicked
             return view;
+        }
+
+        private void MNewTaskPriority_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            /// <summary>
+            /// A method called when user chose an item from priority spinner
+            /// </summary>
+            Spinner MNewTaskPriority = (Spinner)sender;
+            mNewTask.Priority = string.Format((string)MNewTaskPriority.GetItemAtPosition(e.Position));
         }
 
         private void MBtnCreateTask_Click(object sender, EventArgs e)

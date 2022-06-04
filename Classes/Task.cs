@@ -20,7 +20,7 @@ namespace functional_bubble.NET
         public DateTime CreationTime { get; set; }
         public DateTime Deadline { get; set; }
         public int CoinsReward { get; set; }
-        public int Priority { get; set; }
+        public string Priority { get; set; }
         public bool Repeatable { get; set; }
         public bool Pinned { get; set; }
         

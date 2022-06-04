@@ -16,23 +16,25 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20px"
         android:textSize="30sp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/ButtonAddTaskStyle"
-        android:layout_marginTop="10dp"/>
+        />
     <ListView
         android:id="@+id/MainView"
-        android:layout_below="@+id/activity_main_buttonNewTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20px"/>
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:layout_above="@id/navigation"
+        android:layout_below="@id/activity_main_buttonNewTask"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="0dp"
-        android:layout_marginStart="0dp"
         android:background="?android:attr/windowBackground"
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation" />
