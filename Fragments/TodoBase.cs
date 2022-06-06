@@ -38,8 +38,8 @@ namespace functional_bubble.NET.Fragments
         {
             mainListView = view.FindViewById<ListView>(Resource.Id.MainView);
             mItems = new List<Task>();
-            /*
-            ListViewAdapter adapter = new ListViewAdapter(this, mItems);
+
+            ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems);
             mainListView.Adapter = adapter;
 
             mBtnNewTask = view.FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
@@ -47,8 +47,7 @@ namespace functional_bubble.NET.Fragments
             {
                 //Method for creating DialogFragment from Dialog_NewTask Class
                 Dialog_NewTask newTaskDialog = new Dialog_NewTask(); //Create a new Dialog Fragment
-                newTaskDialog.Show(SupportFragmentManager, "Dialog"); //Show on screen the Dialog Fragment
-
+                newTaskDialog.Show(ChildFragmentManager, "Dialog"); //Show on screen the Dialog Fragment
                 newTaskDialog.mNewTaskComplete += (object sender, onNewTaskEventArgs e) =>
                 {
                     //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
@@ -57,7 +56,7 @@ namespace functional_bubble.NET.Fragments
 
                 };
             };
-            */
+
         }
     }
 }

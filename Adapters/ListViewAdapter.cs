@@ -17,7 +17,7 @@ namespace functional_bubble.NET
         private Context mContext; //Enviorment in which adapter will work
         public List<Task> mItems; //List of all Tasks which will be displayed in Task UI
 
-        public ListViewAdapter(Context context,List<Task> items)
+        public ListViewAdapter(Context context , List<Task> items)
         {
             //Class Constructor which initialises context and Task list of the class
             mItems = items;
