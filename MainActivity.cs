@@ -59,6 +59,11 @@ namespace functional_bubble.NET
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
         }
+        protected override void OnSaveInstanceState(Bundle outState)
+        {
+            //save current state of the application so that it can be restored when the app returns from the background
+            base.OnSaveInstanceState(outState);
+        }
 
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

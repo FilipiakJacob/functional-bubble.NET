@@ -46,12 +46,14 @@ namespace functional_bubble.NET
             {
                 row = LayoutInflater.From(mContext).Inflate(Resource.Layout.task_row, null, false); //Create the TextView resource
             }
-            TextView task_row_id = row.FindViewById<TextView>(Resource.Id.task_row_title); //Get task_row_title TextView in task_row 
+            TextView task_row_id = row.FindViewById<TextView>(Resource.Id.task_row_title); //Get task_row_title TextView from task_row 
             task_row_id.Text = mItems[position].Title; //Set Text of that task_row_title to be the Title attribute of Task instance
 
-            TextView task_row_task = row.FindViewById<TextView>(Resource.Id.task_row_description); //Get task_row_description TextView in task_row 
+            TextView task_row_task = row.FindViewById<TextView>(Resource.Id.task_row_description); //Get task_row_description TextView from task_row 
             task_row_task.Text = mItems[position].Description; //Set Text of that task_row_description to be the Description attribute of Task instance
 
+            TextView task_row_priority = row.FindViewById<TextView>(Resource.Id.task_row_priority);//Get task_row_priority TextView from task_row
+            task_row_priority.Text = mItems[position].Priority; //Set Text of that task_row_priority to be the Priority attribute of Task instance
 
             return row;
         }
