@@ -17,7 +17,7 @@ namespace functional_bubble.NET
 
 {
     [Android.App.Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, NavController.IOnDestinationChangedListener
+    public class MainActivity : AppCompatActivity
     {
 
         //Declare the fragment manager. We're using fragments from AndroidX.Fragment.App
@@ -30,10 +30,9 @@ namespace functional_bubble.NET
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            NavController navController = new NavController(this);
-
-            navController.AddOnDestinationChangedListener(this);
-            //BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
+            NavController navController = Navigation.FindNavController(this, Resource.Id.main_nav_host_fragment);
+            BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
+            NavigationUI.SetupWithNavController(navigation, navController);
         }
         protected override void OnSaveInstanceState(Bundle outState)
         {
