@@ -31,7 +31,7 @@ namespace functional_bubble.NET
             SetContentView(Resource.Layout.activity_main);
 
             NavController navController = Navigation.FindNavController(this, Resource.Id.main_nav_host_fragment);
-            BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
+            BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.main_bottom_nav_view);
             NavigationUI.SetupWithNavController(navigation, navController);
         }
         protected override void OnSaveInstanceState(Bundle outState)
@@ -74,10 +74,7 @@ namespace functional_bubble.NET
             return false;
         }
         */
-        public void OnDestinationChanged(NavController controller, NavDestination destination, Bundle arguments)
-        {
-            NavController navController = (NavController)controller;
-        }
+
     }
 
 }

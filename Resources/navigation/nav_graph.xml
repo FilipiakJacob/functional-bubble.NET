@@ -7,7 +7,7 @@ which are connected to each other by actions. -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@+id/navigation_todo">
+            app:startDestination="@+id/navigation_shop">
     
 	
 	<fragment 
