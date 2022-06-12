@@ -1,39 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
 
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/task_row_style"
-    android:padding="30px"
-    android:rowCount="2"
-    android:columnCount="2"
-    >
-    <TextView
-        android:id="@+id/task_row_title"
-        android:text="Title"
-        android:textStyle="bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_row="0"
-        android:layout_column="0"
-        android:layout_marginRight="40px"
-        android:textSize="30sp"/>
-    <TextView
-        android:id="@+id/task_row_description"
-        android:text="Description"
-        android:layout_row="1"
-        android:layout_column="0"
-        android:layout_columnSpan="2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"/>
-    <TextView
-        android:id="@+id/task_row_priority"
-        android:text="Priority"
-        android:layout_row="0"
-        android:layout_column="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"/>
-</GridLayout>
+    android:layout_height="match_parent"   
+>
+    <Button
+        android:id="@+id/task_row_delete_button"
+        android:layout_width="250px"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:text="DELETE"/>
+    <GridLayout
+        android:id="@+id/task_row_grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/task_row_style"
+        android:padding="30px"
+        android:rowCount="2"
+        android:elevation="2dp"
+        android:columnCount="3"
+        >
+        <TextView
+            android:id="@+id/task_row_title"
+            android:text="Title"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginRight="40px"
+            android:textSize="30sp"/>
+        <TextView
+            android:id="@+id/task_row_description"
+            android:text="Description"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"/>
+        <TextView
+            android:id="@+id/task_row_priority"
+            android:text="Priority"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"/>
+    </GridLayout>
+</FrameLayout>
+

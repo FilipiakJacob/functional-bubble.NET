@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AndroidX.Fragment.App;
+using functional_bubble.NET.Animations;
 
 namespace functional_bubble.NET.Fragments
 {
@@ -51,12 +52,26 @@ namespace functional_bubble.NET.Fragments
                 newTaskDialog.mNewTaskComplete += (object sender, onNewTaskEventArgs e) =>
                 {
                     //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
-                    adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI
-                    adapter.NotifyDataSetChanged(); //Refresh Task UI
+                    adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI 
+                    //adapter.Delete(0);
+                };
+                mainListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
+                {
+                    //METHOD NOT FINISHED
+                    //This method will create an extended version of the task when clicked
+                    Task task = adapter[e.Position];
 
+                    Dialog_FullScreenTask dialog_FullScreenTask = new Dialog_FullScreenTask();
+
+                };
+                adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
+                {
+                    //This function will be needed to show comfirmation window before task deletion. Yet to be developed
+                    
                 };
             };
 
         }
+
     }
 }
