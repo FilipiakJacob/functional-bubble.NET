@@ -7,22 +7,19 @@ which are connected to each other by actions. -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@+id/navigation_shop">
+            app:startDestination="@+id/navigation_todo">
     
 	
 	<fragment 
     android:id="@+id/navigation_todo"
-    android:name="com.companyname.functional_bubble.NET.Fragments.TodoBase"
-    android:label="@string/title_home" />
+    android:name="functional_bubble.NET.Fragments.TodoBase" />
 	
 	<fragment 
     android:id="@+id/navigation_shop"
-    android:name="com.companyname.functional_bubble.NET.Fragments.ShopBase"
-    android:label="@string/title_dashboard" />
+    android:name="functional_bubble.NET.Fragments.ShopBase" />
     
 	<fragment 
     android:id="@+id/navigation_penguin"
-    android:name="com.ThreePenguins.functional_bubble.NET.Fragments.PenguinBase"
-    android:label="@string/title_notifications" />
+    android:name="functional_bubble.NET.Fragments.PenguinBase" />
 
 </navigation>
