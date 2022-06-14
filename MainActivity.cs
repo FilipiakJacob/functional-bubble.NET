@@ -28,11 +28,13 @@ namespace functional_bubble.NET
 
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
+            SetContentView(Resource.Layout.activity_main); //Sets layout visible in the activity as "activity_main".
+                                                           //This layout contains the NavHostFragment and Bottom Navigation.
+                                                           //Think of it as the Background of the app.
 
-            NavController navController = Navigation.FindNavController(this, Resource.Id.main_nav_host_fragment);
-            BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.main_bottom_nav_view);
-            NavigationUI.SetupWithNavController(navigation, navController);
+            NavController navController = Navigation.FindNavController(this, Resource.Id.main_nav_host_fragment); //navController manages the swapping of destinations in the NavHostFragment.
+            BottomNavigationView bottomNavigation = FindViewById<BottomNavigationView>(Resource.Id.main_bottom_nav_view);
+            NavigationUI.SetupWithNavController(bottomNavigation, navController); //Connects the bottomNavigation with the NavController. 
         }
         protected override void OnSaveInstanceState(Bundle outState)
         {
