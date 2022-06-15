@@ -19,7 +19,7 @@ The NavController - An object which manages the user's "movement" through the Na
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@+id/navigation_todo">
+            app:startDestination="@+id/dest_todo">
 
 	<!-- 
 	    android:id - Can be used to reference the destination elsewhere in code
@@ -27,15 +27,15 @@ The NavController - An object which manages the user's "movement" through the Na
 	-->
 	
 	<fragment
-    android:id="@+id/navigation_todo" 
+    android:id="@+id/dest_todo" 
     android:name="functional_bubble.NET.Fragments.TodoBase" />
 	
 	<fragment 
-    android:id="@+id/navigation_shop"
+    android:id="@+id/dest_shop"
     android:name="functional_bubble.NET.Fragments.ShopBase" />
     
 	<fragment 
-    android:id="@+id/navigation_penguin"
+    android:id="@+id/dest_penguin"
     android:name="functional_bubble.NET.Fragments.PenguinBase" />
 
 </navigation>
