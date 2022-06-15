@@ -18,6 +18,7 @@ namespace functional_bubble.NET
 
         /* 
          * @author Mikołaj Petri
+         * @author Mateusz Staszek
          * 
          * Explanation to the used parameters
          * 
