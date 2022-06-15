@@ -25,6 +25,8 @@ namespace functional_bubble.NET
          * AutoIncrement - This attribute will cause an integer property's value to be auto-increment for each new object inserted into the database
          * Unique - Ensures that the values in the underlying database column are unique
          * Column( string name ) - The name parameter sets the underlying database column's name
+         * 
+         * basic documentation - https://docs.microsoft.com/en-us/xamarin/android/data-cloud/data-access/using-sqlite-orm
          */
 
         [PrimaryKey, AutoIncrement, Unique, Column("id")] 
