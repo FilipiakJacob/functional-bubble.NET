@@ -22,7 +22,6 @@ namespace functional_bubble.NET
 
         //Declare the fragment manager. We're using fragments from AndroidX.Fragment.App
         //rather than the default ones, so the manager is from it too.
-        //FragmentTransaction fragmentManager;
         protected override void OnCreate(Bundle savedInstanceState)
         {
 
