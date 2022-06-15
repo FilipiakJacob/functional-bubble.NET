@@ -19,23 +19,62 @@ The NavController - An object which manages the user's "movement" through the Na
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@+id/navigation_todo">
+            app:startDestination="@+id/dest_todo">
 
 	<!-- 
 	    android:id - Can be used to reference the destination elsewhere in code
 	    android:name - Full name of the fragment class which should be instantiated in this destination.
 	-->
+
+	<fragment
+		android:id="@+id/dest_todo"
+		android:name="functional_bubble.NET.Fragments.TodoBase" >
+		
+		<!--Actions represent the transitions between one destination to another. 
+			The action below is nested in the dest_todo destination, which is the
+			fragment it will navigate from. The app:destination argument refers to
+			dest_shop, which is the destination the action navigates to.
+			Actions can also be used to pass argument values and change backstack.
+		-->
+
+		<!--The id of action provides a level of abstraction, as multiple actions 
+		can have the same id and their use will be determined by context. For -->
+		
+		<action
+			android:id="@+id/move_shop"  
+			app:destination="@+id/dest_shop"
+			
+			app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" >
+	
+		</action>
+		
+
+	</fragment>
+
+	<fragment
+		android:id="@+id/dest_shop"
+		android:name="functional_bubble.NET.Fragments.ShopBase" >
+
+		<action
+			android:id="@+id/move_penguin"
+			app:destination="@+id/dest_penguin"
+			
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right" >
+
+		</action>
+
+	</fragment>
 	
 	<fragment
-    android:id="@+id/navigation_todo" 
-    android:name="functional_bubble.NET.Fragments.TodoBase" />
-	
-	<fragment 
-    android:id="@+id/navigation_shop"
-    android:name="functional_bubble.NET.Fragments.ShopBase" />
-    
-	<fragment 
-    android:id="@+id/navigation_penguin"
-    android:name="functional_bubble.NET.Fragments.PenguinBase" />
+		android:id="@+id/dest_penguin"
+		android:name="functional_bubble.NET.Fragments.PenguinBase" >
+		
+	</fragment>
 
 </navigation>
