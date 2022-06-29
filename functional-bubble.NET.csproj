@@ -63,7 +63,6 @@
   <ItemGroup>
     <Compile Include="Adapters\ForumRomanumAdapter.cs" />
     <Compile Include="Adapters\ListViewAdapter.cs" />
-    <Compile Include="Animations\TaskAnimation.cs" />
     <Compile Include="Classes\Dialog_FullScreenTask.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
@@ -116,15 +115,18 @@
     <PackageReference Include="Xamarin.Android.Support.v4">
       <Version>28.0.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.4.2.1" />
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
-      <Version>1.0.0.13</Version>
+      <Version>1.0.0.14</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Extensions">
+      <Version>2.2.0.14</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
-      <Version>2.4.1.1</Version>
+      <Version>2.4.1.2</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.0.0.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.1.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\iceberg.jpg" />

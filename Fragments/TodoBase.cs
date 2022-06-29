@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AndroidX.Fragment.App;
-using functional_bubble.NET.Animations;
 
 namespace functional_bubble.NET.Fragments
 {

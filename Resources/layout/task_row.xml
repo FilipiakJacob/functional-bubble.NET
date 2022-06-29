@@ -3,23 +3,25 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"   
+    android:layout_height="match_parent"  
 >
     <Button
         android:id="@+id/task_row_delete_button"
         android:layout_width="250px"
         android:layout_height="match_parent"
         android:layout_gravity="right"
-        android:text="DELETE"/>
+        android:text="DELETE"
+        android:layout_marginHorizontal="20px"/>
     <GridLayout
         android:id="@+id/task_row_grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/task_row_style"
-        android:padding="30px"
+        android:padding="20px"
         android:rowCount="2"
         android:elevation="2dp"
         android:columnCount="3"
+		android:layout_marginHorizontal="20px"
         >
         <TextView
             android:id="@+id/task_row_title"
