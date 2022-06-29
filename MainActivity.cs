@@ -4,7 +4,7 @@ using Android.Views;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using AndroidX.Fragment.App;
-using Google.Android.Material.BottomNavigation;
+using Google.Android.Material.Navigation;
 using System;
 using System.Collections.Generic;
 using functional_bubble.NET.Fragments;
@@ -17,7 +17,7 @@ namespace functional_bubble.NET
 
 {
     [Android.App.Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    public class MainActivity : AppCompatActivity, NavigationBarView.IOnItemSelectedListener
     {
 
         //Declare the fragment manager. We're using fragments from AndroidX.Fragment.App
@@ -32,10 +32,12 @@ namespace functional_bubble.NET
                                                            //This layout contains the NavHostFragment and Bottom Navigation.
                                                            //Think of it as the Background of the app.
 
-            NavController navController = Navigation.FindNavController(this, Resource.Id.main_nav_host_fragment); //navController manages the swapping of destinations in the NavHostFragment.
-            BottomNavigationView bottomNavigation = FindViewById<BottomNavigationView>(Resource.Id.main_bottom_nav_view);
-            NavigationUI.SetupWithNavController(bottomNavigation, navController); //Connects the bottomNavigation with the NavController. 
+            //NavController navController = Navigation.FindNavController(this, Resource.Id.main_nav_host_fragment); //navController manages the swapping of destinations in the NavHostFragment.
+            NavigationBarView bottomNavigation = FindViewById<NavigationBarView>(Resource.Id.main_bottom_nav_view);
+            bottomNavigation.SetOnItemSelectedListener(this);
+            //NavigationUI.SetupWithNavController(bottomNavigation, navController); //Connects the bottomNavigation with the NavController. 
         }
+
         protected override void OnSaveInstanceState(Bundle outState)
         {
             //save current state of the application so that it can be restored when the app returns from the background
@@ -48,34 +50,57 @@ namespace functional_bubble.NET
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        /*
+
         public bool OnNavigationItemSelected(IMenuItem item)
         {
+            //TODO: Fix error when choosing the same item twice.
+            NavController navController = Navigation.FindNavController(this, Resource.Id.main_nav_host_fragment); //navController manages the swapping of destinations in the NavHostFragment.
             switch (item.ItemId)
             {
-                case Resource.Id.navigation_home:
-                    //fragmentManager = SupportFragmentManager.BeginTransaction();
-                    //fragmentManager.Replace(Resource.Id.replacableContainer, new TodoBase()); //There already is a fragment in the container. Replace() forces all
-                                                                                              //fragments in the container to destroy themselves and adds a new fragment.
-                    //fragmentManager.Commit();
-
+                case Resource.Id.dest_todo:
+                    navController.Navigate(Resource.Id.move_todo);
                     return true;
 
-                case Resource.Id.navigation_dashboard:
-                    fragmentManager = SupportFragmentManager.BeginTransaction();
-                    fragmentManager.Replace(Resource.Id.replacableContainer, new ShopBase());
-                    fragmentManager.Commit();
+                case Resource.Id.dest_shop:
+                    navController.Navigate(Resource.Id.move_shop);
                     return true;
 
-                case Resource.Id.navigation_notifications:
-                    fragmentManager = SupportFragmentManager.BeginTransaction();
-                    fragmentManager.Replace(Resource.Id.replacableContainer, new PenguinBase());
-                    fragmentManager.Commit();
+                case Resource.Id.dest_penguin:
+                    navController.Navigate(Resource.Id.move_penguin);
                     return true;
             }
+
             return false;
         }
-        */
+        /*
+
+public bool OnNavigationItemSelected(IMenuItem item)
+{
+   switch (item.ItemId)
+   {
+       case Resource.Id.navigation_home:
+           //fragmentManager = SupportFragmentManager.BeginTransaction();
+           //fragmentManager.Replace(Resource.Id.replacableContainer, new TodoBase()); //There already is a fragment in the container. Replace() forces all
+                                                                                     //fragments in the container to destroy themselves and adds a new fragment.
+           //fragmentManager.Commit();
+
+           return true;
+
+       case Resource.Id.navigation_dashboard:
+           fragmentManager = SupportFragmentManager.BeginTransaction();
+           fragmentManager.Replace(Resource.Id.replacableContainer, new ShopBase());
+           fragmentManager.Commit();
+           return true;
+
+       case Resource.Id.navigation_notifications:
+           fragmentManager = SupportFragmentManager.BeginTransaction();
+           fragmentManager.Replace(Resource.Id.replacableContainer, new PenguinBase());
+           fragmentManager.Commit();
+           return true;
+   }
+   return false;
+}
+*/
 
     }
 
