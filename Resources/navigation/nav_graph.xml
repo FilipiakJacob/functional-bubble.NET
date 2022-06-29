@@ -50,6 +50,17 @@ The NavController - An object which manages the user's "movement" through the Na
             app:popExitAnim="@anim/slide_out_right" >
 	
 		</action>
+
+		<action
+			android:id="@+id/move_penguin"
+			app:destination="@+id/dest_penguin"
+			
+			app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" >
+
+		</action>
 		
 
 	</fragment>
@@ -58,6 +69,18 @@ The NavController - An object which manages the user's "movement" through the Na
 		android:id="@+id/dest_shop"
 		android:name="functional_bubble.NET.Fragments.ShopBase" >
 
+
+		<action
+			android:id="@+id/move_todo"
+			app:destination="@+id/dest_todo"
+			
+			app:enterAnim="@anim/slide_in_left"
+			app:exitAnim="@anim/slide_out_right"
+			app:popEnterAnim="@anim/slide_in_right"
+			app:popExitAnim="@anim/slide_out_left" >
+
+		</action>
+		
 		<action
 			android:id="@+id/move_penguin"
 			app:destination="@+id/dest_penguin"
@@ -74,6 +97,30 @@ The NavController - An object which manages the user's "movement" through the Na
 	<fragment
 		android:id="@+id/dest_penguin"
 		android:name="functional_bubble.NET.Fragments.PenguinBase" >
+
+
+		<action
+			android:id="@+id/move_todo"
+			app:destination="@+id/dest_todo"
+			
+			app:enterAnim="@anim/slide_in_left"
+			app:exitAnim="@anim/slide_out_right"
+			app:popEnterAnim="@anim/slide_in_right"
+			app:popExitAnim="@anim/slide_out_left" >
+
+		</action>
+		
+		<action
+			android:id="@+id/move_shop"
+			app:destination="@+id/dest_shop"
+			
+			app:enterAnim="@anim/slide_in_left"
+			app:exitAnim="@anim/slide_out_right"
+			app:popEnterAnim="@anim/slide_in_right"
+			app:popExitAnim="@anim/slide_out_left" >
+
+		</action>
+
 		
 	</fragment>
 
