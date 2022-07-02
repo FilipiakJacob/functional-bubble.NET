@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using functional_bubble.NET.Animations;
 using Android.Animation;
 
 namespace functional_bubble.NET
@@ -70,37 +69,37 @@ namespace functional_bubble.NET
             View row = convertView; //The ListView where items will be placed
             if (row == null) //If the TextView resource does not exist
             {
-                row = LayoutInflater.From(mContext).Inflate(Resource.Layout.task_row, null, false); //Create the TextView resource
+            row = LayoutInflater.From(mContext).Inflate(Resource.Layout.task_row, null, false); //Create the TextView resource
             
             Button task_row_delete_button = row.FindViewById<Button>(Resource.Id.task_row_delete_button); //A button for task deletion
-                task_row_delete_button.Click += (object sender, EventArgs e) =>
-                {
-                    //funtion called when delete button had been pressed
-                    //!!!!!!!!!Make it instead show a popup window!!!!!!!
-                    Delete(position, row); //call Delete class method 
-                };
+            task_row_delete_button.Click += (object sender, EventArgs e) =>
+            {
+                //funtion called when delete button had been pressed
+                //!!!!!!!!!Make it instead show a popup window!!!!!!!
+                Delete(position, row); //call Delete class method 
+            };
             }
-
             GridLayout task_row_grid = row.FindViewById<GridLayout>(Resource.Id.task_row_grid);//Get the grid layout from task_row (this is where the task row is displayed in the list)
-                task_row_grid.SetOnTouchListener(this); //Set a listener that will respond when task row had been touched
+            task_row_grid.SetOnTouchListener(this); //Set a listener that will respond when task row had been touched
 
-                TextView task_row_id = row.FindViewById<TextView>(Resource.Id.task_row_title); //Get task_row_title TextView from task_row 
-                task_row_id.Text = mItems[position].Title; //Set Text of that task_row_title to be the Title attribute of Task instance
+            TextView task_row_id = row.FindViewById<TextView>(Resource.Id.task_row_title); //Get task_row_title TextView from task_row 
+            task_row_id.Text = mItems[position].Title; //Set Text of that task_row_title to be the Title attribute of Task instance
 
                 TextView task_row_task = row.FindViewById<TextView>(Resource.Id.task_row_description); //Get task_row_description TextView from task_row 
-                if (task_row_task.Text.Length < 20)
-                {
-                    task_row_task.Text = mItems[position].Description; //Set Text of that task_row_description to be the Description attribute of Task instance
-                }
-                else
-                {
-                    //Shorten the text in description if it is over 20 characters long
-                    string shortenedTxt = mItems[position].Description.Substring(0, 17);
-                    task_row_task.Text = shortenedTxt + "...";
-                };
+            if (task_row_task.Text.Length < 20)
+            {
+                task_row_task.Text = mItems[position].Description; //Set Text of that task_row_description to be the Description attribute of Task instance
+            }
+            else
+            {
+                //Shorten the text in description if it is over 20 characters long
+                string shortenedTxt = mItems[position].Description.Substring(0, 17);
+                task_row_task.Text = shortenedTxt + "...";
+            };
 
-                TextView task_row_priority = row.FindViewById<TextView>(Resource.Id.task_row_priority);//Get task_row_priority TextView from task_row
-                task_row_priority.Text = mItems[position].Priority; //Set Text of that task_row_priority to be the Priority attribute of Task instance            
+            TextView task_row_priority = row.FindViewById<TextView>(Resource.Id.task_row_priority);//Get task_row_priority TextView from task_row
+            task_row_priority.Text = mItems[position].Priority; //Set Text of that task_row_priority to be the Priority attribute of Task instance
+           
             return row;
         }
 
