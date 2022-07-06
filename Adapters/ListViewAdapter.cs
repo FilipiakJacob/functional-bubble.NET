@@ -55,7 +55,7 @@ namespace functional_bubble.NET
 
         public override long GetItemId(int position)
         {
-            //Unimplemented class method that is supposed to give ID of an item in a given position
+            //Unimplemented class method that is supposed to give ID of an item in a given positionn
             return position;
         }
         public override Task this[int position]
@@ -140,7 +140,7 @@ namespace functional_bubble.NET
                 v.Alpha = 1;
                 NotifyDataSetChanged(); //Refresh Task UI
             };
-
+            ///djbndnninAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!!!!!!!!!!
         }
 
 
