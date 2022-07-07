@@ -8,32 +8,32 @@ using Google.Android.Material.BottomNavigation;
 using System;
 using System.Collections.Generic;
 using functional_bubble.NET.Fragments;
+using AndroidX.Navigation;
+using AndroidX.Navigation.Fragment;
+using AndroidX.Navigation.UI;
 
 
 namespace functional_bubble.NET
 
 {
     [Android.App.Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity, BottomNavigationView.IOnNavigationItemSelectedListener //AppCompatActivity extends FragmentActivity, which we need for fragments
+    public class MainActivity : AppCompatActivity
     {
 
         //Declare the fragment manager. We're using fragments from AndroidX.Fragment.App
         //rather than the default ones, so the manager is from it too.
-        FragmentTransaction fragmentManager;
         protected override void OnCreate(Bundle savedInstanceState)
         {
 
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            SetContentView(Resource.Layout.activity_main);
-            //Fragment manager is used to dynamically replace fragments that are currently part of the activity.
-            fragmentManager = SupportFragmentManager.BeginTransaction();        //Calling this method returns an instance of FragmentTransaction
-            fragmentManager.Add(Resource.Id.replacableContainer, new TodoBase());  //Create a new instance of TodoBase (our default screen when app is opened) and
-                                                                                //add a fragment to the container (replacableLayout)
-            fragmentManager.Commit();
+            SetContentView(Resource.Layout.activity_main); //Sets layout visible in the activity as "activity_main".
+                                                           //This layout contains the NavHostFragment and Bottom Navigation.
+                                                           //Think of it as the Background of the app.
 
-            BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
-            navigation.SetOnNavigationItemSelectedListener(this);
+            NavController navController = Navigation.FindNavController(this, Resource.Id.main_nav_host_fragment); //navController manages the swapping of destinations in the NavHostFragment.
+            BottomNavigationView bottomNavigation = FindViewById<BottomNavigationView>(Resource.Id.main_bottom_nav_view);
+            NavigationUI.SetupWithNavController(bottomNavigation, navController); //Connects the bottomNavigation with the NavController. 
         }
         protected override void OnSaveInstanceState(Bundle outState)
         {
@@ -41,22 +41,23 @@ namespace functional_bubble.NET
             base.OnSaveInstanceState(outState);
         }
 
-
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+        /*
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
             {
                 case Resource.Id.navigation_home:
-                    fragmentManager = SupportFragmentManager.BeginTransaction();
-                    fragmentManager.Replace(Resource.Id.replacableContainer, new TodoBase()); //There already is a fragment in the container. Replace() forces all
+                    //fragmentManager = SupportFragmentManager.BeginTransaction();
+                    //fragmentManager.Replace(Resource.Id.replacableContainer, new TodoBase()); //There already is a fragment in the container. Replace() forces all
                                                                                               //fragments in the container to destroy themselves and adds a new fragment.
-                    fragmentManager.Commit();
+                    //fragmentManager.Commit();
+
                     return true;
 
                 case Resource.Id.navigation_dashboard:
@@ -73,6 +74,8 @@ namespace functional_bubble.NET
             }
             return false;
         }
+        */
+
     }
 
 }
