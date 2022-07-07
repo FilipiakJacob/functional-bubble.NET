@@ -10,11 +10,9 @@
 *.userosscache
 *.sln.docstates
 
+
 #ignore Xamarin.Android Resource.Designer.cs files
-**/*.Droid/**/[Rr]esource.[Dd]esigner.cs
-**/*.Android/**/[Rr]esource.[Dd]esigner.cs
-**/Android/**/[Rr]esource.[Dd]esigner.cs
-**/Droid/**/[Rr]esource.[Dd]esigner.cs
+*.Resource.designer.cs
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
