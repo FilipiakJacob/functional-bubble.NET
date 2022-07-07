@@ -16,6 +16,7 @@ using AndroidX.Navigation.UI;
 namespace functional_bubble.NET
 
 {
+
     [Android.App.Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
@@ -47,34 +48,6 @@ namespace functional_bubble.NET
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        /*
-        public bool OnNavigationItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Resource.Id.navigation_home:
-                    //fragmentManager = SupportFragmentManager.BeginTransaction();
-                    //fragmentManager.Replace(Resource.Id.replacableContainer, new TodoBase()); //There already is a fragment in the container. Replace() forces all
-                                                                                              //fragments in the container to destroy themselves and adds a new fragment.
-                    //fragmentManager.Commit();
-
-                    return true;
-
-                case Resource.Id.navigation_dashboard:
-                    fragmentManager = SupportFragmentManager.BeginTransaction();
-                    fragmentManager.Replace(Resource.Id.replacableContainer, new ShopBase());
-                    fragmentManager.Commit();
-                    return true;
-
-                case Resource.Id.navigation_notifications:
-                    fragmentManager = SupportFragmentManager.BeginTransaction();
-                    fragmentManager.Replace(Resource.Id.replacableContainer, new PenguinBase());
-                    fragmentManager.Commit();
-                    return true;
-            }
-            return false;
-        }
-        */
 
     }
 

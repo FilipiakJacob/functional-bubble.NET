@@ -9528,13 +9528,19 @@ namespace functional_bubble.NET
 			public const int todo_layout = 2131296744;
 			
 			// aapt resource value: 0x7F0901E9
-			public const int toggle = 2131296745;
+			public const int todo_widget_background = 2131296745;
 			
 			// aapt resource value: 0x7F0901EA
-			public const int top = 2131296746;
+			public const int todo_widget_text = 2131296746;
 			
 			// aapt resource value: 0x7F0901EB
-			public const int topPanel = 2131296747;
+			public const int toggle = 2131296747;
+			
+			// aapt resource value: 0x7F0901EC
+			public const int top = 2131296748;
+			
+			// aapt resource value: 0x7F0901ED
+			public const int topPanel = 2131296749;
 			
 			// aapt resource value: 0x7F09000D
 			public const int TOP_END = 2131296269;
@@ -9542,98 +9548,98 @@ namespace functional_bubble.NET
 			// aapt resource value: 0x7F09000E
 			public const int TOP_START = 2131296270;
 			
-			// aapt resource value: 0x7F0901EC
-			public const int touch_outside = 2131296748;
-			
-			// aapt resource value: 0x7F0901ED
-			public const int transitionToEnd = 2131296749;
-			
 			// aapt resource value: 0x7F0901EE
-			public const int transitionToStart = 2131296750;
+			public const int touch_outside = 2131296750;
 			
 			// aapt resource value: 0x7F0901EF
-			public const int transition_current_scene = 2131296751;
+			public const int transitionToEnd = 2131296751;
 			
 			// aapt resource value: 0x7F0901F0
-			public const int transition_layout_save = 2131296752;
+			public const int transitionToStart = 2131296752;
 			
 			// aapt resource value: 0x7F0901F1
-			public const int transition_position = 2131296753;
+			public const int transition_current_scene = 2131296753;
 			
 			// aapt resource value: 0x7F0901F2
-			public const int transition_scene_layoutid_cache = 2131296754;
+			public const int transition_layout_save = 2131296754;
 			
 			// aapt resource value: 0x7F0901F3
-			public const int transition_transform = 2131296755;
+			public const int transition_position = 2131296755;
 			
 			// aapt resource value: 0x7F0901F4
-			public const int triangle = 2131296756;
+			public const int transition_scene_layoutid_cache = 2131296756;
 			
 			// aapt resource value: 0x7F0901F5
-			public const int @unchecked = 2131296757;
+			public const int transition_transform = 2131296757;
 			
 			// aapt resource value: 0x7F0901F6
-			public const int uniform = 2131296758;
+			public const int triangle = 2131296758;
 			
 			// aapt resource value: 0x7F0901F7
-			public const int unlabeled = 2131296759;
+			public const int @unchecked = 2131296759;
 			
 			// aapt resource value: 0x7F0901F8
-			public const int up = 2131296760;
+			public const int uniform = 2131296760;
 			
 			// aapt resource value: 0x7F0901F9
-			public const int useLogo = 2131296761;
+			public const int unlabeled = 2131296761;
 			
 			// aapt resource value: 0x7F0901FA
-			public const int vertical_only = 2131296762;
+			public const int up = 2131296762;
 			
 			// aapt resource value: 0x7F0901FB
-			public const int view_offset_helper = 2131296763;
+			public const int useLogo = 2131296763;
 			
 			// aapt resource value: 0x7F0901FC
-			public const int view_transition = 2131296764;
+			public const int vertical_only = 2131296764;
 			
 			// aapt resource value: 0x7F0901FD
-			public const int view_tree_lifecycle_owner = 2131296765;
+			public const int view_offset_helper = 2131296765;
 			
 			// aapt resource value: 0x7F0901FE
-			public const int view_tree_saved_state_registry_owner = 2131296766;
+			public const int view_transition = 2131296766;
 			
 			// aapt resource value: 0x7F0901FF
-			public const int view_tree_view_model_store_owner = 2131296767;
+			public const int view_tree_lifecycle_owner = 2131296767;
 			
 			// aapt resource value: 0x7F090200
-			public const int visible = 2131296768;
+			public const int view_tree_saved_state_registry_owner = 2131296768;
 			
 			// aapt resource value: 0x7F090201
-			public const int visible_removing_fragment_view_tag = 2131296769;
+			public const int view_tree_view_model_store_owner = 2131296769;
 			
 			// aapt resource value: 0x7F090202
-			public const int west = 2131296770;
-			
-			// aapt resource value: 0x7F090204
-			public const int withinBounds = 2131296772;
+			public const int visible = 2131296770;
 			
 			// aapt resource value: 0x7F090203
-			public const int withText = 2131296771;
+			public const int visible_removing_fragment_view_tag = 2131296771;
 			
-			// aapt resource value: 0x7F090205
-			public const int wrap = 2131296773;
+			// aapt resource value: 0x7F090204
+			public const int west = 2131296772;
 			
 			// aapt resource value: 0x7F090206
-			public const int wrap_content = 2131296774;
+			public const int withinBounds = 2131296774;
+			
+			// aapt resource value: 0x7F090205
+			public const int withText = 2131296773;
 			
 			// aapt resource value: 0x7F090207
-			public const int wrap_content_constrained = 2131296775;
+			public const int wrap = 2131296775;
 			
 			// aapt resource value: 0x7F090208
-			public const int x_left = 2131296776;
+			public const int wrap_content = 2131296776;
 			
 			// aapt resource value: 0x7F090209
-			public const int x_right = 2131296777;
+			public const int wrap_content_constrained = 2131296777;
 			
 			// aapt resource value: 0x7F09020A
-			public const int zero_corner_chip = 2131296778;
+			public const int x_left = 2131296778;
+			
+			// aapt resource value: 0x7F09020B
+			public const int x_right = 2131296779;
+			
+			// aapt resource value: 0x7F09020C
+			public const int zero_corner_chip = 2131296780;
 			
 			static Id()
 			{
@@ -10276,6 +10282,9 @@ namespace functional_bubble.NET
 			
 			// aapt resource value: 0x7F0C0087
 			public const int todo_base = 2131492999;
+			
+			// aapt resource value: 0x7F0C0088
+			public const int todo_widget = 2131493000;
 			
 			static Layout()
 			{
@@ -21931,25 +21940,28 @@ namespace functional_bubble.NET
 		{
 			
 			// aapt resource value: 0x7F140000
-			public const int image_share_filepaths = 2132017152;
+			public const int appwidgetprovider = 2132017152;
 			
 			// aapt resource value: 0x7F140001
-			public const int standalone_badge = 2132017153;
+			public const int image_share_filepaths = 2132017153;
 			
 			// aapt resource value: 0x7F140002
-			public const int standalone_badge_gravity_bottom_end = 2132017154;
+			public const int standalone_badge = 2132017154;
 			
 			// aapt resource value: 0x7F140003
-			public const int standalone_badge_gravity_bottom_start = 2132017155;
+			public const int standalone_badge_gravity_bottom_end = 2132017155;
 			
 			// aapt resource value: 0x7F140004
-			public const int standalone_badge_gravity_top_start = 2132017156;
+			public const int standalone_badge_gravity_bottom_start = 2132017156;
 			
 			// aapt resource value: 0x7F140005
-			public const int standalone_badge_offset = 2132017157;
+			public const int standalone_badge_gravity_top_start = 2132017157;
 			
 			// aapt resource value: 0x7F140006
-			public const int xamarin_essentials_fileprovider_file_paths = 2132017158;
+			public const int standalone_badge_offset = 2132017158;
+			
+			// aapt resource value: 0x7F140007
+			public const int xamarin_essentials_fileprovider_file_paths = 2132017159;
 			
 			static Xml()
 			{
