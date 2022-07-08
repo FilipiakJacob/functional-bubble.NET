@@ -27,8 +27,20 @@ The NavController - An object which manages the user's "movement" through the Na
 	-->
 	
 	<fragment
-    android:id="@+id/dest_todo" 
-    android:name="functional_bubble.NET.Fragments.TodoBase" />
+    android:id="@+id/dest_todo"
+    android:name="functional_bubble.NET.Fragments.TodoBase">
+	<action
+		android:id="@+id/GoTask"
+		app:destination="@id/dest_task">
+	<argument 
+			android:name="myArg"
+			app:argType ="string"
+			android:defaultValue="WhatIsThis"/>
+    
+		
+	</action>
+	</fragment>
+ 
 	
 	<fragment 
     android:id="@+id/dest_shop"
@@ -37,5 +49,10 @@ The NavController - An object which manages the user's "movement" through the Na
 	<fragment 
     android:id="@+id/dest_penguin"
     android:name="functional_bubble.NET.Fragments.PenguinBase" />
+
+	<fragment
+    android:id="@+id/dest_task"
+    android:name="functional_bubble.NET.Fragments.TaskBase"
+    />
 
 </navigation>

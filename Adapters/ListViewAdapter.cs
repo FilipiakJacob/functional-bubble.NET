@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Android.Animation;
+using AndroidX.Navigation;
 
 namespace functional_bubble.NET
 {
@@ -41,11 +42,14 @@ namespace functional_bubble.NET
         public event EventHandler<onDeleteClicked> mDeleteClicked; //An event informing the application that a delete button had been pressed
         private float mLastPosX; //The Last Position of the task row (Propably not needed)
         bool goBack = true; //true if the task row needs to go to its original position, false if not
+        public GestureDetector mGestureDetecor;
+
         public ListViewAdapter(Context context, List<Task> items)
         {
             //Class Constructor which initialises context and Task list of the class
             mItems = items;
             mContext = context;
+            mGestureDetecor = new GestureDetector(mContext, new MyGestureListener());
         }
         public override int Count
         {
@@ -79,6 +83,7 @@ namespace functional_bubble.NET
                 Delete(position, row); //call Delete class method 
             };
             }
+            
             GridLayout task_row_grid = row.FindViewById<GridLayout>(Resource.Id.task_row_grid);//Get the grid layout from task_row (this is where the task row is displayed in the list)
             task_row_grid.SetOnTouchListener(this); //Set a listener that will respond when task row had been touched
 
@@ -152,6 +157,7 @@ namespace functional_bubble.NET
             //Output: boolean, true if there was a propper response gesture to users' action, false otherwise
             */
             //MOVE IT TO A NEW FIlE
+            this.mGestureDetecor.OnTouchEvent(e);
             v.Parent.RequestDisallowInterceptTouchEvent(true); //When the user was moving the task, whenever any movement on the Y-axis was made,
                                                                //the motion event was cancelled and Parent View intercepted it, this line stops such behaviour,
                                                                //allowing for Y-movement(which is necessary as the user now does not need perfect X-axis only movement to move the task)
@@ -179,15 +185,22 @@ namespace functional_bubble.NET
                     goBack = true; //I do not think this is needed, MUST TEST LATER
                     return true;
 
-                default: 
+                default:
+                    
                     return false;
 
             }
             
 
+        }
+        public class MyGestureListener : GestureDetector.SimpleOnGestureListener
+        {
 
-
-
+            public override bool OnDoubleTap(MotionEvent e)
+            {
+                Console.WriteLine("different");
+                return base.OnDoubleTap(e);
+            }
         }
     }
 }

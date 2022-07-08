@@ -66,6 +66,7 @@
     <Compile Include="Classes\Dialog_FullScreenTask.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
+    <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
     <Compile Include="Fragments\PenguinBase.cs" />
     <Compile Include="Fragments\ShopBase.cs" />
@@ -83,6 +84,11 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.xml">
       <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\task_popup.xml" />
+    <AndroidResource Include="Resources\layout\todo_base.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\navigation\nav_graph.xml">
       <SubType>Designer</SubType>
@@ -177,12 +183,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\shop.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\task_popup.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\todo_base.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

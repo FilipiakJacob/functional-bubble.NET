@@ -9,14 +9,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AndroidX.Fragment.App;
+using AndroidX.Navigation;
 
 namespace functional_bubble.NET.Fragments
 {
     public class TodoBase : Fragment
     {
         private Button mBtnNewTask;
+        private Button mNiceCock;
         private List<Task> mItems;
         private ListView mainListView;
+        private Context context;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -42,6 +45,13 @@ namespace functional_bubble.NET.Fragments
             ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems);
             mainListView.Adapter = adapter;
 
+            mNiceCock = view.FindViewById<Button>(Resource.Id.testButton);
+            mNiceCock.Click += (object sender, EventArgs e) =>
+            {
+                var bundle = new Bundle();
+                bundle.PutString("myArg", "Test");
+                Navigation.FindNavController((View)sender).Navigate(Resource.Id.GoTask,bundle);
+            };
             mBtnNewTask = view.FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
             mBtnNewTask.Click += (object sender, EventArgs e) =>
             {
@@ -58,9 +68,7 @@ namespace functional_bubble.NET.Fragments
                 {
                     //METHOD NOT FINISHED
                     //This method will create an extended version of the task when clicked
-                    Task task = adapter[e.Position];
 
-                    Dialog_FullScreenTask dialog_FullScreenTask = new Dialog_FullScreenTask();
 
                 };
                 adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
