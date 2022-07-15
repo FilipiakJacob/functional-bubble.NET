@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SQLite;
+using System.IO;
 
 /*
  * @author Mikolaj Petri
@@ -20,11 +21,15 @@ namespace functional_bubble.NET.Classes
 {
     public class DatabaseHandler
     {
-        private SQLiteConnection _db;
-
+        private readonly SQLiteConnection _db;
+        
         public DatabaseHandler() //constructor
         {
-            _db = new SQLiteConnection("../Database/ourAppStorage.db3");
+            string dbPath = Path.Combine(
+        System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
+        "ourAppStorage.db3");
+
+            _db = new SQLiteConnection(dbPath);
             _db.CreateTable<Task>();
         }
 

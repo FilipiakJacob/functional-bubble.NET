@@ -7,6 +7,7 @@ using AndroidX.AppCompat.App;
 using Google.Android.Material.BottomNavigation;
 using System;
 using System.Collections.Generic;
+using functional_bubble.NET.Classes;
 namespace functional_bubble.NET
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
@@ -48,6 +49,27 @@ namespace functional_bubble.NET
             textMessage = FindViewById<TextView>(Resource.Id.message);
             BottomNavigationView navigation = FindViewById<BottomNavigationView>(Resource.Id.navigation);
             navigation.SetOnNavigationItemSelectedListener(this);
+
+
+            //TEST SPACE FUCK OFF CUNT
+            DatabaseHandler db = new DatabaseHandler();
+            Task task = new Task
+            {
+                Id = 1,
+                Description = "1fuck of",
+                Title = "2fuck off",
+                Label = 2,
+                CreationTime = DateTime.Now,
+                Deadline = DateTime.Now,
+                CoinsReward = 3,
+                Priority = 4,
+                Repeatable = true,
+                Pinned = false
+            };
+            db.AddTask(task);
+            var test = db.GetTask(1);
+            Console.WriteLine(test.Description);
+            //END OF TEST SPACE YOU CAN FUCK ON CUNT
         }
 
 

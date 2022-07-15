@@ -64,7 +64,6 @@
     <Compile Include="Adapters\ForumRomanumAdapter.cs" />
     <Compile Include="Adapters\ListViewAdapter.cs" />
     <Compile Include="Classes\DatabaseHandler.cs" />
-    <Compile Include="Classes\SQLite.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
     <Compile Include="MainActivity.cs" />

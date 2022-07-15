@@ -31,7 +31,7 @@ namespace functional_bubble.NET
          */
 
         [PrimaryKey, AutoIncrement, Unique, Column("id")] 
-        public int Id { get; private set; }
+        public int Id { get; set; }
         [Column("Title")]
         public string Title { get; set; }
         [Column("Description")]
