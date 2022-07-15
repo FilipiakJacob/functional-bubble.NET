@@ -61,9 +61,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\ForumRomanumAdapter.cs" />
     <Compile Include="Adapters\ListViewAdapter.cs" />
     <Compile Include="Classes\Dialog_FullScreenTask.cs" />
+    <Compile Include="Classes\GestureListener.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
@@ -85,7 +85,6 @@
     <AndroidResource Include="Resources\layout\activity_main.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\task_popup.xml" />
     <AndroidResource Include="Resources\layout\todo_base.xml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -148,11 +147,6 @@
     <AndroidResource Include="Resources\drawable\iceberg.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\task_row.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ButtonAddTaskStyle.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +177,12 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\shop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\todo_task_row.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\task_base.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -17,15 +17,9 @@
 		android:layout_margin="20px"/>
     <ListView
         android:id="@+id/MainView"
-        android:layout_below="@id/testButton"
+        android:layout_below="@id/activity_main_buttonNewTask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
-    <Button
-        android:id="@+id/testButton"
-        android:layout_below="@id/activity_main_buttonNewTask"
-        android:text="Click Me!"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

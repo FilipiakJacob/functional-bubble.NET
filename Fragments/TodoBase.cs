@@ -16,10 +16,9 @@ namespace functional_bubble.NET.Fragments
     public class TodoBase : Fragment
     {
         private Button mBtnNewTask;
-        private Button mNiceCock;
+        private Button mTestButton;
         private List<Task> mItems;
         private ListView mainListView;
-        private Context context;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -42,16 +41,9 @@ namespace functional_bubble.NET.Fragments
             mainListView = view.FindViewById<ListView>(Resource.Id.MainView);
             mItems = new List<Task>();
 
-            ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems);
+            ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems, view);
             mainListView.Adapter = adapter;
 
-            mNiceCock = view.FindViewById<Button>(Resource.Id.testButton);
-            mNiceCock.Click += (object sender, EventArgs e) =>
-            {
-                var bundle = new Bundle();
-                bundle.PutString("myArg", "Test");
-                Navigation.FindNavController((View)sender).Navigate(Resource.Id.GoTask,bundle);
-            };
             mBtnNewTask = view.FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
             mBtnNewTask.Click += (object sender, EventArgs e) =>
             {
@@ -62,23 +54,16 @@ namespace functional_bubble.NET.Fragments
                 {
                     //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
                     adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI 
-                    //adapter.Delete(0);
-                };
-                mainListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
-                {
-                    //METHOD NOT FINISHED
-                    //This method will create an extended version of the task when clicked
-
-
-                };
-                adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
-                {
-                    //This function will be needed to show comfirmation window before task deletion. Yet to be developed
                     
                 };
             };
+            
+            adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
+            {
+                //This function will be needed to show comfirmation window before task deletion. Yet to be developed
+                    
+            };
 
         }
-
     }
 }
