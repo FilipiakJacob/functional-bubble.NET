@@ -51,25 +51,9 @@ namespace functional_bubble.NET
             navigation.SetOnNavigationItemSelectedListener(this);
 
 
-            //TEST SPACE FUCK OFF CUNT
+            // DatabaseHandler
             DatabaseHandler db = new DatabaseHandler();
-            Task task = new Task
-            {
-                Id = 1,
-                Description = "1fuck of",
-                Title = "2fuck off",
-                Label = 2,
-                CreationTime = DateTime.Now,
-                Deadline = DateTime.Now,
-                CoinsReward = 3,
-                Priority = 4,
-                Repeatable = true,
-                Pinned = false
-            };
-            db.AddTask(task);
-            var test = db.GetTask(1);
-            Console.WriteLine(test.Description);
-            //END OF TEST SPACE YOU CAN FUCK ON CUNT
+
         }
 
 
