@@ -8,20 +8,47 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SQLite; //you need to add this to use sqlite 
 
 namespace functional_bubble.NET
 {
+    [Table("Tasks")] //name of the table that stores task objects
     public class Task
     {
-        public int Id { get; private set; }
+
+        /* 
+         * @author Mikołaj Petri
+         * @author Mateusz Staszek
+         * 
+         * Explanation to the used parameters
+         * 
+         * PrimaryKey - This attribute can be applied to an integer property to force it to be the underlying table's primary key
+         * AutoIncrement - This attribute will cause an integer property's value to be auto-increment for each new object inserted into the database
+         * Unique - Ensures that the values in the underlying database column are unique
+         * Column( string name ) - The name parameter sets the underlying database column's name
+         * 
+         * basic documentation - https://docs.microsoft.com/en-us/xamarin/android/data-cloud/data-access/using-sqlite-orm
+         */
+
+        [PrimaryKey, AutoIncrement, Unique, Column("id")] 
+        public int Id { get; set; }
+        [Column("Title")]
         public string Title { get; set; }
+        [Column("Description")]
         public string Description { get; set; }
+        [Column("LabelInt")]
         public int Label { get; set; }
+        [Column("CreationTime")]
         public DateTime CreationTime { get; set; }
+        [Column("Deadline")]
         public DateTime Deadline { get; set; }
+        [Column("CoinsReward")]
         public int CoinsReward { get; set; }
-        public string Priority { get; set; }
+        [Column("Priority")]
+        public int Priority { get; set; }
+        [Column("Repeatable")]
         public bool Repeatable { get; set; }
+        [Column("Pinned")]
         public bool Pinned { get; set; }
         
         public Task()
