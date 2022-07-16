@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using functional_bubble.NET.Classes;
 
 namespace functional_bubble.NET
 {

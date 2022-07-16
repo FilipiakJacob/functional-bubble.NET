@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using SQLite; //you need to add this to use sqlite 
 
-namespace functional_bubble.NET
+namespace functional_bubble.NET.Classes
 {
     [Table("Tasks")] //name of the table that stores task objects
     public class Task
@@ -45,7 +45,7 @@ namespace functional_bubble.NET
         [Column("CoinsReward")]
         public int CoinsReward { get; set; }
         [Column("Priority")]
-        public int Priority { get; set; }
+        public string Priority { get; set; }
         [Column("Repeatable")]
         public bool Repeatable { get; set; }
         [Column("Pinned")]
