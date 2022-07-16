@@ -7,11 +7,11 @@ using AndroidX.Fragment.App;
 using Google.Android.Material.BottomNavigation;
 using System;
 using System.Collections.Generic;
+using functional_bubble.NET.Classes;
 using functional_bubble.NET.Fragments;
 using AndroidX.Navigation;
 using AndroidX.Navigation.Fragment;
 using AndroidX.Navigation.UI;
-
 
 namespace functional_bubble.NET
 
@@ -47,6 +47,7 @@ namespace functional_bubble.NET
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
 
     }
 
