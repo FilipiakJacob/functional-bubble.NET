@@ -9,9 +9,10 @@
 
 <TextView
         android:id="@+id/prop_title"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing eli"   
+        android:text="This is a Task Fragment"
+        android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"/>
+        android:textSize="30sp"/>
 
 </GridLayout>

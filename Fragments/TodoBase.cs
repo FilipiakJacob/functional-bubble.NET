@@ -9,12 +9,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AndroidX.Fragment.App;
+using AndroidX.Navigation;
 
 namespace functional_bubble.NET.Fragments
 {
     public class TodoBase : Fragment
     {
         private Button mBtnNewTask;
+        private Button mTestButton;
         private List<Task> mItems;
         private ListView mainListView;
 
@@ -39,7 +41,7 @@ namespace functional_bubble.NET.Fragments
             mainListView = view.FindViewById<ListView>(Resource.Id.MainView);
             mItems = new List<Task>();
 
-            ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems);
+            ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems, view);
             mainListView.Adapter = adapter;
 
             mBtnNewTask = view.FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
@@ -52,25 +54,16 @@ namespace functional_bubble.NET.Fragments
                 {
                     //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
                     adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI 
-                    //adapter.Delete(0);
-                };
-                mainListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
-                {
-                    //METHOD NOT FINISHED
-                    //This method will create an extended version of the task when clicked
-                    Task task = adapter[e.Position];
-
-                    Dialog_FullScreenTask dialog_FullScreenTask = new Dialog_FullScreenTask();
-
-                };
-                adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
-                {
-                    //This function will be needed to show comfirmation window before task deletion. Yet to be developed
                     
                 };
             };
+            
+            adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
+            {
+                //This function will be needed to show comfirmation window before task deletion. Yet to be developed
+                    
+            };
 
         }
-
     }
 }

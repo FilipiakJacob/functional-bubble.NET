@@ -47,7 +47,7 @@ namespace functional_bubble.NET
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-       
+
 
     }
 
