@@ -16,6 +16,7 @@ using AndroidX.Navigation.UI;
 namespace functional_bubble.NET
 
 {
+
     [Android.App.Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
@@ -47,7 +48,7 @@ namespace functional_bubble.NET
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-       
+
 
     }
 
