@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using SQLite;
 
-namespace functional_bubble.NET.Classes
+namespace functional_bubble.NET
 {
 
     /*
@@ -22,12 +22,13 @@ namespace functional_bubble.NET.Classes
      */
 
     [Table("Labels")] //name od the table that stores Labels
-    internal class Label
+    public class Label
     {
         [PrimaryKey, AutoIncrement, Unique, Column("id")]
         public int Id { get; set; }
 
         [Column("Description")]
         public string Description { get; set; }
+
     }
 }
