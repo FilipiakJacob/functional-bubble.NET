@@ -11,7 +11,7 @@ using System.Text;
 
 namespace functional_bubble.NET.Classes
 {
-    internal class TaskHandler : DatabaseHandler
+    public class TaskHandler : DatabaseHandler
     {
         public void Add(Task task) // inserts task object to Task table
         {
