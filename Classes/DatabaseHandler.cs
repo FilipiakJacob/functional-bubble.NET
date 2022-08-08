@@ -45,6 +45,24 @@ namespace functional_bubble.NET
             return task;
         }
 
+
+        //Mateusz Changes:
+        public void DeleteTask(Task task)
+        {
+            _db.Delete(task); 
+        }
+        public List<Task> GetAllTasks()
+        {
+            List<Task> tasks = new List<Task>();
+            tasks = _db.Table<Task>().ToList();
+            return tasks;
+        }
+        public void DeleteAll()
+        {
+            //for testing purpouses only
+            //deletes all record in the database
+            _db.DeleteAll<Task>();
+
         public void AddLabel(Label label) // inserts task object to Task table
         {
             _db.Insert(label);
@@ -54,6 +72,7 @@ namespace functional_bubble.NET
         {
             var label = _db.Get<Label>(id);
             return label;
+
         }
     }
 }

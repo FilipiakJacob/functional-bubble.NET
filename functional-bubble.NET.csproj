@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Adapters\ListViewAdapter.cs" />
     <Compile Include="Classes\DatabaseHandler.cs" />
+    <Compile Include="Classes\Database\database.cs" />
     <Compile Include="Classes\Dialog_FullScreenTask.cs" />
     <Compile Include="Classes\Label.cs" />
     <Compile Include="Classes\GestureListener.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Classes\Database\database.db" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
@@ -93,10 +95,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.xml">
       <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\todo_base.xml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\navigation\nav_graph.xml">
       <SubType>Designer</SubType>
@@ -156,9 +154,6 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\iceberg.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ButtonAddTaskStyle.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +192,30 @@
     <AndroidResource Include="Resources\layout\task_base.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\gory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Todo_base.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\szczalka_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\szczalka_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\smietnik_closed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\smietnik_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Raw\quack.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Raw\easter_egg.mp3" />
+  </ItemGroup>
+  <ItemGroup />
     <AndroidResource Include="Resources\layout\todo_widget.xml">
       <SubType>Designer</SubType>
     </AndroidResource>

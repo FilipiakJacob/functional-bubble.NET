@@ -88,7 +88,6 @@ namespace functional_bubble.NET
                 Delete(position, row); //call Delete class method 
             };
             }
-
             GridLayout task_row_grid = row.FindViewById<GridLayout>(Resource.Id.task_row_grid);//Get the grid layout from task_row (this is where the task row is displayed in the list)
             task_row_grid.Tag = mItems[position].Id; //set the ID of task grid to be the id of the task
             task_row_grid.SetOnTouchListener(this); //Set a listener that will respond when task row had been touched
@@ -97,7 +96,7 @@ namespace functional_bubble.NET
             task_row_id.Text = mItems[position].Title; //Set Text of that task_row_title to be the Title attribute of Task instance
 
             TextView task_row_task = row.FindViewById<TextView>(Resource.Id.task_row_description); //Get task_row_description TextView from task_row 
-            if (task_row_task.Text.Length < 20)
+            if (mItems[position].Description.Length < 20)
             {
                 task_row_task.Text = mItems[position].Description; //Set Text of that task_row_description to be the Description attribute of Task instance
             }
@@ -119,6 +118,7 @@ namespace functional_bubble.NET
         {
             //A method for adding new Tasks into the Task list
             mItems.Add(newTask);
+            newTask.input_data();//place the newly created task in the database
             NotifyDataSetChanged();//Refresh Task UI
         }
 
@@ -144,6 +144,7 @@ namespace functional_bubble.NET
             animSet.AnimationEnd += delegate
             {
                 //method which gets called at the end of the animation set
+                mItems[position].delete_data();//delete task from database
                 mItems.RemoveAt(position);
                 //after removing an item from the list, all of its properties are set to the successor of its position, therefore, we have to reset these properties
                 v.FindViewById<GridLayout>(Resource.Id.task_row_grid).TranslationX = 0;
