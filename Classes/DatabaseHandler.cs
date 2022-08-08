@@ -19,7 +19,7 @@ using System.IO;
 
 namespace functional_bubble.NET
 {
-    public class DatabaseHandler
+    public abstract class DatabaseHandler
     {
         public readonly SQLiteConnection _db;
         
@@ -32,28 +32,6 @@ namespace functional_bubble.NET
             _db = new SQLiteConnection(dbPath);
             _db.CreateTable<Task>();
             _db.CreateTable<Label>();
-        }
-
-        public void AddTask(Task task) // inserts task object to Task table
-        {
-            _db.Insert(task);
-        }
-
-        public Task GetTask(int id) // returns task object with given id
-        {
-            var task = _db.Get<Task>(id);
-            return task;
-        }
-
-        public void AddLabel(Label label) // inserts task object to Task table
-        {
-            _db.Insert(label);
-        }
-
-        public Label GetLabel(int id) // returns task object with given id
-        {
-            var label = _db.Get<Label>(id);
-            return label;
         }
     }
 }
