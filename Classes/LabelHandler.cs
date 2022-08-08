@@ -20,13 +20,13 @@ namespace functional_bubble.NET.Classes
 
         public Label Get(int id) // returns task object with given id
         {
-            var label = _db.Get<Label>(id);
+            Label label = _db.Get<Label>(id);
             return label;
         }
 
         public List<Label> GetAll()
         {
-            var allLabels = _db.Query<Label>("SELECT * FROM Labels");
+            List<Label> allLabels = _db.Query<Label>("SELECT * FROM Labels");
             return allLabels;
         }
     }
