@@ -67,6 +67,7 @@
     <Compile Include="Classes\Dialog_FullScreenTask.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
+    <Compile Include="Classes\TaskHandler.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
     <Compile Include="Fragments\PenguinBase.cs" />
     <Compile Include="Fragments\ShopBase.cs" />
