@@ -17,11 +17,11 @@ using System.IO;
  * Class that handles all operations on database ( 4 now only Task table operations hihi )
  */
 
-namespace functional_bubble.NET.Classes
+namespace functional_bubble.NET
 {
     public class DatabaseHandler
     {
-        private readonly SQLiteConnection _db;
+        public readonly SQLiteConnection _db;
         
         public DatabaseHandler() //constructor
         {
@@ -31,6 +31,7 @@ namespace functional_bubble.NET.Classes
 
             _db = new SQLiteConnection(dbPath);
             _db.CreateTable<Task>();
+            _db.CreateTable<Label>();
         }
 
         public void AddTask(Task task) // inserts task object to Task table
@@ -43,6 +44,7 @@ namespace functional_bubble.NET.Classes
             var task = _db.Get<Task>(id);
             return task;
         }
+
 
         //Mateusz Changes:
         public void DeleteTask(Task task)
@@ -60,6 +62,17 @@ namespace functional_bubble.NET.Classes
             //for testing purpouses only
             //deletes all record in the database
             _db.DeleteAll<Task>();
+
+        public void AddLabel(Label label) // inserts task object to Task table
+        {
+            _db.Insert(label);
+        }
+
+        public Label GetLabel(int id) // returns task object with given id
+        {
+            var label = _db.Get<Label>(id);
+            return label;
+
         }
     }
 }
