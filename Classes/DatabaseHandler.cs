@@ -17,7 +17,7 @@ using System.IO;
  * Class that handles all operations on database ( 4 now only Task table operations hihi )
  */
 
-namespace functional_bubble.NET.Classes
+namespace functional_bubble.NET
 {
     public abstract class DatabaseHandler
     {
@@ -31,6 +31,7 @@ namespace functional_bubble.NET.Classes
 
             _db = new SQLiteConnection(dbPath);
             _db.CreateTable<Task>();
+            _db.CreateTable<Label>();
         }
     }
 }

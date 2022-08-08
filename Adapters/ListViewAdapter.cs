@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Android.Animation;
+using AndroidX.Navigation;
+using functional_bubble.NET.Classes;
 
 namespace functional_bubble.NET
 {
@@ -37,15 +39,22 @@ namespace functional_bubble.NET
         //Class that transforms items from a list of Task instances into rows of ListView in Task UI
         private Context mContext; //Enviorment in which adapter will work
         public List<Task> mItems = new List<Task>(); //List of all Tasks which will be displayed in Task UI
+        public object mSender;
         public event EventHandler<onNewTaskEventArgs> mClickedTask; //I think this is NOT NEEDED
         public event EventHandler<onDeleteClicked> mDeleteClicked; //An event informing the application that a delete button had been pressed
         private float mLastPosX; //The Last Position of the task row (Propably not needed)
         bool goBack = true; //true if the task row needs to go to its original position, false if not
-        public ListViewAdapter(Context context, List<Task> items)
+        public GestureDetector mGestureDetecor; //a class detecting various gestures like double tap or long click
+        public GestureListener mGestureListener; //child class of Gesture Detector which handles what to do when a gesture had been made
+
+        public ListViewAdapter(Context context, List<Task> items, View parentView)
         {
             //Class Constructor which initialises context and Task list of the class
+            //Now it also contains parent view in order to switch to Task Fragment
             mItems = items;
             mContext = context;
+            mGestureListener = new GestureListener(parentView);
+            mGestureDetecor = new GestureDetector(mContext, mGestureListener);
         }
         public override int Count
         {
@@ -69,7 +78,7 @@ namespace functional_bubble.NET
             View row = convertView; //The ListView where items will be placed
             if (row == null) //If the TextView resource does not exist
             {
-            row = LayoutInflater.From(mContext).Inflate(Resource.Layout.task_row, null, false); //Create the TextView resource
+            row = LayoutInflater.From(mContext).Inflate(Resource.Layout.todo_task_row, null, false); //Create the TextView resource
             
             Button task_row_delete_button = row.FindViewById<Button>(Resource.Id.task_row_delete_button); //A button for task deletion
             task_row_delete_button.Click += (object sender, EventArgs e) =>
@@ -80,13 +89,14 @@ namespace functional_bubble.NET
             };
             }
             GridLayout task_row_grid = row.FindViewById<GridLayout>(Resource.Id.task_row_grid);//Get the grid layout from task_row (this is where the task row is displayed in the list)
+            task_row_grid.Tag = mItems[position].Id; //set the ID of task grid to be the id of the task
             task_row_grid.SetOnTouchListener(this); //Set a listener that will respond when task row had been touched
 
             TextView task_row_id = row.FindViewById<TextView>(Resource.Id.task_row_title); //Get task_row_title TextView from task_row 
             task_row_id.Text = mItems[position].Title; //Set Text of that task_row_title to be the Title attribute of Task instance
 
-                TextView task_row_task = row.FindViewById<TextView>(Resource.Id.task_row_description); //Get task_row_description TextView from task_row 
-            if (task_row_task.Text.Length < 20)
+            TextView task_row_task = row.FindViewById<TextView>(Resource.Id.task_row_description); //Get task_row_description TextView from task_row 
+            if (mItems[position].Description.Length < 20)
             {
                 task_row_task.Text = mItems[position].Description; //Set Text of that task_row_description to be the Description attribute of Task instance
             }
@@ -99,7 +109,7 @@ namespace functional_bubble.NET
 
             TextView task_row_priority = row.FindViewById<TextView>(Resource.Id.task_row_priority);//Get task_row_priority TextView from task_row
             task_row_priority.Text = mItems[position].Priority; //Set Text of that task_row_priority to be the Priority attribute of Task instance
-           
+
             return row;
         }
 
@@ -108,6 +118,7 @@ namespace functional_bubble.NET
         {
             //A method for adding new Tasks into the Task list
             mItems.Add(newTask);
+            newTask.input_data();//place the newly created task in the database
             NotifyDataSetChanged();//Refresh Task UI
         }
 
@@ -133,6 +144,7 @@ namespace functional_bubble.NET
             animSet.AnimationEnd += delegate
             {
                 //method which gets called at the end of the animation set
+                mItems[position].delete_data();//delete task from database
                 mItems.RemoveAt(position);
                 //after removing an item from the list, all of its properties are set to the successor of its position, therefore, we have to reset these properties
                 v.FindViewById<GridLayout>(Resource.Id.task_row_grid).TranslationX = 0;
@@ -140,10 +152,8 @@ namespace functional_bubble.NET
                 v.Alpha = 1;
                 NotifyDataSetChanged(); //Refresh Task UI
             };
-            ///djbndnninAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!!!!!!!!!!
+
         }
-
-
 
         public bool OnTouch(View v, MotionEvent e)
         {
@@ -152,6 +162,10 @@ namespace functional_bubble.NET
             //Output: boolean, true if there was a propper response gesture to users' action, false otherwise
             */
             //MOVE IT TO A NEW FIlE
+            if (v.TranslationX == 0) { //let the user go into the task only if he had not moved the task
+                this.mGestureListener.setId(Int32.Parse(v.Tag.ToString()));//Set the ID of Task being touched by taking its tag and converting it first from Java.Lang.Object to string, and then from string to int
+                this.mGestureDetecor.OnTouchEvent(e);//Before checking if any motion is being done with the Task, we first check for gestures
+            }
             v.Parent.RequestDisallowInterceptTouchEvent(true); //When the user was moving the task, whenever any movement on the Y-axis was made,
                                                                //the motion event was cancelled and Parent View intercepted it, this line stops such behaviour,
                                                                //allowing for Y-movement(which is necessary as the user now does not need perfect X-axis only movement to move the task)
@@ -172,21 +186,17 @@ namespace functional_bubble.NET
                     return true;
 
                 case MotionEventActions.Up: //task row has stopped being pressed 
+                    if (v.TranslationX == 0) { return false; }
                     if (goBack == true)
                     {
                         v.Animate().TranslationXBy(-v.TranslationX).SetDuration(400).Start(); //Move task row to its original position 
                     }
-                    goBack = true; //I do not think this is needed, MUST TEST LATER
                     return true;
-
-                default: 
+                default:
                     return false;
 
             }
             
-
-
-
 
         }
     }

@@ -9,14 +9,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AndroidX.Fragment.App;
+using AndroidX.Navigation;
+using functional_bubble.NET.Classes;
 
 namespace functional_bubble.NET.Fragments
 {
     public class TodoBase : Fragment
     {
         private Button mBtnNewTask;
+        private Button mTestButton;
         private List<Task> mItems;
         private ListView mainListView;
+        private DatabaseHandler mdatabaseHandler;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -28,7 +32,7 @@ namespace functional_bubble.NET.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             //Inflating view pretty much creates it in memory, without showing it on screen.
-            View view = inflater.Inflate(Resource.Layout.todo_base, container, false);
+            View view = inflater.Inflate(Resource.Layout.Todo_base, container, false);
             return view;
         }
 
@@ -37,9 +41,11 @@ namespace functional_bubble.NET.Fragments
         // OnViewCreated is called after OnCreateView and can access the inflated View to findById.
         {
             mainListView = view.FindViewById<ListView>(Resource.Id.MainView);
-            mItems = new List<Task>();
+            mdatabaseHandler = new DatabaseHandler();
+            mItems = mdatabaseHandler.GetAllTasks();
 
-            ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems);
+
+            ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems, view);
             mainListView.Adapter = adapter;
 
             mBtnNewTask = view.FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
@@ -52,25 +58,16 @@ namespace functional_bubble.NET.Fragments
                 {
                     //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
                     adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI 
-                    //adapter.Delete(0);
-                };
-                mainListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) =>
-                {
-                    //METHOD NOT FINISHED
-                    //This method will create an extended version of the task when clicked
-                    Task task = adapter[e.Position];
-
-                    Dialog_FullScreenTask dialog_FullScreenTask = new Dialog_FullScreenTask();
-
-                };
-                adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
-                {
-                    //This function will be needed to show comfirmation window before task deletion. Yet to be developed
                     
                 };
             };
+            
+            adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
+            {
+                //This function will be needed to show comfirmation window before task deletion. Yet to be developed
+                    
+            };
 
         }
-
     }
 }
