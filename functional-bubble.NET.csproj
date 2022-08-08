@@ -75,6 +75,7 @@
     <Compile Include="Classes\GestureListener.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
+    <Compile Include="Classes\TaskHandler.cs" />
     <Compile Include="Classes\TodoWidget.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
