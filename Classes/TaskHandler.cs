@@ -19,12 +19,12 @@ namespace functional_bubble.NET.Classes
         }
         public Task Get(int id) // returns task object with given id
         {
-            var task = _db.Get<Task>(id);
+            Task task = _db.Get<Task>(id);
             return task;
         }
         public List<Task> GetAllTasks() 
         {
-            var allTasks = _db.Query<Task>("SELECT * FROM Tasks");
+            List<Task> allTasks = _db.Query<Task>("SELECT * FROM Tasks");
             return allTasks;
         }
     }
