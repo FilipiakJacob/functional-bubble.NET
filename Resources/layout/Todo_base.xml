@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/iceberg"
+    android:background="@drawable/gory"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/todo_layout">
@@ -17,7 +17,7 @@
 		android:layout_margin="20px"/>
     <ListView
         android:id="@+id/MainView"
-        android:layout_below="@+id/activity_main_buttonNewTask"
+        android:layout_below="@id/activity_main_buttonNewTask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
