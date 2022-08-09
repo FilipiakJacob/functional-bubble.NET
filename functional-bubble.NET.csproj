@@ -64,7 +64,6 @@
     <Compile Include="Adapters\ListViewAdapter.cs" />
     <Compile Include="Classes\DatabaseHandler.cs" />
     <Compile Include="Classes\Database\database.cs" />
-    <Compile Include="Classes\Dialog_FullScreenTask.cs" />
     <Compile Include="Classes\GestureListener.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />

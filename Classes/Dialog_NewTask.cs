@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Text;
 using Android.Views;
 using Android.Widget;
 using System;
@@ -50,8 +51,29 @@ namespace functional_bubble.NET
 
             mBtnCreateTask = view.FindViewById<Button>(Resource.Id.new_task_button);            
             mBtnCreateTask.Click += MBtnCreateTask_Click; //Method executed when Confirmation Button is clicked
-            return view;
+
+
+            EditText mNewTaskDeadline = view.FindViewById<EditText>(Resource.Id.new_task_deadline);
+            mNewTaskDeadline.TextChanged += (object sender, TextChangedEventArgs e) =>
+            {
+                
+                if (e.AfterCount != 0)
+                {
+                    if (e.Text.Count() == 2 || e.Text.Count() == 5) { mNewTaskDeadline.Text += "/"; mNewTaskDeadline.SetSelection(mNewTaskDeadline.Text.Length); }
+                    else if (e.Text.Count() == 10) { mNewTaskDeadline.Enabled = false; mNewTaskDeadline.Enabled = true; }
+                    else if (e.Text.Count() > 10) { mNewTaskDeadline.Text = mNewTaskDeadline.Text.Substring(0, 10); }
+                }
+                else if( e.Text.Count() == 2 || e.Text.Count() == 5) { mNewTaskDeadline.Text = mNewTaskDeadline.Text.Substring(0, mNewTaskDeadline.Text.Length -1); mNewTaskDeadline.SetSelection(mNewTaskDeadline.Text.Length); }   
+            };
+
+
+
+
+
+
+                return view;
         }
+
 
         private void MNewTaskPriority_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
@@ -61,6 +83,7 @@ namespace functional_bubble.NET
             Spinner MNewTaskPriority = (Spinner)sender;
             mNewTask.Priority = string.Format((string)MNewTaskPriority.GetItemAtPosition(e.Position));
         }
+
 
         private void MBtnCreateTask_Click(object sender, EventArgs e)
         {
