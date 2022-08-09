@@ -20,7 +20,7 @@ namespace functional_bubble.NET.Fragments
         private Button mTestButton;
         private List<Task> mItems;
         private ListView mainListView;
-        private DatabaseHandler mdatabaseHandler;
+        private TaskHandler mdatabaseHandler;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -41,7 +41,7 @@ namespace functional_bubble.NET.Fragments
         // OnViewCreated is called after OnCreateView and can access the inflated View to findById.
         {
             mainListView = view.FindViewById<ListView>(Resource.Id.MainView);
-            mdatabaseHandler = new DatabaseHandler();
+            mdatabaseHandler = new TaskHandler();
             mItems = mdatabaseHandler.GetAllTasks();
 
 

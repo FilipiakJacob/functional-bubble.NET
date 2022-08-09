@@ -27,5 +27,18 @@ namespace functional_bubble.NET.Classes
             List<Task> allTasks = _db.Query<Task>("SELECT * FROM Tasks");
             return allTasks;
         }
+
+        //Mat Functions:
+        public void DeleteTask(Task task)
+        {
+            _db.Delete(task);
+        }
+
+        public void DeleteAll()
+        {
+            //for testing purpouses only
+            //deletes all record in the database
+            _db.DeleteAll<Task>();
+        }
     }
 }

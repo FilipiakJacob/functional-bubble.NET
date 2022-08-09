@@ -27,8 +27,8 @@ namespace functional_bubble.NET.Fragments
 
 
             int ID = Arguments.GetInt("taskID");//get id of a task passed from ToDo fragment
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            Task mTask = dbHandler.GetTask(ID);
+            TaskHandler db = new TaskHandler();
+            Task mTask = db.Get(ID);
 
             //Tasks Title and Description:
             view.FindViewById<TextView>(Resource.Id.task_base_title).Text = mTask.Title;

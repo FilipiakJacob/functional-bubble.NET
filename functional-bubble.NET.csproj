@@ -217,7 +217,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\Raw\easter_egg.mp3" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
     <AndroidResource Include="Resources\layout\todo_widget.xml">
       <SubType>Designer</SubType>
     </AndroidResource>

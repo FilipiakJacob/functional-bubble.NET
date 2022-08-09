@@ -61,8 +61,8 @@ namespace functional_bubble.NET
         ///This method fills in the data from the form and saves it to the database, as well as the task object.
         {
             //Create form
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            dbHandler.AddTask(this);
+            TaskHandler db = new TaskHandler();
+            db.Add(this);
             return 0;
         }
         
@@ -76,8 +76,8 @@ namespace functional_bubble.NET
         public int delete_data()
         ///This method deletes the task from the database and returns 0 if it was succesfull
         {
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            dbHandler.DeleteTask(this);
+            TaskHandler db = new TaskHandler();
+            db.DeleteTask(this);
             return 0;
         }
     }
