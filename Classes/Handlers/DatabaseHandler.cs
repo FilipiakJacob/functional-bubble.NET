@@ -32,6 +32,7 @@ namespace functional_bubble.NET
             _db = new SQLiteConnection(dbPath);
             _db.CreateTable<Task>();
             _db.CreateTable<Label>();
+            _db.CreateTable<Priority>();
         }
     }
 }

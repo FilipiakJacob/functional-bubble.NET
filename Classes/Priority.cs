@@ -4,25 +4,25 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SQLite;
 
 namespace functional_bubble.NET
 {
 
     /*
      * @author Mikołaj Petri
-     * @date 17.7.2022
+     * @date 10.8.2022
      * 
-     * Class used as template for "Labels" table in database
-     * and for adding new Labels to database
+     * Class used as template for "Priority" table in database
+     * and for adding new Priorities to database
      */
 
-    [Table("Labels")] //name of the table that stores Labels
-    public class Label
+    [Table("Priorities")] //name of the table that stores Labels
+    public class Priority
     {
         [PrimaryKey, AutoIncrement, Unique, Column("id")]
         public int Id { get; set; }

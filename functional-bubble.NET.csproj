@@ -70,10 +70,10 @@
     <Compile Include="Adapters\ListViewAdapter.cs" />
     <Compile Include="Classes\Handlers\DatabaseHandler.cs" />
     <Compile Include="Classes\Database\database.cs" />
-    <Compile Include="Classes\Dialog_FullScreenTask.cs" />
     <Compile Include="Classes\Label.cs" />
     <Compile Include="Classes\Handlers\LabelHandler.cs" />
     <Compile Include="Classes\GestureListener.cs" />
+    <Compile Include="Classes\Priority.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
     <Compile Include="Classes\Handlers\TaskHandler.cs" />
