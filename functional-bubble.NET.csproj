@@ -68,15 +68,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\ListViewAdapter.cs" />
-    <Compile Include="Classes\DatabaseHandler.cs" />
+    <Compile Include="Classes\Handlers\DatabaseHandler.cs" />
     <Compile Include="Classes\Database\database.cs" />
     <Compile Include="Classes\Dialog_FullScreenTask.cs" />
     <Compile Include="Classes\Label.cs" />
-    <Compile Include="Classes\LabelHandler.cs" />
+    <Compile Include="Classes\Handlers\LabelHandler.cs" />
     <Compile Include="Classes\GestureListener.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
-    <Compile Include="Classes\TaskHandler.cs" />
+    <Compile Include="Classes\Handlers\TaskHandler.cs" />
     <Compile Include="Classes\TodoWidget.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
