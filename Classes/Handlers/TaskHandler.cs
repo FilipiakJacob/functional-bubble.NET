@@ -33,6 +33,7 @@ namespace functional_bubble.NET.Classes
         {
             _db.Delete(task);
         }
+        
         //@author Mateusz Staszek
         public void DeleteAll()
         {
