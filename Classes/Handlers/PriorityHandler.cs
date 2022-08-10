@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SQLite;
+using System.IO;
 
 namespace functional_bubble.NET.Classes
 {
@@ -28,6 +30,20 @@ namespace functional_bubble.NET.Classes
         {
             List<Priority> allPriorities = _db.Query<Priority>("SELECT * FROM Priorities");
             return allPriorities;
+        }
+
+        //@author Mateusz Staszek
+        public void Delete(Priority priority)
+        {
+            _db.Delete(priority);
+        }
+
+        //@author Mateusz Staszek
+        public void DeleteAll()
+        {
+            //for testing purpouses only
+            //deletes all record in the database
+            _db.DeleteAll<Priority>();
         }
     }
 }

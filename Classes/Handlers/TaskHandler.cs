@@ -28,12 +28,12 @@ namespace functional_bubble.NET.Classes
             return allTasks;
         }
 
-        //Mat Functions:
+        //@author Mateusz Staszek
         public void DeleteTask(Task task)
         {
             _db.Delete(task);
         }
-
+        //@author Mateusz Staszek
         public void DeleteAll()
         {
             //for testing purpouses only

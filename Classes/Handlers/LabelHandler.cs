@@ -7,6 +7,7 @@ using Android.Widget;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace functional_bubble.NET.Classes
@@ -28,6 +29,19 @@ namespace functional_bubble.NET.Classes
         {
             List<Label> allLabels = _db.Query<Label>("SELECT * FROM Labels");
             return allLabels;
+        }
+
+        //@author Mateusz Staszek
+        public void Delete(Label label)
+        {
+            _db.Delete(label);
+        }
+
+        public void DeleteAll()
+        {
+            //for testing purpouses only
+            //deletes all record in the database
+            _db.DeleteAll<Label>();
         }
     }
 }
