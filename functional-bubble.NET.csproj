@@ -71,6 +71,7 @@
     <Compile Include="Classes\Handlers\DatabaseHandler.cs" />
     <Compile Include="Classes\Database\database.cs" />
     <Compile Include="Classes\Dialog_FullScreenTask.cs" />
+    <Compile Include="Classes\Handlers\PriorityHandler.cs" />
     <Compile Include="Classes\Label.cs" />
     <Compile Include="Classes\Handlers\LabelHandler.cs" />
     <Compile Include="Classes\GestureListener.cs" />
