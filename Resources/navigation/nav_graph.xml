@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+
+<!--Navigation element is the root. It contains destinations (fragments and activities)
+which are connected to each other by actions. -->
+
+<!-- Navigation works using 3 main elements:
+
+The Navigation Graph - This file. Contains a graph, or a "map" of all the destinations.
+
+The NavHost - For example the NavHostFragment, which is an empty container in the layout/activity_main.xml file.
+              The NavHost is "replaced" by views returned by destinations in order to display them on scren.
+
+The NavController - An object which manages the user's "movement" through the Navigation Graph. When the user swaps
+                    the destination, NavController will change the content displayed in the NavHost accordingly.
+
+-->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@+id/dest_todo">
+
+	<!-- 
+	    android:id - Can be used to reference the destination elsewhere in code
+	    android:name - Full name of the fragment class which should be instantiated in this destination.
+	-->
+	
+	<fragment
+    android:id="@+id/dest_todo"
+    android:name="functional_bubble.NET.Fragments.TodoBase">
+		<action
+			android:id="@+id/GoToTask"
+			app:destination="@id/dest_task">
+		</action>
+	</fragment>
+ 
+	
+	<fragment 
+    android:id="@+id/dest_shop"
+    android:name="functional_bubble.NET.Fragments.ShopBase" />
+    
+	<fragment 
+    android:id="@+id/dest_penguin"
+    android:name="functional_bubble.NET.Fragments.PenguinBase" />
+
+	<fragment
+    android:id="@+id/dest_task"
+    android:name="functional_bubble.NET.Fragments.TaskBase">
+		<action
+			android:id="@+id/GoBackToTodoList"
+			app:destination="@id/dest_todo">
+
+		</action>
+	</fragment>
+
+</navigation>

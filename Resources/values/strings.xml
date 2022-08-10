@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">functional_bubble.NET</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Tasks</string>
+    <string name="title_dashboard">Shop</string>
+    <string name="title_notifications">Penguin</string>
+	
+	<string name="priority_prompt">Priority</string>
+	<string-array name="priorities_array">
+		<item>Low</item>
+		<item>Medium</item>
+		<item>High</item>
+		<item>Critical</item>
+	</string-array>
 </resources>
