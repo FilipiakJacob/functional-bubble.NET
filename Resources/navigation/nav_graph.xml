@@ -20,39 +20,17 @@ The NavController - An object which manages the user's "movement" through the Na
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
 			android:id="@+id/nav_graph"
-            app:startDestination="@+id/dest_todo">
+            app:startDestination="@+id/todo_graph">
 
 	<!-- 
 	    android:id - Can be used to reference the destination elsewhere in code
 	    android:name - Full name of the fragment class which should be instantiated in this destination.
 	-->
-	<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-				xmlns:app="http://schemas.android.com/apk/res-auto"
-				xmlns:tools="http://schemas.android.com/tools"
-				android:id="@+id/dest_todo"
-				app:startDestination="@+id/dest_todo_main">
+	<include app:graph="@navigation/todo_graph"/>
 
-		<fragment
-			android:id="@+id/dest_todo_main"
-			android:name="functional_bubble.NET.Fragments.TodoBase">
-			<action
-				android:id="@+id/GoToTask"
-				app:destination="@id/dest_task">
-			</action>
-		</fragment>
-		<fragment
-			android:id="@+id/dest_task"
-			android:name="functional_bubble.NET.Fragments.TaskBase">
-		</fragment>
-	</navigation>
+	<include app:graph="@navigation/shop_graph"/>
 
-	<fragment
-    android:id="@+id/dest_shop"
-    android:name="functional_bubble.NET.Fragments.ShopBase" />
-
-	<fragment
-    android:id="@+id/dest_penguin"
-    android:name="functional_bubble.NET.Fragments.PenguinBase" />
+	<include app:graph="@navigation/penguin_graph"/>
 
 
 </navigation>
