@@ -26,6 +26,7 @@ The NavController - An object which manages the user's "movement" through the Na
 	    android:id - Can be used to reference the destination elsewhere in code
 	    android:name - Full name of the fragment class which should be instantiated in this destination.
 	-->
+
 	<include app:graph="@navigation/todo_graph"/>
 
 	<include app:graph="@navigation/shop_graph"/>

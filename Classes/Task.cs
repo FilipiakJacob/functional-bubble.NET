@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SQLite; //you need to add this to use sqlite 
+using functional_bubble.NET.Classes;
 
 namespace functional_bubble.NET
 {
@@ -45,7 +46,7 @@ namespace functional_bubble.NET
         [Column("CoinsReward")]
         public int CoinsReward { get; set; }
         [Column("Priority")]
-        public int Priority { get; set; }
+        public string Priority { get; set; }
         [Column("Repeatable")]
         public bool Repeatable { get; set; }
         [Column("Pinned")]
@@ -53,15 +54,15 @@ namespace functional_bubble.NET
         
         public Task()
         {
-            gen_Id(); //Sets the Id
-            //Container :)
-            input_data();
+            Repeatable = false;
         }
         
         public int input_data()
         ///This method fills in the data from the form and saves it to the database, as well as the task object.
         {
             //Create form
+            TaskHandler db = new TaskHandler();
+            db.Add(this);
             return 0;
         }
         
@@ -75,6 +76,8 @@ namespace functional_bubble.NET
         public int delete_data()
         ///This method deletes the task from the database and returns 0 if it was succesfull
         {
+            TaskHandler db = new TaskHandler();
+            db.DeleteTask(this);
             return 0;
         }
     }
