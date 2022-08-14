@@ -87,11 +87,7 @@ namespace functional_bubble.NET
          */
         public bool CheckIfDeadlineExpired() 
         {
-            if(this.Deadline < DateTime.Now)
-            {
-                return true;
-            }
-            return false;
+            return (this.Deadline < DateTime.Now);  
         }
     }
 }
