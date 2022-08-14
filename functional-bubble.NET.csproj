@@ -61,7 +61,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\ListViewAdapter.cs" />
+    <Compile Include="Classes\Adapters\ListViewAdapter.cs" />
+    <Compile Include="Classes\Calendar.cs" />
     <Compile Include="Classes\DatabaseHandler.cs" />
     <Compile Include="Classes\Database\database.cs" />
     <Compile Include="Classes\GestureListener.cs" />
@@ -86,10 +87,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.xml">
       <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\navigation\nav_graph.xml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\dimens.xml" />
@@ -206,7 +203,9 @@
   <ItemGroup>
     <AndroidResource Include="Resources\Raw\easter_egg.mp3" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\navigation\nav_graph.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
     Other similar extension points exist, see Microsoft.Common.targets.

@@ -46,6 +46,7 @@ namespace functional_bubble.NET
         bool goBack = true; //true if the task row needs to go to its original position, false if not
         public GestureDetector mGestureDetecor; //a class detecting various gestures like double tap or long click
         public GestureListener mGestureListener; //child class of Gesture Detector which handles what to do when a gesture had been made
+        public string[] mSpinnerEntries = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
 
         public ListViewAdapter(Context context, List<Task> items, View parentView)
         {
@@ -108,7 +109,7 @@ namespace functional_bubble.NET
             };
 
             TextView task_row_priority = row.FindViewById<TextView>(Resource.Id.task_row_priority);//Get task_row_priority TextView from task_row
-            task_row_priority.Text = mItems[position].Priority; //Set Text of that task_row_priority to be the Priority attribute of Task instance
+            task_row_priority.Text = mSpinnerEntries[mItems[position].Priority];//mItems[position].Priority; //Set Text of that task_row_priority to be the Priority attribute of Task instance
 
             return row;
         }
