@@ -8,11 +8,24 @@
     android:rotationX="0"
     android:rotationY="0">
 
-    <TextView
+    <EditText
+        android:id="@+id/task_base_title"
+        android:layout_width="390dp"
+        android:layout_height="60dp"
+        android:background="@android:color/transparent"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.105" />
+
+    <EditText
         android:id="@+id/task_base_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo kurwiuw veritatis et quasi architecto amogus vitae dicta sunt sussy sex explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit"
+        android:background="@android:color/transparent"
         android:textAlignment="center"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +48,7 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <TextView
-        android:id="@+id/task_base_date"
+        android:id="@+id/task_base_deadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
@@ -65,7 +78,6 @@
         android:id="@+id/task_base_repeatableButton"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/szczalka_off"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,18 +86,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19" />
 
-    <TextView
-        android:id="@+id/task_base_title"
-        android:layout_width="390dp"
-        android:layout_height="60dp"
-        android:text="Title"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
 
     <Button
         android:id="@+id/task_base_goBackButton"

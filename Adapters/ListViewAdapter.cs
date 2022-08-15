@@ -34,7 +34,7 @@ namespace functional_bubble.NET
         public onDeleteClicked(int position) { mPosition = position; }
     }
 
-    public class ListViewAdapter : BaseAdapter<Task> , View.IOnTouchListener
+    public class ListViewAdapter : BaseAdapter<Task>, View.IOnTouchListener
     {
         //Class that transforms items from a list of Task instances into rows of ListView in Task UI
         private Context mContext; //Enviorment in which adapter will work
@@ -46,6 +46,7 @@ namespace functional_bubble.NET
         bool goBack = true; //true if the task row needs to go to its original position, false if not
         public GestureDetector mGestureDetecor; //a class detecting various gestures like double tap or long click
         public GestureListener mGestureListener; //child class of Gesture Detector which handles what to do when a gesture had been made
+        public string[] mSpinnerEntries = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
 
         public ListViewAdapter(Context context, List<Task> items, View parentView)
         {
@@ -78,15 +79,15 @@ namespace functional_bubble.NET
             View row = convertView; //The ListView where items will be placed
             if (row == null) //If the TextView resource does not exist
             {
-            row = LayoutInflater.From(mContext).Inflate(Resource.Layout.todo_task_row, null, false); //Create the TextView resource
-            
-            Button task_row_delete_button = row.FindViewById<Button>(Resource.Id.task_row_delete_button); //A button for task deletion
-            task_row_delete_button.Click += (object sender, EventArgs e) =>
-            {
-                //funtion called when delete button had been pressed
-                //!!!!!!!!!Make it instead show a popup window!!!!!!!
-                Delete(position, row); //call Delete class method 
-            };
+                row = LayoutInflater.From(mContext).Inflate(Resource.Layout.todo_task_row, null, false); //Create the TextView resource
+
+                Button task_row_delete_button = row.FindViewById<Button>(Resource.Id.task_row_delete_button); //A button for task deletion
+                task_row_delete_button.Click += (object sender, EventArgs e) =>
+                {
+                    //funtion called when delete button had been pressed
+                    //!!!!!!!!!Make it instead show a popup window!!!!!!!
+                    Delete(position, row); //call Delete class method 
+                };
             }
             GridLayout task_row_grid = row.FindViewById<GridLayout>(Resource.Id.task_row_grid);//Get the grid layout from task_row (this is where the task row is displayed in the list)
             task_row_grid.Tag = mItems[position].Id; //set the ID of task grid to be the id of the task
@@ -108,7 +109,7 @@ namespace functional_bubble.NET
             };
 
             TextView task_row_priority = row.FindViewById<TextView>(Resource.Id.task_row_priority);//Get task_row_priority TextView from task_row
-            task_row_priority.Text = mItems[position].Priority; //Set Text of that task_row_priority to be the Priority attribute of Task instance
+            task_row_priority.Text = mSpinnerEntries[mItems[position].Priority];//mItems[position].Priority; //Set Text of that task_row_priority to be the Priority attribute of Task instance
 
             return row;
         }
@@ -122,7 +123,7 @@ namespace functional_bubble.NET
             NotifyDataSetChanged();//Refresh Task UI
         }
 
-        public void Delete(int position,View v)
+        public void Delete(int position, View v)
         {
             //A method for deleting Tasks from list
             //Input: a position of a view that we want to delete, and the view itself
@@ -162,7 +163,8 @@ namespace functional_bubble.NET
             //Output: boolean, true if there was a propper response gesture to users' action, false otherwise
             */
             //MOVE IT TO A NEW FIlE
-            if (v.TranslationX == 0) { //let the user go into the task only if he had not moved the task
+            if (v.TranslationX == 0)
+            { //let the user go into the task only if he had not moved the task
                 this.mGestureListener.setId(Int32.Parse(v.Tag.ToString()));//Set the ID of Task being touched by taking its tag and converting it first from Java.Lang.Object to string, and then from string to int
                 this.mGestureDetecor.OnTouchEvent(e);//Before checking if any motion is being done with the Task, we first check for gestures
             }
@@ -179,7 +181,7 @@ namespace functional_bubble.NET
                     float CurrentPosition = e.GetX(); //Get X-Position of task row
                     float deltaX = mLastPosX - CurrentPosition; //The difference between beggining position of users finger, minus its current position, it tells us how much we have to move the task row
                     float transX = v.TranslationX; //TranslationX is how much the task row had been moved from its original position on the x-axis
-                    transX -= deltaX; 
+                    transX -= deltaX;
                     if (transX > 0) { transX = 0; } //We do not want the task row to go right, so we do not want the translation to ever be above 0
                     if (transX < -250) { transX = -250; goBack = false; } else { goBack = true; } //The maximum translation to left is 250, we disallow it to go further
                     v.TranslationX = transX; // Set the new translationX
@@ -196,7 +198,7 @@ namespace functional_bubble.NET
                     return false;
 
             }
-            
+
 
         }
     }
