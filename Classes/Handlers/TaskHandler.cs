@@ -22,6 +22,25 @@ namespace functional_bubble.NET.Classes
             Task task = _db.Get<Task>(id);
             return task;
         }
+
+        public void Update(Task task)
+        {
+            _db.Update(task);
+        }
+
+        public void Update(int taskId, char choice, string change)
+        {
+            switch (choice)
+            {
+                case 't':
+                    _db.Query<Task>("UPDATE Tasks SET Title={0} WHERE id={1}", change, taskId);
+                    break;
+                case 'd':
+                    _db.Query<Task>("UPDATE Tasks SET Description={0} WHERE id={1}", change, taskId);
+                    break;
+            }
+        }
+
         public List<Task> GetAllTasks() 
         {
             List<Task> allTasks = _db.Query<Task>("SELECT * FROM Tasks");
