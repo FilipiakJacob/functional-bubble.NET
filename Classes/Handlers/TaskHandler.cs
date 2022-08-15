@@ -23,7 +23,7 @@ namespace functional_bubble.NET.Classes
             return task;
         }
 
-        public void Update(Task task)
+        public void Update(Task task) //updates task in Tasks table
         {
             _db.Update(task);
         }
