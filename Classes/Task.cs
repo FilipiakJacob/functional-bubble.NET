@@ -88,5 +88,14 @@ namespace functional_bubble.NET
             db.DeleteTask(this);
             return 0;
         }
+
+        /* 
+         * this method checks if this.Deadline is before compared to Datetime.now (present time) 
+         * and if yes returns true which means task is expired 
+         */
+        public bool CheckIfDeadlineExpired() 
+        {
+            return (this.Deadline < DateTime.Now);  
+        }
     }
 }
