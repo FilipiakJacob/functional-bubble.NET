@@ -68,8 +68,10 @@ namespace functional_bubble.NET
         }
         public int update_data()
         {
+            //This method will update the Task in the database when called
             TaskHandler db = new TaskHandler();
-            db.Replace(this);
+            db.Update(this);
+            return 0;
         }
 
         public void gen_Id()

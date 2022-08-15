@@ -60,9 +60,6 @@ namespace functional_bubble.NET.Classes
             //deletes all record in the database
             _db.DeleteAll<Task>();
         }
-        public void Replace(Task task)
-        {
-            _db.Update(task);
-        }
+
     }
 }

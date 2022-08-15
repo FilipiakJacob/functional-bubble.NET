@@ -25,21 +25,27 @@ namespace functional_bubble.NET.Fragments
         {
             View view = inflater.Inflate(Resource.Layout.task_base, container, false);
 
-
             int ID = Arguments.GetInt("taskID");//get id of a task passed from ToDo fragment
             TaskHandler db = new TaskHandler();
             Task mTask = db.Get(ID);
 
-            //Tasks Title and Description:
+            //Tasks Title:
             EditText title = view.FindViewById<EditText>(Resource.Id.task_base_title);
             title.Text = mTask.Title;
             title.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
             {
                 mTask.Title = title.Text;
-                mTask.input_data();
+                mTask.update_data(); //update record in database
             };
 
-            view.FindViewById<EditText>(Resource.Id.task_base_description).Text = mTask.Description;
+            //Tasks Description:
+            EditText description = view.FindViewById<EditText>(Resource.Id.task_base_description);
+            description.Text = mTask.Description;
+            description.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
+                mTask.Description = description.Text;
+                mTask.update_data(); //update record in database
+            };
 
             //Go Back Button:
             view.FindViewById<Button>(Resource.Id.task_base_goBackButton).Click += (object sender, EventArgs e) => 
@@ -65,22 +71,36 @@ namespace functional_bubble.NET.Fragments
 
             //Repeatable Task Button:
             ImageButton repeatebleButton = view.FindViewById<ImageButton>(Resource.Id.task_base_repeatableButton);
+            if(mTask.Repeatable == false) { repeatebleButton.SetImageResource(Resource.Drawable.szczalka_off); }
+            else { repeatebleButton.SetImageResource(Resource.Drawable.szczalka_on); }
             view.FindViewById<ImageButton>(Resource.Id.task_base_repeatableButton).Click += (object sender, EventArgs e) =>
             {
                 if (mTask.Repeatable == false)
                 {
                     mTask.Repeatable = true;
                     repeatebleButton.SetImageResource(Resource.Drawable.szczalka_on);
+                    mTask.update_data(); //update record in database
                 }
                 else
                 {
                     mTask.Repeatable = false;
                     repeatebleButton.SetImageResource(Resource.Drawable.szczalka_off);
+                    mTask.update_data(); //update record in database
                 }
             };
-            
+
+            //Task Deadline:
+            TextView deadline = view.FindViewById<TextView>(Resource.Id.task_base_deadline);
+            deadline.Click += (object sender, EventArgs e) =>
+            {
+                //temporary solution! The deadline system is not functioning yet.
+                //To be added: a floating window for date change with information and functionality of lowered coin reward when changing the deadline
+                Toast.MakeText(Context, "Warning! Changing the deadline will give penalty to tasks reward", ToastLength.Long).Show();
+            };
+
             return view;
         }
+
 
     }
 }
