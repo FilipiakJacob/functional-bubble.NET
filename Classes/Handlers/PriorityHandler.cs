@@ -26,6 +26,11 @@ namespace functional_bubble.NET.Classes
             return priority;
         }
 
+        public void Update(Priority priority) // updates priority row in Priorities table in database
+        {
+            _db.Update(priority);
+        }
+
         public List<Priority> GetAll()
         {
             List<Priority> allPriorities = _db.Query<Priority>("SELECT * FROM Priorities");
