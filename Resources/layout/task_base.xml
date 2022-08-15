@@ -8,7 +8,20 @@
     android:rotationX="0"
     android:rotationY="0">
 
-    <TextView
+    <EditText
+        android:id="@+id/task_base_title"
+        android:layout_width="390dp"
+        android:layout_height="60dp"
+        android:text="Title"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.105" />
+
+    <EditText
         android:id="@+id/task_base_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,18 +87,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19" />
 
-    <TextView
-        android:id="@+id/task_base_title"
-        android:layout_width="390dp"
-        android:layout_height="60dp"
-        android:text="Title"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.105" />
 
     <Button
         android:id="@+id/task_base_goBackButton"

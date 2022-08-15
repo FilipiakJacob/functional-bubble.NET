@@ -46,7 +46,7 @@ namespace functional_bubble.NET
         [Column("CoinsReward")]
         public int CoinsReward { get; set; }
         [Column("Priority")]
-        public string Priority { get; set; }
+        public int Priority { get; set; }
         [Column("Repeatable")]
         public bool Repeatable { get; set; }
         [Column("Pinned")]
@@ -61,11 +61,17 @@ namespace functional_bubble.NET
         ///This method fills in the data from the form and saves it to the database, as well as the task object.
         {
             //Create form
+            Console.WriteLine(Title);
             TaskHandler db = new TaskHandler();
             db.Add(this);
             return 0;
         }
-        
+        public int update_data()
+        {
+            TaskHandler db = new TaskHandler();
+            db.Replace(this);
+        }
+
         public void gen_Id()
         ///Search the database for a free ID number and return it
         {

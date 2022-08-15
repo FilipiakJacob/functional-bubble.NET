@@ -15,7 +15,7 @@ namespace functional_bubble.NET.Classes
     {
         public void Add(Task task) // inserts task object to Task table
         {
-            _db.Insert(task);
+            _db.Insert(task);    
         }
         public Task Get(int id) // returns task object with given id
         {
@@ -40,6 +40,10 @@ namespace functional_bubble.NET.Classes
             //for testing purpouses only
             //deletes all record in the database
             _db.DeleteAll<Task>();
+        }
+        public void Replace(Task task)
+        {
+            _db.Update(task);
         }
     }
 }

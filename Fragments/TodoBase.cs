@@ -32,7 +32,7 @@ namespace functional_bubble.NET.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             //Inflating view pretty much creates it in memory, without showing it on screen.
-            View view = inflater.Inflate(Resource.Layout.Todo_base, container, false);
+            View view = inflater.Inflate(Resource.Layout.todo_base, container, false);
             return view;
         }
 

@@ -31,8 +31,15 @@ namespace functional_bubble.NET.Fragments
             Task mTask = db.Get(ID);
 
             //Tasks Title and Description:
-            view.FindViewById<TextView>(Resource.Id.task_base_title).Text = mTask.Title;
-            view.FindViewById<TextView>(Resource.Id.task_base_description).Text = mTask.Description;
+            EditText title = view.FindViewById<EditText>(Resource.Id.task_base_title);
+            title.Text = mTask.Title;
+            title.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
+                mTask.Title = title.Text;
+                mTask.input_data();
+            };
+
+            view.FindViewById<EditText>(Resource.Id.task_base_description).Text = mTask.Description;
 
             //Go Back Button:
             view.FindViewById<Button>(Resource.Id.task_base_goBackButton).Click += (object sender, EventArgs e) => 
@@ -41,7 +48,8 @@ namespace functional_bubble.NET.Fragments
             };
 
             //Delete Button:
-            view.FindViewById<ImageButton>(Resource.Id.task_base_deleteTaskButton).Click += (object sender, EventArgs e) => 
+            ImageButton deleteButton = view.FindViewById<ImageButton>(Resource.Id.task_base_deleteTaskButton);
+            deleteButton.Click += (object sender, EventArgs e) => 
             {
                 mTask.delete_data();//delete task from database
                 Navigation.FindNavController(view).Navigate(Resource.Id.GoBackToTodoList);//go back to Todo list
@@ -73,5 +81,6 @@ namespace functional_bubble.NET.Fragments
             
             return view;
         }
+
     }
 }
