@@ -14,6 +14,10 @@ namespace functional_bubble.NET.Classes
 {
     public class LabelHandler : DatabaseHandler
     {
+        public LabelHandler()
+        {
+            DefaultRows();
+        }
         public void Add(Label label) // inserts task object to Task table
         {
             _db.Insert(label);
@@ -34,6 +38,23 @@ namespace functional_bubble.NET.Classes
         {
             List<Label> allLabels = _db.Query<Label>("SELECT * FROM Labels");
             return allLabels;
+        }
+
+        public void DefaultRows()
+        {
+            List<Label> LabelTable = GetAll();
+            if (LabelTable.Count < 4)
+            {
+                Label label= new Label();
+                label.Description = "Work";
+                _db.Insert(label);
+                label.Description = "Personal";
+                _db.Insert(label);
+                label.Description = "Family";
+                _db.Insert(label);
+                label.Description = "School";
+                _db.Insert(label);
+            }
         }
 
         //@author Mateusz Staszek

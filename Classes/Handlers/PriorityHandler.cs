@@ -11,10 +11,15 @@ using System.Text;
 using SQLite;
 using System.IO;
 
-namespace functional_bubble.NET.Classes
+namespace functional_bubble.NET
 {
     public class PriorityHandler : DatabaseHandler
     {
+        public PriorityHandler()
+        {
+            DefaultRows();
+        }
+
         public void Add(Priority priority) // inserts task object to Task table
         {
             _db.Insert(priority);
@@ -35,6 +40,23 @@ namespace functional_bubble.NET.Classes
         {
             List<Priority> allPriorities = _db.Query<Priority>("SELECT * FROM Priorities");
             return allPriorities;
+        }
+
+        public void DefaultRows()
+        {
+            List<Priority> PriorityTable = GetAll();
+            if (PriorityTable.Count < 4)
+            {
+                Priority priority = new Priority();
+                priority.Description = "Urgent";
+                _db.Insert(priority);
+                priority.Description = "Important";
+                _db.Insert(priority);
+                priority.Description = "Can wait";
+                _db.Insert(priority);
+                priority.Description = "Non-important";
+                _db.Insert(priority);
+            }
         }
 
         //@author Mateusz Staszek
