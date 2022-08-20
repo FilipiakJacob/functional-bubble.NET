@@ -45,7 +45,7 @@ namespace functional_bubble.NET
         public void DefaultRows()
         {
             List<Priority> PriorityTable = GetAll();
-            if (PriorityTable.Count < 4)
+            if (PriorityTable.Count == 0)
             {
                 Priority priority = new Priority();
                 priority.Description = "Urgent";

@@ -43,7 +43,7 @@ namespace functional_bubble.NET.Classes
         public void DefaultRows()
         {
             List<Label> LabelTable = GetAll();
-            if (LabelTable.Count < 4)
+            if (LabelTable.Count == 0)
             {
                 Label label= new Label();
                 label.Description = "Work";
