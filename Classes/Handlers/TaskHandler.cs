@@ -14,7 +14,7 @@ namespace functional_bubble.NET.Classes
 {
     public class TaskHandler : DatabaseHandler
     {
-        public const int numberOfPriorities = 4;
+        public const int NUMBER_OF_PRIORITIES = 4;
 
         public void Add(Task task) // inserts task object to Task table
         {
@@ -55,7 +55,7 @@ namespace functional_bubble.NET.Classes
             List<Task> sortedTasks = new List<Task>();
             List<Task> tempTasks = new List<Task>();
 
-            for (int i = 0; i < numberOfPriorities; i++)
+            for (int i = 0; i < NUMBER_OF_PRIORITIES; i++)
             {
                 tempTasks = _db.Query<Task>("SELECT * FROM Tasks WHERE Priority={0}", i);
                 sortedTasks.AddRange(tempTasks);
