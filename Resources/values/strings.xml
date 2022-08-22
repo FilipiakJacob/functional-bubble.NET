@@ -11,4 +11,5 @@
 		<item>High</item>
 		<item>Critical</item>
 	</string-array>
+	<string name="plus_button_desc">A plus icon</string>
 </resources>

@@ -3,9 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/task_row_style" 
-    android:id="@+id/task_row_1"
-    >
+    android:id="@+id/task_row_1">
     <TextView
         android:id="@+id/task_row_title"
         android:text="Title"
@@ -13,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:textSize="30sp"/>
+        android:textSize="25sp"
+        android:layout_marginLeft="5dp" />
     <TextView
         android:id="@+id/task_row_time_left"
         android:text="Time Left"
@@ -21,5 +20,6 @@
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"/>
+        android:textSize="15sp"
+        android:layout_marginRight="5dp" />
 </RelativeLayout>
