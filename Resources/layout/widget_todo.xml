@@ -20,7 +20,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:textSize="25sp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:layout_below="@id/widget_title" />
         <ImageButton
             android:background="@android:color/transparent"
@@ -33,17 +33,17 @@
             android:contentDescription="@string/plus_button_desc"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/plus_icon" />
+            android:src="@drawable/plus_icon"/>
     </RelativeLayout>
-
+    
     <RelativeLayout
         android:id="@+id/widget_tasks"
         android:background="@drawable/widget_todo_tasks_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/widget_top_bar"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp">
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
         <include
             android:id="@+id/task_row_1"
             android:layout_height="wrap_content"
@@ -69,6 +69,5 @@
             android:layout_width="match_parent"
             android:layout_below="@+id/task_row_3"
             layout="@layout/widget_todo_task"/>
-
     </RelativeLayout>
 </RelativeLayout>
