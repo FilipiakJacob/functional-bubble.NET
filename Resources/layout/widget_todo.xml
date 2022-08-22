@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/todo_widget_background"
+    android:background="@drawable/widget_todo_style"
+    >
+    <RelativeLayout
+        android:id="@+id/widget_top_bar"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_dark">
+        <TextView
+            android:text="TOP BAR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="30sp"/>
+    </RelativeLayout>
+    <include
+        android:id="@+id/task_row_1"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/widget_top_bar"
+        layout="@layout/widget_todo_task"/>
+    <include
+        android:id="@+id/task_row_2"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/task_row_1"
+        layout="@layout/widget_todo_task"/>
+    <include
+        android:id="@+id/task_row_3"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/task_row_2"
+        layout="@layout/widget_todo_task"/>
+    <include
+        android:id="@+id/task_row_4"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/task_row_3"
+        layout="@layout/widget_todo_task"/>
+
+</RelativeLayout>
