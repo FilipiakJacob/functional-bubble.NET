@@ -47,6 +47,20 @@ namespace functional_bubble.NET.Classes
             return allTasks;
         }
 
+        public List<Task> GetSortedTasks()
+        {
+            List<Task> sortedTasks = new List<Task>();
+            List<Task> tempTasks = new List<Task>();
+
+            for (int i = 0; i < 4; i++)
+            {
+                tempTasks = _db.Query<Task>("SELECT * FROM Tasks WHERE Priority={0}", i);
+                sortedTasks.AddRange(tempTasks);
+            }
+
+            return sortedTasks;
+        }
+
         //@author Mateusz Staszek
         public void DeleteTask(Task task)
         {
