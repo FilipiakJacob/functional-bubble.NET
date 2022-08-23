@@ -6,90 +6,241 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minHeight="300dp"
-    android:minWidth="200dp"
-    android:weightSum="100">
+    android:background="@drawable/dialog_new_task_style"
+    android:minHeight="600dp"
+    android:minWidth="300dp"
+    android:maxWidth="300dp">
 
 
     <EditText
         android:id="@+id/new_task_title"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:gravity="center"
         android:hint="Title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_task_button"
         app:layout_constraintVertical_bias="0.00999999" />
 
     <EditText
         android:id="@+id/new_task_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/description_box_style"
+        android:gravity="start"
         android:hint="Description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:padding="10dp"
+        android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_task_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.35"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateView"
         app:layout_constraintVertical_bias="0.060000002"
-        tools:layout_editor_absoluteX="-16dp" />
+        app:layout_constraintWidth_percent="0.90" />
 
     <Spinner
         android:id="@+id/new_task_priority"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
         android:entries="@array/priorities_array"
         android:prompt="@string/priority_prompt"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_task_description"
-        app:layout_constraintVertical_bias="0.07999998" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintWidth_percent="0.45" />
 
-    <Button
-        android:id="@+id/new_task_button"
-        android:layout_width="match_parent"
+
+    <Spinner
+        android:id="@+id/new_task_priority2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_weight="5"
-        android:text="Add Task"
+        android:entries="@array/labels_array"
+        android:prompt="@string/label_prompt"
+        android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_task_priority"
-        app:layout_constraintVertical_bias="0.050000012" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintWidth_percent="0.45" />
 
     <TextView
         android:id="@+id/new_task_wrongDateMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/new_task_deadline"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toStartOf="@+id/new_task_deadline"
-        app:layout_constraintTop_toBottomOf="@+id/new_task_button"
-        app:layout_constraintVertical_bias="0.04000002" />
+        app:layout_constraintBottom_toTopOf="@+id/dateView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_task_priority"
+        app:layout_constraintVertical_bias="0.77" />
 
-    <EditText
-        android:id="@+id/new_task_deadline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="dd/mm/yyyy"
-        android:inputType="number"
+    <View
+        android:id="@+id/dateView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/timeAndDateBorders"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_task_wrongDateMessage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/new_task_priority"
+        app:layout_constraintVertical_bias="0.13"
+        app:layout_constraintWidth_percent="0.49" />
+
+    <EditText
+        android:id="@+id/new_task_deadline_date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:hint="DD/MM/YYYY"
+        android:inputType="number"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dateView"
+        app:layout_constraintEnd_toEndOf="@+id/dateView"
+        app:layout_constraintHeight_percent="0.11"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@+id/dateView"
+        app:layout_constraintTop_toTopOf="@+id/dateView"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintWidth_percent="0.28" />
+
+    <ImageView
+        android:id="@+id/dateImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/cardview_compat_inset_shadow"
+        app:layout_constraintBottom_toBottomOf="@+id/dateView"
+        app:layout_constraintEnd_toEndOf="@+id/dateView"
+        app:layout_constraintHorizontal_bias="0.86"
+        app:layout_constraintStart_toEndOf="@+id/new_task_deadline_date"
+        app:layout_constraintTop_toTopOf="@+id/dateView"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_percent="0.11"
+        app:srcCompat="@drawable/kalendarz" />
+
+    <View
+        android:id="@+id/timeView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/timeAndDateBorders"
+        app:layout_constraintBottom_toBottomOf="@+id/dateView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.12"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toEndOf="@+id/dateView"
+        app:layout_constraintTop_toTopOf="@+id/dateView"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintWidth_percent="0.49" />
+
+    <EditText
+        android:id="@id/new_task_deadline_time"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:hint="HH:MM"
+        android:inputType="time"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/timeView"
+        app:layout_constraintEnd_toEndOf="@+id/timeView"
+        app:layout_constraintHeight_percent="0.11"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@+id/timeView"
+        app:layout_constraintTop_toTopOf="@+id/timeView"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <ImageView
+        android:id="@+id/timeImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/cardview_compat_inset_shadow"
+        app:layout_constraintBottom_toBottomOf="@+id/timeView"
+        app:layout_constraintEnd_toEndOf="@+id/timeView"
+        app:layout_constraintHorizontal_bias="0.94"
+        app:layout_constraintStart_toEndOf="@+id/new_task_deadline_time"
+        app:layout_constraintTop_toTopOf="@+id/timeView"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_percent="0.11"
+        app:srcCompat="@drawable/zegar" />
+
+
+    <Button
+        android:id="@+id/new_task_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Add Task"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <Button
+        android:id="@+id/new_task_calendar_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="22dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@+id/dateImage"
+        app:layout_constraintEnd_toEndOf="@+id/dateImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/dateImage"
+        app:layout_constraintTop_toTopOf="@+id/dateImage"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.11"
+        app:layout_constraintHeight_percent="0.09"/>
+    <Button
+        android:id="@+id/new_task_clock_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="@+id/timeImage"
+        app:layout_constraintEnd_toEndOf="@+id/timeImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/timeImage"
+        app:layout_constraintTop_toTopOf="@+id/timeImage"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.11"
+        app:layout_constraintHeight_percent="0.07"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Priority:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_task_title"
+        app:layout_constraintVertical_bias="0.050000012" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Label:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_task_title"
+        app:layout_constraintVertical_bias="0.05" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

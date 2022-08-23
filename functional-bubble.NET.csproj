@@ -145,9 +145,6 @@
     <AndroidResource Include="Resources\drawable\ButtonAddTaskStyle.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\plus_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\dialog_new_task.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -195,9 +192,6 @@
     <AndroidResource Include="Resources\drawable\smietnik_closed.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\smietnik_open.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\Raw\quack.mp3" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +199,24 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\navigation\nav_graph.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\timeAndDateBorders.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\add_task_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\zegar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\kalendarz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\description_box_style.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\dialog_new_task_style.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

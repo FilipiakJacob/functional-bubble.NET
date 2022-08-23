@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Text;
@@ -40,12 +41,18 @@ namespace functional_bubble.NET
         public string[] mSpinnerEntries = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
 
         public event EventHandler<onNewTaskEventArgs> mNewTaskComplete; //Instance of onNewTaskEventArgs Event Handler
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
-            base.OnCreateView(inflater, container, savedInstanceState);
+            var inflater = Activity.LayoutInflater;
 
-            var view = inflater.Inflate(Resource.Layout.dialog_new_task, container, false);
-
+            var view = inflater.Inflate(Resource.Layout.dialog_new_task, null);
+            var builder = new AlertDialog.Builder(Activity);
+            if (view != null)
+            {
+                builder.SetView(view);
+            }
+            var dialog = builder.Create();
+            dialog.Window.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
             mNewTaskTitle = view.FindViewById<EditText>(Resource.Id.new_task_title);
             mNewTaskDescription = view.FindViewById<EditText>(Resource.Id.new_task_description);
 
@@ -56,10 +63,10 @@ namespace functional_bubble.NET
             mBtnCreateTask = view.FindViewById<Button>(Resource.Id.new_task_button);            
             mBtnCreateTask.Click += MBtnCreateTask_Click; //Method executed when Confirmation Button is clicked
 
-            mTimePicker = view.FindViewById<TimePicker>(Resource.Id.timePicker1);
-            mTimePicker.SetIs24HourView(Java.Lang.Boolean.True);
-            /*
-            EditText mNewTaskDeadline = view.FindViewById<EditText>(Resource.Id.new_task_deadline);
+            //mTimePicker = view.FindViewById<TimePicker>(Resource.Id.timePicker1);
+            //mTimePicker.SetIs24HourView(Java.Lang.Boolean.True);
+            
+            EditText mNewTaskDeadline = view.FindViewById<EditText>(Resource.Id.new_task_deadline_date);
             TextView mNewTaskWrongDate = view.FindViewById<TextView>(Resource.Id.new_task_wrongDateMessage);
             mNewTaskDeadline.TextChanged += (object sender, TextChangedEventArgs e) =>
             {
@@ -79,14 +86,14 @@ namespace functional_bubble.NET
                 if (txt.Length == 10) { Int32.TryParse(txt.Substring(7,2), out int l); if (monthNum == 2) { if (!mCalendar.correctFebruary(dayNum, l)) { mNewTaskWrongDate.Text = "Go Fuck Yourself Yearly Feb"; properDate = false; } } }
                 if(properDate) { mNewTaskWrongDate.Text = ""; }
             };
-            */
+            
 
 
 
 
 
 
-                return view;
+                return dialog;
         }
 
         /*
