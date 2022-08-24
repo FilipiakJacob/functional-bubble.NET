@@ -46,7 +46,7 @@ namespace functional_bubble.NET.Classes
         [Column("CoinsReward")]
         public int CoinsReward { get; set; }
         [Column("Priority")]
-        public string Priority { get; set; }
+        public int Priority { get; set; }
         [Column("Repeatable")]
         public bool Repeatable { get; set; }
         [Column("Pinned")]

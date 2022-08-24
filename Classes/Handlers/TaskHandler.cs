@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using static Android.Provider.UserDictionary;
 
+
 namespace functional_bubble.NET.Classes
 {
     public class TaskHandler : DatabaseHandler
