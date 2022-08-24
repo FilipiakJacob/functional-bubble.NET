@@ -34,6 +34,7 @@ namespace functional_bubble.NET
         private Spinner mNewTaskPriority;
         private Button mBtnCreateTask; //Confirmation Button When All data about a new task had been written
         public Task mNewTask = new Task();
+        public string[] mSpinnerEntries = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
 
         public event EventHandler<onNewTaskEventArgs> mNewTaskComplete; //Instance of onNewTaskEventArgs Event Handler
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -46,7 +47,7 @@ namespace functional_bubble.NET
             mNewTaskDescription = view.FindViewById<EditText>(Resource.Id.new_task_description);
 
             mNewTaskPriority = view.FindViewById<Spinner>(Resource.Id.new_task_priority);
-            mNewTaskPriority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (MNewTaskPriority_ItemSelected); //method called when an item from priority spinner is chosen
+           // mNewTaskPriority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (MNewTaskPriority_ItemSelected); //method called when an item from priority spinner is chosen
 
 
             mBtnCreateTask = view.FindViewById<Button>(Resource.Id.new_task_button);            
@@ -54,20 +55,14 @@ namespace functional_bubble.NET
             return view;
         }
 
-        private void MNewTaskPriority_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
-        {
-            /// <summary>
-            /// A method called when user chose an item from priority spinner
-            /// </summary>
-            Spinner MNewTaskPriority = (Spinner)sender;
-            mNewTask.Priority = string.Format((string)MNewTaskPriority.GetItemAtPosition(e.Position));
-        }
+
 
         private void MBtnCreateTask_Click(object sender, EventArgs e)
         {
             //User clicked the Confirmation Button
             mNewTask.Title = mNewTaskTitle.Text;
             mNewTask.Description = mNewTaskDescription.Text;
+            mNewTask.Priority = Array.IndexOf(mSpinnerEntries, mNewTaskPriority.SelectedItem.ToString()); //mNewTaskPriority.SelectedItem.ToString();
             mNewTaskComplete.Invoke(this, new onNewTaskEventArgs(mNewTask)); //Invoke the Event Handler
             this.Dismiss(); //Dialog Fragment deletes itself
         }

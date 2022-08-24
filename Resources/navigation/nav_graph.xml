@@ -19,34 +19,19 @@ The NavController - An object which manages the user's "movement" through the Na
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@+id/dest_todo">
+			android:id="@+id/nav_graph"
+            app:startDestination="@+id/todo_graph">
 
 	<!-- 
 	    android:id - Can be used to reference the destination elsewhere in code
 	    android:name - Full name of the fragment class which should be instantiated in this destination.
 	-->
-	
-	<fragment
-    android:id="@+id/dest_todo"
-    android:name="functional_bubble.NET.Fragments.TodoBase">
-	<action
-		android:id="@+id/GoToTask"
-		app:destination="@id/dest_task">
-	</action>
-	</fragment>
- 
-	
-	<fragment 
-    android:id="@+id/dest_shop"
-    android:name="functional_bubble.NET.Fragments.ShopBase" />
-    
-	<fragment 
-    android:id="@+id/dest_penguin"
-    android:name="functional_bubble.NET.Fragments.PenguinBase" />
 
-	<fragment
-    android:id="@+id/dest_task"
-    android:name="functional_bubble.NET.Fragments.TaskBase"
-    />
+	<include app:graph="@navigation/todo_graph"/>
+
+	<include app:graph="@navigation/shop_graph"/>
+
+	<include app:graph="@navigation/penguin_graph"/>
+
 
 </navigation>

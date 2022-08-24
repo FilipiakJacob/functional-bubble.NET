@@ -25,7 +25,7 @@ namespace functional_bubble.NET.Classes
 
         public override bool OnSingleTapConfirmed(MotionEvent e)
         {
-            var bundle = new Bundle(); 
+            var bundle = new Bundle(); //variables passed to another fragment will be stored in bundle  
             bundle.PutInt("taskID", mId);
             Navigation.FindNavController(mview).Navigate(Resource.Id.GoToTask, bundle); //Navigate to the Task Fragment
             return base.OnSingleTapConfirmed(e);

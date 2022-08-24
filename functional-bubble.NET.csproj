@@ -68,11 +68,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\ListViewAdapter.cs" />
-    <Compile Include="Classes\DatabaseHandler.cs" />
-    <Compile Include="Classes\Dialog_FullScreenTask.cs" />
+    <Compile Include="Classes\Handlers\DatabaseHandler.cs" />
+    <Compile Include="Classes\Database\database.cs" />
+    <Compile Include="Classes\Label.cs" />
+    <Compile Include="Classes\Handlers\LabelHandler.cs" />
     <Compile Include="Classes\GestureListener.cs" />
+    <Compile Include="Classes\Priority.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
+    <Compile Include="Classes\Handlers\TaskHandler.cs" />
     <Compile Include="Classes\WidgetTodo.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
@@ -83,6 +87,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Classes\Database\database.db" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml">
       <SubType>Designer</SubType>
@@ -151,9 +156,6 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\iceberg.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ButtonAddTaskStyle.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +191,28 @@
     <AndroidResource Include="Resources\layout\task_base.xml" />
   </ItemGroup>
   <ItemGroup>
+
+    <AndroidResource Include="Resources\drawable\gory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\szczalka_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\szczalka_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\smietnik_closed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\smietnik_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Raw\quack.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Raw\easter_egg.mp3" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\layout\widget_todo.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -197,18 +221,24 @@
     <AndroidResource Include="Resources\xml\appwidgetprovider.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\navigation\todo_graph.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\navigation\shop_graph.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\navigation\penguin_graph.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\layout\widget_todo_task.xml">
-      <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\widget_todo_style.xml">
-      <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\widget_todo_tasks_style.xml">
-      <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
