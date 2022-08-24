@@ -12,6 +12,7 @@ using AndroidX.Fragment.App;
 using AndroidX.Navigation;
 using functional_bubble.NET.Classes;
 
+
 namespace functional_bubble.NET.Fragments
 {
     public class TodoBase : Fragment

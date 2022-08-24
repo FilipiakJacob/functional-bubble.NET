@@ -77,7 +77,7 @@
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
     <Compile Include="Classes\Handlers\TaskHandler.cs" />
-    <Compile Include="Classes\TodoWidget.cs" />
+    <Compile Include="Classes\WidgetTodo.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
     <Compile Include="Fragments\PenguinBase.cs" />
@@ -99,10 +99,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\todo_base.xml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\navigation\nav_graph.xml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
@@ -163,9 +159,6 @@
     <AndroidResource Include="Resources\drawable\ButtonAddTaskStyle.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\plus_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\dialog_new_task.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -198,6 +191,7 @@
     <AndroidResource Include="Resources\layout\task_base.xml" />
   </ItemGroup>
   <ItemGroup>
+
     <AndroidResource Include="Resources\drawable\gory.png" />
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +213,7 @@
     <AndroidResource Include="Resources\Raw\easter_egg.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\todo_widget.xml">
+    <AndroidResource Include="Resources\layout\widget_todo.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -234,6 +228,21 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\navigation\penguin_graph.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\widget_todo_task.xml">
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\widget_todo_style.xml">
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\widget_todo_tasks_style.xml">
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\plus_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
