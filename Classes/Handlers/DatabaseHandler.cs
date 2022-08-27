@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using SQLite;
 using System.IO;
+using functional_bubble.NET.Classes;
 
 /*
  * @author Mikolaj Petri

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using SQLite;
 
-namespace functional_bubble.NET
+namespace functional_bubble.NET.Classes
 {
 
     /*

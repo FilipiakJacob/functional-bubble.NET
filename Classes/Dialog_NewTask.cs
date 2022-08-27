@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using functional_bubble.NET.Classes;
 
-namespace functional_bubble.NET
+namespace functional_bubble.NET.Classes
 {
     public class onNewTaskEventArgs : EventArgs
     {
@@ -47,9 +47,8 @@ namespace functional_bubble.NET
             mNewTaskDescription = view.FindViewById<EditText>(Resource.Id.new_task_description);
 
             mNewTaskPriority = view.FindViewById<Spinner>(Resource.Id.new_task_priority);
-           // mNewTaskPriority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (MNewTaskPriority_ItemSelected); //method called when an item from priority spinner is chosen
-
-
+            //mNewTaskPriority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (MNewTaskPriority_ItemSelected); //method called when an item from priority spinner is chosen
+            
             mBtnCreateTask = view.FindViewById<Button>(Resource.Id.new_task_button);            
             mBtnCreateTask.Click += MBtnCreateTask_Click; //Method executed when Confirmation Button is clicked
             return view;
