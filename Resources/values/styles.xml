@@ -9,6 +9,13 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+	<style name="WrapContentDialog" parent="Theme.AppCompat.Light.Dialog">
+		<item name="windowMinWidthMajor">0%</item>
+		<item name="windowMinWidthMinor">0%</item>
+	</style>
+	<style name="DateAndTimePickerStyle" >
+		<item name="android:windowBackground">@drawable/xd</item>
+	</style>
 
 
 </resources>

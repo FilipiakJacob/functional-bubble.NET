@@ -3,13 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dialog_new_task_style"
     android:minHeight="600dp"
-    android:minWidth="300dp"
-    android:maxWidth="300dp">
+    android:minWidth="300dp">
 
 
     <EditText
@@ -32,7 +30,6 @@
         android:background="@drawable/description_box_style"
         android:gravity="start"
         android:hint="Description"
-        android:backgroundTint="@android:color/holo_red_dark"
         android:padding="10dp"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -184,11 +181,11 @@
         android:text="Add Task"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHeight_percent="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintWidth_percent="0.9" />
+        app:layout_constraintVertical_bias="0.04"
+        app:layout_constraintWidth_percent="0.8" />
 
     <Button
         android:id="@+id/new_task_calendar_button"

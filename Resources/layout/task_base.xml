@@ -35,18 +35,19 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <TextView
-        android:id="@+id/task_base_date"
-        android:layout_width="wrap_content"
+        android:id="@+id/task_base_deadline"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:text="16/07/2022"
-        android:textAlignment="center"
-        android:textSize="16sp"
+        android:textAlignment="viewStart"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/task_base_completeTaskButton"
         app:layout_constraintEnd_toEndOf="@+id/task_base_completeTaskButton"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/task_base_completeTaskButton"
         app:layout_constraintTop_toBottomOf="@+id/task_base_goBackButton"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintVertical_bias="0.9"
+        app:layout_constraintWidth_percent="0.4" />
 
     <ImageButton
         android:id="@+id/task_base_deleteTaskButton"

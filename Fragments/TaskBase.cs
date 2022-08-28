@@ -70,7 +70,11 @@ namespace functional_bubble.NET.Fragments
                     repeatebleButton.SetImageResource(Resource.Drawable.szczalka_off);
                 }
             };
-            
+
+            //Task Deadline:
+            Console.WriteLine(mTask.Deadline);
+            view.FindViewById<TextView>(Resource.Id.task_base_deadline).Text = mTask.Deadline.ToString("dd/MM/yyyy HH:mm");
+
             return view;
         }
     }
