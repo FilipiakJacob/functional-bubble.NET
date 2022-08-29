@@ -77,6 +77,7 @@
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
     <Compile Include="Classes\Handlers\TaskHandler.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\WidgetTodo.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
