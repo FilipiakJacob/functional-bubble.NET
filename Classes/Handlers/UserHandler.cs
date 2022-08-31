@@ -45,7 +45,7 @@ namespace functional_bubble.NET.Classes
             return user;
         }
 
-        public void CheckStreak() // checks if user has a streak 
+        public bool CheckStreak() // checks if user has a streak 
         {
             User user = GetUser();
             //condition for situation when user completes task day after day
@@ -58,14 +58,14 @@ namespace functional_bubble.NET.Classes
                 user.StreakCount++;
 
                 Update(user);
-                return;
+                return true;
             }
             //condition for situation when user completes multiple tasks in one day
             else if (user.LastCompletedTaskDate.Day == DateTime.Now.Day &&
                 user.LastCompletedTaskDate.Month == DateTime.Now.Month &&
                 user.LastCompletedTaskDate.Year == DateTime.Now.Year)
             {
-                return;
+                return true;
             }
             //condition for situation when user completes task, but didn't complete task the day before
             else
@@ -73,7 +73,7 @@ namespace functional_bubble.NET.Classes
                 user.StreakCount = 0;
                 user.StreakIsActive= false;
                 Update(user);
-                return;
+                return false;
             }
         }
 
@@ -95,5 +95,41 @@ namespace functional_bubble.NET.Classes
                 _db.Query<User>("DELETE FROM User WHERE id={0}", i);
             }
         }
+
+        /*public float CalculateReward(int id)
+        {
+            float reward;
+            float streakMultiplier = CalculateStreakMultiplier();
+            TaskHandler taskHandler = new TaskHandler();
+            Task task = taskHandler.Get(id);
+
+            if (CheckStreak())
+            {
+
+            }
+            else
+            {
+
+            }
+            return reward;
+        }
+
+        public float CalculateStreakMultiplier()
+        {
+            float streakMultiplier;
+            User user = GetUser();
+            if (CheckStreak())
+            {
+                if (user.StreakCount < 5)
+                {
+                    streakMultiplier = 0.155;
+                }
+            }
+            else
+            {
+                streakMultiplier = 0;
+            }
+            return streakMultiplier;
+        }*/
     }
 }
