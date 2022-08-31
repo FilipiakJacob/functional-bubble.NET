@@ -17,7 +17,7 @@ namespace functional_bubble.NET.Classes
         {
             CheckTableIfOK();
         }
-        public void CheckTableIfOK() // this method checks if table is 
+        public void CheckTableIfOK() // this method checks if table is up with assummed conditions 
         {
             List<User> table = this.GetAll();
             if (table == null)
@@ -40,6 +40,42 @@ namespace functional_bubble.NET.Classes
         {
             List<User> userTable = _db.Query<User>("SELECT * FROM User");
             return userTable;
+        }
+
+        public User GetUser()
+        {
+            User user = _db.Get<User>(0);
+            return user;
+        }
+
+        public void CheckStreak() // checks if user has a streak 
+        {
+            User user = GetUser();
+            //condition for situation when user completes task day after day
+            if (user.LastCompletedTaskDate.Day == (DateTime.Now.Day - 1) &&
+                user.LastCompletedTaskDate.Month == DateTime.Now.Month &&
+                user.LastCompletedTaskDate.Year == DateTime.Now.Year) 
+            {
+                user.LastCompletedTaskDate = DateTime.Now;
+                user.StreakIsActive = true;
+                user.StreakCount++;
+
+                return;
+            }
+            //condition for situation when user completes multiple tasks in one day
+            else if (user.LastCompletedTaskDate.Day == DateTime.Now.Day &&
+                user.LastCompletedTaskDate.Month == DateTime.Now.Month &&
+                user.LastCompletedTaskDate.Year == DateTime.Now.Year)
+            {
+                return;
+            }
+            //condition for situation when user completes task, but didn't complete task the day before
+            else
+            {
+                user.StreakCount = 0;
+                user.StreakIsActive= false;
+                return;
+            }
         }
     }
 }

@@ -23,7 +23,7 @@ namespace functional_bubble.NET.Classes
     public class User
     {
         [PrimaryKey, Unique, Column("id")]
-        public int Id { get; set; }
+        public int Id { get; set; } = 0;
         [Column("Username")]
         public string Username { get; set; } // var with not any particular usage rn but maybe in the future will be used to idk personalised encouragement messages?
         [Column("LastCompletedTaskDate")]
