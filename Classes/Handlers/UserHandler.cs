@@ -98,21 +98,15 @@ namespace functional_bubble.NET.Classes
             }
         }
 
-        public float CalculateReward(int id)
+        public float CalculateReward(Task task)
         {
             float reward;
             float streakMultiplier = CalculateStreakMultiplier();
-            TaskHandler taskHandler = new TaskHandler();
-            Task task = taskHandler.Get(id);
 
-            if (CheckStreak())
-            {
-                //reward = streakMultiplier * 
-            }
-            else
-            {
+            TimeSpan substract = DateTime.Now.Subtract(task.Deadline);
 
-            }
+            reward = streakMultiplier * substract.Days;
+           
             return reward;
         }
 
