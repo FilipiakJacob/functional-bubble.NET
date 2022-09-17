@@ -40,7 +40,7 @@ namespace functional_bubble.NET.Classes
         [Column("LabelInt")]
         public int Label { get; set; }
         [Column("CreationTime")]
-        public DateTime CreationTime { get; set; }
+        public DateTime CreationTime { get; set; } = DateTime.Now;
         [Column("Deadline")]
         public DateTime Deadline { get; set; }
         [Column("CoinsReward")]

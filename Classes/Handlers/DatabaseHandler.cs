@@ -33,6 +33,7 @@ namespace functional_bubble.NET.Classes
             _db.CreateTable<Task>();
             _db.CreateTable<Label>();
             _db.CreateTable<Priority>();
+            _db.CreateTable<User>();
         }
     }
 }
