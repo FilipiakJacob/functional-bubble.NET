@@ -133,9 +133,13 @@ namespace functional_bubble.NET.Classes
                 {
                     return 0.255f;
                 }
-                else if (user.StreakCount > 20 && user.StreakCount <= 30)
+                else if (user.StreakCount > 20)
                 {
                     return 0.355f;
+                }
+                else
+                {
+                    return 1;
                 }
             }
             else
