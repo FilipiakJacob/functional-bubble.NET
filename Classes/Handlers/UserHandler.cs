@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Icu.Text;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -45,13 +46,19 @@ namespace functional_bubble.NET.Classes
             return user;
         }
 
+        public void Update(User user) //updates user in database
+        {
+            _db.Update(user);
+        }
+
         public bool CheckStreak() // checks if user has a streak 
         {
             User user = GetUser();
-            //condition for situation when user completes task day after day
-            if (user.LastCompletedTaskDate.Day == (DateTime.Now.Day - 1) &&
-                user.LastCompletedTaskDate.Month == DateTime.Now.Month &&
-                user.LastCompletedTaskDate.Year == DateTime.Now.Year) 
+
+            TimeSpan result = DateTime.Now.Subtract(user.LastCompletedTaskDate);
+
+
+            if (result.Days == -1) // condition when user's last completed task isn't with todays date
             {
                 user.LastCompletedTaskDate = DateTime.Now;
                 user.StreakIsActive = true;
@@ -60,26 +67,21 @@ namespace functional_bubble.NET.Classes
                 Update(user);
                 return true;
             }
-            //condition for situation when user completes multiple tasks in one day
-            else if (user.LastCompletedTaskDate.Day == DateTime.Now.Day &&
-                user.LastCompletedTaskDate.Month == DateTime.Now.Month &&
-                user.LastCompletedTaskDate.Year == DateTime.Now.Year)
-            {
-                return true;
-            }
             //condition for situation when user completes task, but didn't complete task the day before
-            else
+            else if (result.Days < -1)
             {
                 user.StreakCount = 0;
-                user.StreakIsActive= false;
+                user.StreakIsActive = false;
                 Update(user);
                 return false;
             }
-        }
-
-        public void Update(User user) //updates user in database
-        {
-            _db.Update(user);
+            //condition for situation when user completes multiple tasks in one day
+            else if (result.Days == 0)
+            {
+                return true;
+            }
+            return true;
+         
         }
 
         public void InitialUserTable() //Initial state of the user table
@@ -96,7 +98,7 @@ namespace functional_bubble.NET.Classes
             }
         }
 
-        /*public float CalculateReward(int id)
+        public float CalculateReward(int id)
         {
             float reward;
             float streakMultiplier = CalculateStreakMultiplier();
@@ -105,7 +107,7 @@ namespace functional_bubble.NET.Classes
 
             if (CheckStreak())
             {
-
+                //reward = streakMultiplier * 
             }
             else
             {
@@ -116,20 +118,30 @@ namespace functional_bubble.NET.Classes
 
         public float CalculateStreakMultiplier()
         {
-            float streakMultiplier;
             User user = GetUser();
             if (CheckStreak())
             {
-                if (user.StreakCount < 5)
+                if (user.StreakCount <= 5 && user.StreakCount > 0)
                 {
-                    streakMultiplier = 0.155;
+                    return 0.155f;
+                }
+                else if (user.StreakCount > 5 && user.StreakCount <= 10)
+                {
+                    return 0.255f;
+                }
+                else if (user.StreakCount > 10 && user.StreakCount <= 20)
+                {
+                    return 0.255f;
+                }
+                else if (user.StreakCount > 20 && user.StreakCount <= 30)
+                {
+                    return 0.355f;
                 }
             }
             else
             {
-                streakMultiplier = 0;
+                return 0;
             }
-            return streakMultiplier;
-        }*/
+        }
     }
 }
