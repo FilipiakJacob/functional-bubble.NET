@@ -101,12 +101,14 @@ namespace functional_bubble.NET.Classes
         public int CalculateReward(Task task)
         {
             int reward;
+            TimeSpan substract = DateTime.Now.Subtract(task.Deadline);
             float streakMultiplier = CalculateStreakMultiplier();
 
-            TimeSpan substract = DateTime.Now.Subtract(task.Deadline);
+            float streakMultipliedPart = streakMultiplier * substract.Days;
+            float priorityMultipliedPart = task.Priority * substract.Days;
 
-            reward = (int)(streakMultiplier * substract.Days);
-           
+            reward = (int)(streakMultipliedPart + priorityMultipliedPart);
+
             return reward;
         }
 
