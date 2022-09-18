@@ -98,10 +98,10 @@ namespace functional_bubble.NET.Classes
             }
         }
 
-        public int CalculateReward(Task task)
+        public int CalculateReward(Task task) //calculates reward based on various variables
         {
             int reward;
-            TimeSpan substract = DateTime.Now.Subtract(task.Deadline);
+            TimeSpan substract = task.Deadline.Subtract(DateTime.Now); // days to
             Random rnd = new Random();
             int baseInt = rnd.Next(1, substract.Days);
 
