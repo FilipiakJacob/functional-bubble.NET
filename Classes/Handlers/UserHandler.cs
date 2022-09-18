@@ -101,9 +101,9 @@ namespace functional_bubble.NET.Classes
         public int CalculateReward(Task task) //calculates reward based on various variables
         {
             int reward;
-            TimeSpan substract = task.Deadline.Subtract(DateTime.Now); // days to deadline 
+            TimeSpan daysToDeadline = task.Deadline.Subtract(DateTime.Now); // days to deadline 
             Random rnd = new Random(); // random that will generate base variable that will be multiplied by multipliers
-            int baseInt = rnd.Next(1, substract.Days); // random base variable that has range from 1 to substract (line 104)
+            int baseInt = rnd.Next(1, daysToDeadline.Days); // random base variable that has range from 1 to substract (line 104)
 
             float streakMultiplier = CalculateStreakMultiplier(); 
 
