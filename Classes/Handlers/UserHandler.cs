@@ -98,15 +98,22 @@ namespace functional_bubble.NET.Classes
             }
         }
 
+        //calculates reward based on various variables and returns it as INT
+        //@return int reward
         public int CalculateReward(Task task)
         {
             int reward;
-            float streakMultiplier = CalculateStreakMultiplier();
+            TimeSpan daysToDeadline = task.Deadline.Subtract(DateTime.Now); // days to deadline 
+            Random rnd = new Random(); // random that will generate base variable that will be multiplied by multipliers
+            int baseCoin = rnd.Next(1, daysToDeadline.Days); // random base variable that has range from 1 to substract (line 104)
 
-            TimeSpan substract = DateTime.Now.Subtract(task.Deadline);
+            float streakMultiplier = CalculateStreakMultiplier(); 
 
-            reward = (int)(streakMultiplier * substract.Days);
-           
+            float streakMultipliedPart = streakMultiplier * baseCoin; // calculated var based on streak multiplier
+            float priorityMultipliedPart = task.Priority * baseCoin; // calculated var based on priority multiplier
+
+            reward = (int)(streakMultipliedPart + priorityMultipliedPart); // final reward calculation
+
             return reward;
         }
 
