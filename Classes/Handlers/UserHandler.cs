@@ -110,6 +110,15 @@ namespace functional_bubble.NET.Classes
             return reward;
         }
 
+        public void AddRewardCoins(Task task) //adding reward coins to user
+        {
+            User user = GetUser();
+
+            user.Money += task.CoinsReward; //adding reward to user's account 
+
+            Update(user); //update user in database 
+        }
+
         public float CalculateStreakMultiplier()
         {
             User user = GetUser();
