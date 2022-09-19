@@ -32,6 +32,25 @@ namespace functional_bubble.NET.Classes
             return task;
         }
 
+        /*
+         * @author Mikołaj Petri
+         * 
+         * completing task, 
+         * adding reward to user's account, 
+         * deleting completed task
+         * 
+         * no @return
+         */
+        public void CompleteTask(int id)  
+        {
+            Task task = _db.Get<Task>(id); //get task
+            UserHandler user = new UserHandler(); //get user
+
+            user.AddRewardCoins(task); //adding reward to user's account
+
+            DeleteTask(task); //deleting completed task from database
+        }
+
         public void Update(Task task) //updates task in Tasks table
         {
             _db.Update(task);
