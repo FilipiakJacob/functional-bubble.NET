@@ -8,12 +8,18 @@
 	<fragment
 		android:id="@+id/dest_todo"
 		android:name="functional_bubble.NET.Fragments.TodoBase">
+		<argument
+			android:name="openTaskDialog"
+			app:argType="integer"
+			android:defaultValue="0">
+		</argument>/>
 		<action
 			android:id="@+id/GoToTask"
 			app:destination="@id/dest_task">
 		</action>
-	</fragment>
-	
+	</fragment>	
+
+
 	<fragment
 		android:id="@+id/dest_task"
 		android:name="functional_bubble.NET.Fragments.TaskBase">
@@ -22,5 +28,5 @@
 			app:popUpTo="@+id/dest_todo">
 		</action>
 	</fragment>
-	
+
 </navigation>

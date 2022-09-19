@@ -23,6 +23,7 @@
             android:layout_marginLeft="15dp"
             android:layout_below="@id/widget_title" />
         <ImageButton
+            android:id="@+id/widget_new_task_button"
             android:background="@android:color/transparent"
             android:layout_width="30dp"
             android:layout_height="30dp"

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using Android.Appwidget;
 using Android.Util;
+using AndroidX.Navigation;
 
 namespace functional_bubble.NET.Classes
 {
@@ -25,6 +26,8 @@ namespace functional_bubble.NET.Classes
             //Example: create widget, resize, meet update time, manually updated
             var me = new ComponentName(context, Java.Lang.Class.FromType(typeof(WidgetTodo)).Name);
             appWidgetManager.UpdateAppWidget(me, BuildRemoteViews(context, appWidgetIds));
+
+
         }
         
         private RemoteViews BuildRemoteViews(Context context, int[] appWidgetIds)
@@ -48,15 +51,24 @@ namespace functional_bubble.NET.Classes
 
         private void RegisterClicks(Context context, int[] appWidgetIds, RemoteViews widgetView)
         {
-            var intent = new Intent(context, typeof(WidgetTodo));
-            intent.SetAction(AppWidgetManager.ActionAppwidgetUpdate);
-            intent.PutExtra(AppWidgetManager.ExtraAppwidgetIds, appWidgetIds);
+            //Use NavDeepLinkBuilder to create a PendingIntent that deeplinks to the New Task dialog.
+            Bundle bundle = new Bundle();
+            bundle.PutInt("openDialog", 1);
+            var pendingIntent = new NavDeepLinkBuilder(context)
+                .SetGraph(Resource.Navigation.nav_graph)
+                .SetDestination(Resource.Id.dest_todo)
+                .SetArguments(bundle)
+                .CreatePendingIntent();
+
+            widgetView.SetOnClickPendingIntent(Resource.Id.widget_new_task_button, pendingIntent);
+
+            //var intent = new Intent(context, typeof(WidgetTodo));
+            //intent.SetAction(AppWidgetManager.ActionAppwidgetUpdate);
+            //intent.PutExtra(AppWidgetManager.ExtraAppwidgetIds, appWidgetIds);
 
             // Register click event for button1
             //var widgetButton1 = PendingIntent.GetBroadcast(context, 0, intent, PendingIntentFlags.UpdateCurrent);
             //widgetView.SetOnClickPendingIntent(Resource.Id.button1, widgetButton1);
-
-            
         }
 
 

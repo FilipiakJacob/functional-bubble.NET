@@ -11,6 +11,7 @@ using System.Text;
 using AndroidX.Fragment.App;
 using AndroidX.Navigation;
 using functional_bubble.NET.Classes;
+using static AndroidX.RecyclerView.Widget.RecyclerView;
 
 
 namespace functional_bubble.NET.Fragments
@@ -22,10 +23,12 @@ namespace functional_bubble.NET.Fragments
         private List<Task> mItems;
         private ListView mainListView;
         private TaskHandler mdatabaseHandler;
+        private int openDialog;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            openDialog = Arguments.GetInt("openDialog"); //Reading the bundle in OnCreate means it is only read once, when the fragment is first created.
 
         }
 
@@ -45,23 +48,20 @@ namespace functional_bubble.NET.Fragments
             mdatabaseHandler = new TaskHandler();
             mItems = mdatabaseHandler.GetAllTasks();
 
-
             ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems, view);
             mainListView.Adapter = adapter;
+            if (openDialog == 1) //The value will be 1 when the fragment is openend by the WidgetTodo new task button.
+            {
+                open_dialog(this, adapter);
+                openDialog=0; //Set the value to 0 afterwards so the dialog does not reopen whenever the fragment is opened.
+            }
 
             mBtnNewTask = view.FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
-            mBtnNewTask.Click += (object sender, EventArgs e) =>
+            mBtnNewTask.Click += (Object sender, EventArgs e) =>
             {
-                //Method for creating DialogFragment from Dialog_NewTask Class
-                Dialog_NewTask newTaskDialog = new Dialog_NewTask(); //Create a new Dialog Fragment
-                newTaskDialog.Show(ChildFragmentManager, "Dialog"); //Show on screen the Dialog Fragment
-                newTaskDialog.mNewTaskComplete += (object sender, onNewTaskEventArgs e) =>
-                {
-                    //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
-                    adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI 
-                    
-                };
+                open_dialog(sender,adapter);
             };
+
             
             adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
             {
@@ -70,5 +70,20 @@ namespace functional_bubble.NET.Fragments
             };
 
         }
+
+        private void open_dialog(object sender, ListViewAdapter adapter)
+        {
+            //Method for creating DialogFragment from Dialog_NewTask Class
+            Dialog_NewTask newTaskDialog = new Dialog_NewTask(); //Create a new Dialog Fragment
+            newTaskDialog.Show(ChildFragmentManager, "Dialog"); //Show on screen the Dialog Fragment
+            newTaskDialog.mNewTaskComplete += (object sender, onNewTaskEventArgs e) =>
+            {
+                //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
+                adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI 
+
+            };
+        }
+
+
     }
 }
