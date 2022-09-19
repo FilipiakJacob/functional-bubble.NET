@@ -98,7 +98,9 @@ namespace functional_bubble.NET.Classes
             }
         }
 
-        public int CalculateReward(Task task) //calculates reward based on various variables
+        //calculates reward based on various variables and returns it as INT
+        //@return int reward
+        public int CalculateReward(Task task)
         {
             int reward;
             TimeSpan daysToDeadline = task.Deadline.Subtract(DateTime.Now); // days to deadline 
