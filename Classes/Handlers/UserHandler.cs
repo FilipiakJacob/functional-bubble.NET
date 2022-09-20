@@ -98,6 +98,20 @@ namespace functional_bubble.NET.Classes
             }
         }
 
+        /*
+         * @param int reward - reward that user was set to earn from completing task
+         * 
+         * calculates penalty and casts RemoveCoins method with penalty param
+         * 
+         * no @return
+         */
+        public void Penalty(int reward) 
+        {
+            int penalty = (int)((-1 * reward) * 0.15f);
+
+            RemoveCoins(penalty);
+        }
+
         //calculates reward based on various variables and returns it as INT
         //@return int reward
         public int CalculateReward(Task task)
