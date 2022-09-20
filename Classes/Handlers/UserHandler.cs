@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace functional_bubble.NET.Classes
 {
@@ -136,6 +138,15 @@ namespace functional_bubble.NET.Classes
             User user = GetUser();
 
             user.Money += task.CoinsReward; //adding reward to user's account 
+
+            Update(user); //update user in database 
+        }
+
+        public void RemoveCoins(int coinsRemove) // removing coins from user's account
+        {
+            User user = GetUser();
+
+            user.Money -= coinsRemove; //removing reward from user's account 
 
             Update(user); //update user in database 
         }
