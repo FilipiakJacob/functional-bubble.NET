@@ -11,8 +11,33 @@ using System.Text;
 
 namespace functional_bubble.NET.Classes
 {
-    public class StatisticsHandler : DatabaseHandler
+    public class StatisticsHandler : UserHandler
     {
+        public void AddOneTotalTask()
+        {
+            User user = GetUser();
 
+            user.TotalTasks += 1;
+
+            Update(user);
+        }
+
+        public void AddOneCompletedTask()
+        {
+            User user = GetUser();
+
+            user.CompletedTasks += 1;
+
+            Update(user);
+        }
+
+        public void AddOneAbandonedTask()
+        {
+            User user = GetUser();
+
+            user.AbandonedTasks += 1;
+
+            Update(user);
+        }
     }
 }
