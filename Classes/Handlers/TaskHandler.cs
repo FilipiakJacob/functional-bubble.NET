@@ -61,10 +61,10 @@ namespace functional_bubble.NET.Classes
             switch (choice)
             {
                 case 't':
-                    _db.Query<Task>("UPDATE Tasks SET Title={0} WHERE id={1}", change, taskId);
+                    _db.Query<Task>("UPDATE Tasks SET Title=? WHERE id=?", change, taskId);
                     break;
                 case 'd':
-                    _db.Query<Task>("UPDATE Tasks SET Description={0} WHERE id={1}", change, taskId);
+                    _db.Query<Task>("UPDATE Tasks SET Description=? WHERE id=?", change, taskId);
                     break;
             }
         }
@@ -82,7 +82,7 @@ namespace functional_bubble.NET.Classes
 
             for (int i = HIGHEST_PRIORITY; i >= LOWEST_PRIORITY; i--)
             {
-                tempTasks = _db.Query<Task>("SELECT * FROM Tasks WHERE Priority={0}", i);
+                tempTasks = _db.Query<Task>("SELECT * FROM Tasks WHERE Priority=?", i);
                 SortedByDeadlineTasks(tempTasks);
                 sortedTasks.AddRange(tempTasks);
             }
