@@ -140,6 +140,15 @@ namespace functional_bubble.NET.Classes
             Update(user); //update user in database 
         }
 
+        public void RemoveCoins(int coinsRemove) // removing coins from user's account
+        {
+            User user = GetUser();
+
+            user.Money -= coinsRemove; //removing reward from user's account 
+
+            Update(user); //update user in database 
+        }
+
         public float CalculateStreakMultiplier()
         {
             User user = GetUser();
