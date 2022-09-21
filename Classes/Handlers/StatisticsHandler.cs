@@ -39,5 +39,24 @@ namespace functional_bubble.NET.Classes
 
             Update(user);
         }
+
+        public int GetTotalTask()
+        {
+            User user = GetUser();
+
+            return user.TotalTasks;
+        }
+        public int GetCompletedTask()
+        {
+            User user = GetUser();
+
+            return user.CompletedTasks;
+        }
+        public int GetAbandonedTask()
+        {
+            User user = GetUser();
+
+            return user.AbandonedTasks;
+        }
     }
 }
