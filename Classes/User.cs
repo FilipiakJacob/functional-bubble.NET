@@ -34,5 +34,11 @@ namespace functional_bubble.NET.Classes
         public int StreakCount { get; set; } = 0;// variable that tells how many days in the row user did a task
         [Column("Money")]
         public int Money { get; set; } = 0;// variable that shows how much money user has
+        [Column("TotalTasks")]
+        public int TotalTasks { get; set; } = 0; //var that shows all created tasks ever number
+        [Column("CompletedTasks")]
+        public int CompletedTasks { get; set;} = 0; //var that shows all completed tasks number
+        [Column("AbandonedTasks")]
+        public int AbandonedTasks { get; set ; } = 0; //var that shows all abandoned tasks number
     }
 }
