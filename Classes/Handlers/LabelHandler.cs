@@ -31,7 +31,12 @@ namespace functional_bubble.NET.Classes
             _db.Insert(label);
         }
 
-        public Label Get(int id) // returns task object with given id
+        /// <summary>
+        /// returns Label object with given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Label object</returns>
+        public Label Get(int id)
         {
             Label label = _db.Get<Label>(id);
             return label;
