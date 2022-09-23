@@ -42,7 +42,11 @@ namespace functional_bubble.NET.Classes
             return label;
         }
 
-        public void Update(Label label) // updates label row in Labels table
+        /// <summary>
+        /// updates label row in Labels table
+        /// </summary>
+        /// <param name="label"></param>
+        public void Update(Label label) 
         {
             _db.Update(label);
         }
