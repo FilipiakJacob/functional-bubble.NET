@@ -14,11 +14,19 @@ namespace functional_bubble.NET.Classes
 {
     public class LabelHandler : DatabaseHandler
     {
+        /// <summary>
+        /// LabelHandler calls DatabaseHandler and DefaultRows() which make sure that Label table has all basic rows
+        /// </summary>
         public LabelHandler()
         {
             DefaultRows();
         }
-        public void Add(Label label) // inserts task object to Task table
+
+        /// <summary>
+        /// inserts Label object to Task table
+        /// </summary>
+        /// <param name="label"></param>
+        public void Add(Label label)
         {
             _db.Insert(label);
         }
