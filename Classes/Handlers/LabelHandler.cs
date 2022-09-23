@@ -91,10 +91,11 @@ namespace functional_bubble.NET.Classes
             _db.Delete(label);
         }
 
+        /// <summary>
+        /// for TESTING purpouses only deletes all record in the database
+        /// </summary>
         public void DeleteAll()
         {
-            //for testing purpouses only
-            //deletes all record in the database
             _db.DeleteAll<Label>();
         }
     }
