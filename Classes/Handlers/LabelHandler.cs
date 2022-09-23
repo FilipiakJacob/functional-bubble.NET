@@ -81,7 +81,11 @@ namespace functional_bubble.NET.Classes
             }
         }
 
-        //@author Mateusz Staszek
+        /// @author Mateusz Staszek
+        /// <summary>
+        /// Deletes row which is equal to given Label object
+        /// </summary>
+        /// <param name="label"></param>
         public void Delete(Label label)
         {
             _db.Delete(label);
