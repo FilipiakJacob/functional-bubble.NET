@@ -22,8 +22,10 @@ namespace functional_bubble.NET.Classes
     public abstract class DatabaseHandler
     {
         public readonly SQLiteConnection _db;
-        
-        public DatabaseHandler() //constructor
+        /// <summary>
+        /// creates sqliteconnection with database and creates all basic tables (Task, Label, Priority, User)
+        /// </summary>
+        public DatabaseHandler()
         {
             string dbPath = Path.Combine(
         System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal),
