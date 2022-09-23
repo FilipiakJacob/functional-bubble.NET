@@ -61,6 +61,9 @@ namespace functional_bubble.NET.Classes
             return allLabels;
         }
 
+        /// <summary>
+        /// If Label table has zero rows than initials default rows
+        /// </summary>
         public void DefaultRows()
         {
             List<Label> LabelTable = GetAll();
