@@ -13,6 +13,9 @@ namespace functional_bubble.NET.Classes
 {
     public class StatisticsHandler : UserHandler
     {
+        /// <summary>
+        /// +1 to total tasks statistic
+        /// </summary>
         public void AddOneTotalTask()
         {
             User user = GetUser();
@@ -22,6 +25,9 @@ namespace functional_bubble.NET.Classes
             Update(user);
         }
 
+        /// <summary>
+        /// +1 to total completed tasks statistic
+        /// </summary>
         public void AddOneCompletedTask()
         {
             User user = GetUser();
@@ -31,6 +37,9 @@ namespace functional_bubble.NET.Classes
             Update(user);
         }
 
+        /// <summary>
+        /// +1 to total tasks abandoned statistic
+        /// </summary>
         public void AddOneAbandonedTask()
         {
             User user = GetUser();
