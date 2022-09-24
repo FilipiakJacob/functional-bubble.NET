@@ -71,7 +71,11 @@ namespace functional_bubble.NET.Classes
             _db.Update(user);
         }
 
-        public bool CheckStreak() // checks if user has a streak 
+        /// <summary>
+        /// checks if user has a streak 
+        /// </summary>
+        /// <returns>bool</returns>
+        public bool CheckStreak()
         {
             User user = GetUser();
 
