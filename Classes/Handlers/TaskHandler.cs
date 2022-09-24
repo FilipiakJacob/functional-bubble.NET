@@ -30,7 +30,13 @@ namespace functional_bubble.NET.Classes
 
             _db.Insert(task);    
         }
-        public Task Get(int id) // returns task object with given id
+
+        /// <summary>
+        /// returns task object with given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Task object</returns>
+        public Task Get(int id)
         {
             Task task = _db.Get<Task>(id);
             return task;
