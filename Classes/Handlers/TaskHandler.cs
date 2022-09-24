@@ -86,6 +86,10 @@ namespace functional_bubble.NET.Classes
             }
         }
 
+        /// <summary>
+        /// Get all Tasks from table
+        /// </summary>
+        /// <returns>List of tasks object</returns>
         public List<Task> GetAllTasks() 
         {
             List<Task> allTasks = _db.Query<Task>("SELECT * FROM Tasks");
