@@ -22,7 +22,11 @@ namespace functional_bubble.NET.Classes
         {
             CheckTableIfOK();
         }
-        public void CheckTableIfOK() // this method checks if table is up with assummed conditions 
+
+        /// <summary>
+        /// this method checks if table is up with assummed conditions 
+        /// </summary>
+        public void CheckTableIfOK()
         {
             List<User> table = this.GetAll();
             if (table == null) // if table is empty this method adds new user
