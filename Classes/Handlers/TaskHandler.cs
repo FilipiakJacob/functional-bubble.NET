@@ -164,8 +164,6 @@ namespace functional_bubble.NET.Classes
         /// </summary>
         public void DeleteAll()
         {
-            //for testing purpouses only
-            //deletes all record in the database
             _db.DeleteAll<Task>();
         }
 
