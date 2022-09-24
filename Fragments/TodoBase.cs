@@ -48,6 +48,7 @@ namespace functional_bubble.NET.Fragments
             mdatabaseHandler = new TaskHandler();
             mItems = mdatabaseHandler.GetAllTasks();
 
+
             ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems, view);
             mainListView.Adapter = adapter;
             if (openDialog == 1) //The value will be 1 when the fragment is openend by the WidgetTodo new task button.

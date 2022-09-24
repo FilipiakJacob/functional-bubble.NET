@@ -70,6 +70,8 @@
     <Compile Include="Adapters\ListViewAdapter.cs" />
     <Compile Include="Classes\Handlers\DatabaseHandler.cs" />
     <Compile Include="Classes\Database\database.cs" />
+    <Compile Include="Classes\Handlers\StatisticsHandler.cs" />
+    <Compile Include="Classes\Handlers\UserHandler.cs" />
     <Compile Include="Classes\Label.cs" />
     <Compile Include="Classes\Handlers\LabelHandler.cs" />
     <Compile Include="Classes\GestureListener.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialog_NewTask.cs" />
     <Compile Include="Classes\Handlers\TaskHandler.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\WidgetTodo.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
@@ -255,6 +258,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\plus_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\navigation\nav_graph.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

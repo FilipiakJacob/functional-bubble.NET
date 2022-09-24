@@ -12,6 +12,7 @@ using SQLite;
 using System.IO;
 using functional_bubble.NET.Classes;
 
+using functional_bubble.NET.Classes;
 /*
  * @author Mikolaj Petri
  * 
@@ -34,6 +35,7 @@ namespace functional_bubble.NET
             _db.CreateTable<Task>();
             _db.CreateTable<Label>();
             _db.CreateTable<Priority>();
+            _db.CreateTable<User>();
         }
     }
 }
