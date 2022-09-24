@@ -175,7 +175,11 @@ namespace functional_bubble.NET.Classes
             Update(user); //update user in database 
         }
 
-        public void RemoveCoins(int coinsRemove) // removing coins from user's account
+        /// <summary>
+        /// removing coins from user's account
+        /// </summary>
+        /// <param name="coinsRemove"></param>
+        public void RemoveCoins(int coinsRemove)
         {
             User user = GetUser();
 
