@@ -67,6 +67,12 @@ namespace functional_bubble.NET.Classes
             _db.Update(task);
         }
 
+        /// <summary>
+        /// updates task's Title (choice = t) or Description (choice = d) in Tasks table with change string
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <param name="choice"></param>
+        /// <param name="change"></param>
         public void Update(int taskId, char choice, string change)
         {
             switch (choice)
