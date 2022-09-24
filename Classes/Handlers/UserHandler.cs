@@ -140,8 +140,11 @@ namespace functional_bubble.NET.Classes
             RemoveCoins(penalty);
         }
 
-        //calculates reward based on various variables and returns it as INT
-        //@return int reward
+        /// <summary>
+        /// calculates reward based on various variables
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns>int reward</returns>
         public int CalculateReward(Task task)
         {
             int reward;
@@ -158,6 +161,7 @@ namespace functional_bubble.NET.Classes
 
             return reward;
         }
+
 
         public void AddRewardCoins(Task task) //adding reward coins to user
         {
