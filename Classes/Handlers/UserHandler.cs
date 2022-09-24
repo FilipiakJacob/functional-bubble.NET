@@ -108,7 +108,10 @@ namespace functional_bubble.NET.Classes
          
         }
 
-        public void InitialUserTable() //Initial state of the user table
+        /// <summary>
+        /// Initial state of the user table
+        /// </summary>
+        public void InitialUserTable()
         {
             User user = new User();
             _db.Insert(user);
