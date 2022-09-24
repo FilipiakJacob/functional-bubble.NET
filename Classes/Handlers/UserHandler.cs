@@ -15,7 +15,10 @@ namespace functional_bubble.NET.Classes
 {
     public class UserHandler : DatabaseHandler
     {
-        public UserHandler() // constructor 
+        /// <summary>
+        /// Constructor, calls CheckTableIfOK()
+        /// </summary>
+        public UserHandler()
         {
             CheckTableIfOK();
         }
