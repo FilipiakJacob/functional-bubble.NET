@@ -162,8 +162,11 @@ namespace functional_bubble.NET.Classes
             return reward;
         }
 
-
-        public void AddRewardCoins(Task task) //adding reward coins to user
+        /// <summary>
+        /// adding reward coins to user
+        /// </summary>
+        /// <param name="task"></param>
+        public void AddRewardCoins(Task task)
         {
             User user = GetUser();
 
