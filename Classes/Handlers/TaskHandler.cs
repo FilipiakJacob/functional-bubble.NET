@@ -58,7 +58,11 @@ namespace functional_bubble.NET.Classes
             DeleteTask(task); //deleting completed task from database
         }
 
-        public void Update(Task task) //updates task in Tasks table
+        /// <summary>
+        /// updates task in Tasks table
+        /// </summary>
+        /// <param name="task"></param>
+        public void Update(Task task)
         {
             _db.Update(task);
         }
