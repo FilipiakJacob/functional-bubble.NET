@@ -41,7 +41,12 @@ namespace functional_bubble.NET.Classes
             }
             return;
         }
-        public List<User> GetAll() //method used for checking if user table is ok
+
+        /// <summary>
+        /// Get all users from table, used in CheckTableIfOk()
+        /// </summary>
+        /// <returns>List of user objects</returns>
+        public List<User> GetAll()
         {
             List<User> userTable = _db.Query<User>("SELECT * FROM User");
             return userTable;
