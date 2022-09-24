@@ -117,7 +117,11 @@ namespace functional_bubble.NET.Classes
             _db.Insert(user);
         }
 
-        public void DeleteAdditionalUsers(List<User> userTable) //deletes all additional users in table
+        /// <summary>
+        /// deletes all additional users in table
+        /// </summary>
+        /// <param name="userTable"></param>
+        public void DeleteAdditionalUsers(List<User> userTable) 
         {
             for (int i = 1; i < userTable.Count; i++)
             {
