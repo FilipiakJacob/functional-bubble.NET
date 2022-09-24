@@ -15,10 +15,14 @@ namespace functional_bubble.NET.Classes
 {
     public class TaskHandler : DatabaseHandler
     {
-        public const int LOWEST_PRIORITY = 0;
-        public const int HIGHEST_PRIORITY = 3;
+        public const int LOWEST_PRIORITY = 0; //lowest priority id in database
+        public const int HIGHEST_PRIORITY = 3; //highest priority id in database
 
-        public void Add(Task task) // inserts task object to Task table
+        /// <summary>
+        /// inserts task object to Task table
+        /// </summary>
+        /// <param name="task"></param>
+        public void Add(Task task) 
         {
             UserHandler userHandler = new UserHandler();
 
