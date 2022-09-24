@@ -115,7 +115,12 @@ namespace functional_bubble.NET.Classes
             return sortedTasks;
         }
 
-        public List<Task> SortedByDeadlineTasks(List<Task> tasks) // sort list of tasks by deadline
+        /// <summary>
+        /// sort list of tasks by deadline
+        /// </summary>
+        /// <param name="tasks"></param>
+        /// <returns>List of tasks objects</returns>
+        public List<Task> SortedByDeadlineTasks(List<Task> tasks) 
         {
             tasks.Sort((a, b) => a.Deadline.CompareTo(b.Deadline));
             return tasks;
