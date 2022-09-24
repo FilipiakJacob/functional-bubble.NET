@@ -62,7 +62,11 @@ namespace functional_bubble.NET.Classes
             return user;
         }
 
-        public void Update(User user) //updates user in database
+        /// <summary>
+        /// updates user in database
+        /// </summary>
+        /// <param name="user"></param>
+        public void Update(User user)
         {
             _db.Update(user);
         }
