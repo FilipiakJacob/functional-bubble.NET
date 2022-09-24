@@ -126,14 +126,11 @@ namespace functional_bubble.NET.Classes
             return tasks;
         }
 
-        /*
-         * @param task - to identify what task is set to be checked
-         * 
-         * this method checks if user deleted task 30+ mins after creating it 
-         * and if yes it applies penalty to his account 
-         * 
-         * no @return
-         */
+        /// <summary>
+        /// this method checks if user deleted task 30+ mins after creating it 
+        /// and if yes it applies penalty to his account
+        /// </summary>
+        /// <param name="task"></param>
         public void CheckIfAbandonPenalty(Task task)
         {
             TimeSpan minsFromCreationTask = DateTime.Now.Subtract(task.CreationTime); // minutes that passed from the moment of creating task to NOW
