@@ -20,9 +20,9 @@ namespace functional_bubble.NET.Classes
 
         public void Add(Task task) // inserts task object to Task table
         {
-            UserHandler userHandler = new UserHandler();
+            //UserHandler userHandler = new UserHandler();
 
-            task.CoinsReward = userHandler.CalculateReward(task);
+            //task.CoinsReward = userHandler.CalculateReward(task);
 
             _db.Insert(task);    
         }
