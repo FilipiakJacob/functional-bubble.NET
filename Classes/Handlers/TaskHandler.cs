@@ -147,6 +147,10 @@ namespace functional_bubble.NET.Classes
 
 
         //@author Mateusz Staszek
+        /// <summary>
+        /// Delete task from database
+        /// </summary>
+        /// <param name="task"></param>
         public void DeleteTask(Task task)
         {
             CheckIfAbandonPenalty(task);  // line 102
