@@ -49,6 +49,10 @@ namespace functional_bubble.NET.Classes
             Update(user);
         }
 
+        /// <summary>
+        /// Get exact number of total tasks statistic
+        /// </summary>
+        /// <returns>int</returns>
         public int GetTotalTask()
         {
             User user = GetUser();
@@ -56,6 +60,10 @@ namespace functional_bubble.NET.Classes
             return user.TotalTasks;
         }
 
+        /// <summary>
+        /// Get exact number of total completed tasks statistic
+        /// </summary>
+        /// <returns>int</returns>
         public int GetCompletedTask()
         {
             User user = GetUser();
@@ -63,6 +71,10 @@ namespace functional_bubble.NET.Classes
             return user.CompletedTasks;
         }
 
+        /// <summary>
+        /// Get exact number of total abandoned tasks statistic
+        /// </summary>
+        /// <returns>int</returns>
         public int GetAbandonedTask()
         {
             User user = GetUser();
