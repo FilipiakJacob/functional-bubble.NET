@@ -96,7 +96,11 @@ namespace functional_bubble.NET.Classes
             return allTasks;
         }
 
-        public List<Task> GetSortedTasks() // return sorted tasks by priorities and deadline
+        /// <summary>
+        /// return sorted tasks by priorities and then deadline
+        /// </summary>
+        /// <returns>List of task objects</returns>
+        public List<Task> GetSortedTasks() // 
         {
             List<Task> sortedTasks = new List<Task>();
             List<Task> tempTasks = new List<Task>();
