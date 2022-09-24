@@ -52,7 +52,11 @@ namespace functional_bubble.NET.Classes
             return userTable;
         }
 
-        public User GetUser() // method used for all operations on user
+        /// <summary>
+        /// method used for all operations on user
+        /// </summary>
+        /// <returns>user</returns>
+        public User GetUser()
         {
             User user = _db.Get<User>(0);
             return user;
