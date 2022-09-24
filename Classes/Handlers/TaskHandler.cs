@@ -58,7 +58,7 @@ namespace functional_bubble.NET.Classes
 
             for (int i = HIGHEST_PRIORITY; i >= LOWEST_PRIORITY; i--)
             {
-                tempTasks = _db.Query<Task>("SELECT * FROM Tasks WHERE Priority={0}", i);
+                tempTasks = _db.Query<Task>("SELECT * FROM Tasks WHERE Priority=?", i);
                 SortedByDeadlineTasks(tempTasks);
                 sortedTasks.AddRange(tempTasks);
             }

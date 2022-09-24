@@ -77,7 +77,7 @@ namespace functional_bubble.NET.Classes
         public void gen_Id()
         ///Search the database for a free ID number and return it
         {
-            int id = 0; //TODO: Search the database, find a free Id number.
+            int id = 0; 
             Id = id; 
         }
 
