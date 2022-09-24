@@ -156,8 +156,12 @@ namespace functional_bubble.NET.Classes
             CheckIfAbandonPenalty(task);  // line 102
             _db.Delete(task);
         }
-        
+
         //@author Mateusz Staszek
+        /// <summary>
+        ///for TESTING purpouses only
+        ///deletes all record in the database
+        /// </summary>
         public void DeleteAll()
         {
             //for testing purpouses only
