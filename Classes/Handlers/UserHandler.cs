@@ -188,6 +188,10 @@ namespace functional_bubble.NET.Classes
             Update(user); //update user in database 
         }
 
+        /// <summary>
+        /// Calculates Streak Multiplier based on streak's duration
+        /// </summary>
+        /// <returns>flaot streakMultiplier</returns>
         public float CalculateStreakMultiplier()
         {
             User user = GetUser();
