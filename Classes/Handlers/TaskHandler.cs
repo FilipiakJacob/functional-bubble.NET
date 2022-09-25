@@ -22,7 +22,7 @@ namespace functional_bubble.NET.Classes
         {
             UserHandler userHandler = new UserHandler();
 
-            task.CoinsReward = userHandler.CalculateReward(task);
+            //task.CoinsReward = userHandler.CalculateReward(task); 
 
             _db.Insert(task);    
         }

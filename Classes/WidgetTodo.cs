@@ -11,6 +11,7 @@ using System.Text;
 using Android.Appwidget;
 using Android.Util;
 using AndroidX.Navigation;
+using Android.Content.PM;
 
 namespace functional_bubble.NET.Classes
 {
@@ -35,7 +36,7 @@ namespace functional_bubble.NET.Classes
             RemoteViews widgetView = new RemoteViews(context.PackageName, Resource.Layout.widget_todo);
 
             //Change text in widget
-            SetTextViewText(widgetView);
+            SetWidgetContents(context, widgetView);
 
             //Handle buttons in widget
             RegisterClicks(context, appWidgetIds, widgetView);
@@ -48,16 +49,39 @@ namespace functional_bubble.NET.Classes
         /// Sets the content of the widget's view.
         /// </summary>
         /// <param name="widgetView"></param>
-        private void SetTextViewText(RemoteViews widgetView)
+        private void SetWidgetContents(Context context, RemoteViews widgetView)
+        {
+            UpdateTasks(context, widgetView, 4); //Updates the tasks shown in the widget
+        }
+
+        /// <summary>
+        /// Inflates the tasks and replaces the ViewStubs in the widget's layout, if tasks are present.
+        /// </summary>
+        /// <param name="widgetView"></param>
+        /// <param name="numTasks"></param>
+        private void UpdateTasks(Context context, RemoteViews widgetView, int numTasks)
         {
             //widgetView.SetTextViewText(Resource.Id.todo_widget_text, "PENGUIN");
-            IEnumerable<Task> sortedTasks = RetrieveTasks(10); //Retrieve 4 tasks
-            int i = 0;
+            IEnumerable<Task> sortedTasks = RetrieveTasks(numTasks); //Retrieve a number of tasks
+            int[] rowViewIds = new int[numTasks]; //Initialize an empty array of size "numTasks". It will hold the IDs of "row" views.
+            int[] titleViewIds = new int[numTasks]; //The same but for row title views.
+            int[] deadlineViewIds = new int[numTasks]; //The same but for views that show deadlines.
+            for (int i = 0; i < numTasks; i++)
+                //Loop iterates through task_rows and task_row_title and task_row_time_left views in the layout, adding their IDs to the arrays.
+            {
+                rowViewIds[i] = context.Resources.GetIdentifier("task_row_" + (i+1), "id", context.PackageName);
+                titleViewIds[i] = context.Resources.GetIdentifier("task_row_title_" + (i+1), "id", context.PackageName);
+                deadlineViewIds[i] = context.Resources.GetIdentifier("task_row_time_left_" + (i+1), "id", context.PackageName);
+            }
+            int j = 0;
             foreach (Task task in sortedTasks)
             {
                 Console.WriteLine(task.Id);
-                i++;
-                Console.WriteLine("i = " + i);
+                widgetView.SetViewVisibility(rowViewIds[j], ViewStates.Visible); //SetViewVisibility should inflate the layout.
+                widgetView.SetTextViewText(titleViewIds[j], task.Title);
+                widgetView.SetTextViewText(deadlineViewIds[j], task.Deadline.ToString());
+                j++;
+                Console.WriteLine("i = " + j);
             }
             Console.WriteLine("That's All Folks");
         }
