@@ -69,10 +69,10 @@ namespace functional_bubble.NET.Classes
             }
         }
 
-        public IEnumerable<Task> GetAllTasks() 
+        public List<Task> GetAllTasks() 
         {
             List<Task> allTasks = _db.Query<Task>("SELECT * FROM Tasks");
-            return allTasks.AsEnumerable();
+            return allTasks;
         }
 
         public List<Task> GetSortedTasks() // return sorted tasks by priorities and deadline
