@@ -6,11 +6,13 @@ using Android.Runtime;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
+using AndroidX.ConstraintLayout.Widget;
 using functional_bubble.NET.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace functional_bubble.NET
 {
@@ -43,12 +45,14 @@ namespace functional_bubble.NET
         private EditText mNewTaskDeadlineDate;
         private EditText mNewTaskDeadlineTime;
         private Spinner mNewTaskPriority;
+        private TextView mNewTaskWrongDate;
         private TimePicker mTimePicker;
+        private ViewStub mViewStub;
         private Button mBtnCreateTask; //Confirmation Button When All data about a new task had been written
         public Task mNewTask = new Task();
         public Calendar mCalendar = new Calendar();
         public string[] mSpinnerEntries = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
-
+        public string dateForTheseAmericans;
         
         public EventHandler<TimePickerDialog.TimeSetEventArgs> OnTimeSet { get; private set; }
         public EventHandler<DatePickerDialog.DateSetEventArgs> OnDateSet;
@@ -57,52 +61,47 @@ namespace functional_bubble.NET
         public override Dialog OnCreateDialog(Bundle savedInstanceState)
         {
 
-            var inflater = Activity.LayoutInflater;
+            LayoutInflater inflater = Activity.LayoutInflater;
 
-            var view = inflater.Inflate(Resource.Layout.dialog_new_task, null);
-            var builder = new AlertDialog.Builder(Activity,Resource.Style.WrapContentDialog);
+            View view = inflater.Inflate(Resource.Layout.dialog_new_task, null);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity,Resource.Style.WrapContentDialog);
             if (view != null)
             {
                 builder.SetView(view);
             }
-            var dialog = builder.Create();
+            AlertDialog dialog = builder.Create();
             dialog.Window.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
+            
+            mViewStub = view.FindViewById<ViewStub>(Resource.Id.viewStub1);
+            mViewStub.LayoutInflater = this.LayoutInflater;
+            mViewStub.LayoutResource = Resource.Layout.date_and_time_layout;
+            mViewStub.Inflate();
+            
+
+            //Task Title:
             mNewTaskTitle = view.FindViewById<EditText>(Resource.Id.new_task_title);
+
+            //Task Description:
             mNewTaskDescription = view.FindViewById<EditText>(Resource.Id.new_task_description);
 
+            //Priotiry Spinner:
             mNewTaskPriority = view.FindViewById<Spinner>(Resource.Id.new_task_priority);
-            //mNewTaskPriority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (MNewTaskPriority_ItemSelected); //method called when an item from priority spinner is chosen
 
-
+            //Add Task button:
             mBtnCreateTask = view.FindViewById<Button>(Resource.Id.new_task_button);            
             mBtnCreateTask.Click += MBtnCreateTask_Click; //Method executed when Confirmation Button is clicked
 
-            //mTimePicker = view.FindViewById<TimePicker>(Resource.Id.timePicker1);
-            //mTimePicker.SetIs24HourView(Java.Lang.Boolean.True);
-            
-            mNewTaskDeadlineDate = view.FindViewById<EditText>(Resource.Id.new_task_deadline_date);
-            mNewTaskDeadlineTime = view.FindViewById<EditText>(Resource.Id.new_task_deadline_time);
+            //Wrong date TextView:
+            mNewTaskWrongDate = view.FindViewById<TextView>(Resource.Id.new_task_wrongDateMessage);
 
-            TextView mNewTaskWrongDate = view.FindViewById<TextView>(Resource.Id.new_task_wrongDateMessage);
+            //Date Text:
+            mNewTaskDeadlineDate = view.FindViewById<EditText>(Resource.Id.new_task_deadline_date);
             mNewTaskDeadlineDate.TextChanged += (object sender, TextChangedEventArgs e) =>
             {
-                string txt = mNewTaskDeadlineDate.Text;
-                int dayNum = 0;
-                int monthNum = 0;
-                bool properDate = true;
-                if (e.AfterCount != 0)
-                {
-                    if ((e.Text.Count() == 2 && !txt.Contains('/')) || (e.Text.Count() == 5 && txt[2] == '/')) { mNewTaskDeadlineDate.Text += "/"; mNewTaskDeadlineDate.SetSelection(mNewTaskDeadlineDate.Text.Length); }
-                    else if (e.Text.Count() == 10) { mNewTaskDeadlineDate.Enabled = false; mNewTaskDeadlineDate.Enabled = true; }
-                    else if (e.Text.Count() > 10) { mNewTaskDeadlineDate.Text = mNewTaskDeadlineDate.Text.Substring(0, 10); }
-                }
-                else if( e.Text.Count() == 2 || e.Text.Count() == 5) { mNewTaskDeadlineDate.Text = mNewTaskDeadlineDate.Text.Substring(0, mNewTaskDeadlineDate.Text.Length -1); mNewTaskDeadlineDate.SetSelection(mNewTaskDeadlineDate.Text.Length); }
-                if (txt.Length > 1) { Int32.TryParse(txt.Substring(0, 2), out int j); if (1 > j || j > 31) { mNewTaskWrongDate.Text = "Go Fuck Yourself Daily"; properDate = false; } else { dayNum = j; } }
-                if (txt.Length > 4) { Console.WriteLine("hi"); Console.WriteLine(txt.Substring(3, 2)); Int32.TryParse(txt.Substring(3, 2), out int k); if (1 > k || k > 12) { mNewTaskWrongDate.Text = "Go Fuck Yourself Monthly"; properDate = false; } else if (!mCalendar.correctDaysNum(dayNum, k)) { mNewTaskWrongDate.Text = "Go Fuck Yourself Monthly wrong day"; properDate = false; } else{ monthNum = k; } }
-                if (txt.Length == 10) { Int32.TryParse(txt.Substring(7,2), out int l); if (monthNum == 2) { if (!mCalendar.correctFebruary(dayNum, l)) { mNewTaskWrongDate.Text = "Go Fuck Yourself Yearly Feb"; properDate = false; } } }
-                if(properDate) { mNewTaskWrongDate.Text = ""; }
+                dateForTheseAmericans = mCalendar.dateChange(mNewTaskDeadlineDate.Text, e, mNewTaskDeadlineDate, mNewTaskWrongDate);
             };
 
+            //DatePicker button:
             Button mDateButton = view.FindViewById<Button>(Resource.Id.new_task_calendar_button);
             mDateButton.Click += (object sender, EventArgs e) =>
             {
@@ -110,10 +109,20 @@ namespace functional_bubble.NET
                 datePicker.Show(ChildFragmentManager,"Date");
                 datePicker.mOnDatePicked += (object sender, DatePickerDialog.DateSetEventArgs e) => 
                 {
-                    mNewTaskDeadlineDate.Text = (e.Month + 1).ToString() + "/" + e.DayOfMonth.ToString() + "/" + (e.Year).ToString();
+                    mNewTaskDeadlineDate.Text = mCalendar.twoDigitDate(e.DayOfMonth) + "/" + mCalendar.twoDigitDate(e.Month + 1) + "/" + (e.Year).ToString();
+                    dateForTheseAmericans = mCalendar.twoDigitDate(e.Month + 1) + "/" + mCalendar.twoDigitDate(e.DayOfMonth) + "/" + (e.Year).ToString();
+
                 };
             };
 
+            //Time Text:
+            mNewTaskDeadlineTime = view.FindViewById<EditText>(Resource.Id.new_task_deadline_time);
+            mNewTaskDeadlineTime.TextChanged += (object sender, TextChangedEventArgs e) =>
+            {
+                mCalendar.timeChange(mNewTaskDeadlineTime.Text,e,mNewTaskDeadlineTime,mNewTaskWrongDate);
+            };
+
+            //TimePicker button:
             Button mTimeButton = view.FindViewById<Button>(Resource.Id.new_task_clock_button);
             mTimeButton.Click += (object sender, EventArgs e) =>
             {
@@ -121,7 +130,7 @@ namespace functional_bubble.NET
                 timePicker.Show(ChildFragmentManager, "Time");
                 timePicker.mOnTimePicked += (object sender, TimePickerDialog.TimeSetEventArgs e) =>
                 {
-                    mNewTaskDeadlineTime.Text = e.HourOfDay.ToString() + ":" + e.Minute.ToString();
+                    mNewTaskDeadlineTime.Text = mCalendar.twoDigitDate(e.HourOfDay) + ":" + mCalendar.twoDigitDate(e.Minute);
                 };
             };
 
@@ -131,11 +140,27 @@ namespace functional_bubble.NET
         private void MBtnCreateTask_Click(object sender, EventArgs e)
         {
             //User clicked the Confirmation Button
+            if (!DateTime.TryParseExact(mNewTaskDeadlineDate.Text,"dd/MM/yyyy",null, System.Globalization.DateTimeStyles.None, out _))
+            { 
+                //try to parse the date from string to DateTime, if it is wrong, execute this if statement
+                mNewTaskWrongDate.Text = "Wrong Date";
+                return;
+            }
+            if (!DateTime.TryParseExact(mNewTaskDeadlineTime.Text,"HH:mm",null, System.Globalization.DateTimeStyles.None, out _))
+            { 
+                //try to parse the time from string to DateTime, if it is wrong, execute this if statement
+                mNewTaskWrongDate.Text = "Wrong Time";
+                return; 
+            }
             mNewTask.Title = mNewTaskTitle.Text;
             mNewTask.Description = mNewTaskDescription.Text;
             mNewTask.Priority = Array.IndexOf(mSpinnerEntries, mNewTaskPriority.SelectedItem.ToString()); //mNewTaskPriority.SelectedItem.ToString();
-            mNewTask.Deadline = DateTime.Parse(mNewTaskDeadlineDate.Text + " " + mNewTaskDeadlineTime.Text);
-            Console.WriteLine(mNewTask.Deadline);
+            mNewTask.Deadline = DateTime.Parse(dateForTheseAmericans + " " + mNewTaskDeadlineTime.Text);
+            if (mNewTask.Deadline < DateTime.Now) //If the date provided already happened
+            {
+                mNewTaskWrongDate.Text = "Date in past";
+                return;
+            }
             mNewTaskComplete.Invoke(this, new onNewTaskEventArgs(mNewTask)); //Invoke the Event Handler
             this.Dismiss(); //Dialog Fragment deletes itself
         }

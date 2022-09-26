@@ -11,11 +11,17 @@ using System.Text;
 using AndroidX.Fragment.App;
 using functional_bubble.NET.Classes;
 using AndroidX.Navigation;
+using functional_bubble.NET.Classes.Dialogs;
+using AndroidX.ConstraintLayout.Widget;
+using Android.App;
 
 namespace functional_bubble.NET.Fragments
 {
-    public class TaskBase : Fragment
+    public class TaskBase : AndroidX.Fragment.App.Fragment
     {
+        Calendar mCalendar = new Calendar();
+        Task mTask;
+        TextView taskDeadline;
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -24,11 +30,9 @@ namespace functional_bubble.NET.Fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             View view = inflater.Inflate(Resource.Layout.task_base, container, false);
-
-
             int ID = Arguments.GetInt("taskID");//get id of a task passed from ToDo fragment
             DatabaseHandler dbHandler = new DatabaseHandler();
-            Task mTask = dbHandler.GetTask(ID);
+            mTask = dbHandler.GetTask(ID);
 
             //Tasks Title and Description:
             view.FindViewById<TextView>(Resource.Id.task_base_title).Text = mTask.Title;
@@ -72,10 +76,88 @@ namespace functional_bubble.NET.Fragments
             };
 
             //Task Deadline:
-            Console.WriteLine(mTask.Deadline);
-            view.FindViewById<TextView>(Resource.Id.task_base_deadline).Text = mTask.Deadline.ToString("dd/MM/yyyy HH:mm");
+            taskDeadline = view.FindViewById<TextView>(Resource.Id.task_base_deadline);
+            taskDeadline.Text = mTask.Deadline.ToString("dd/MM/yyyy HH:mm");
+
+            //Date Edit Button:
+            ImageView editDate = view.FindViewById<ImageView>(Resource.Id.task_base_date_edit_image);
+            editDate.Click += (object sender, EventArgs e) =>
+            {
+                Dialog_DatePicker datePicker = new Dialog_DatePicker();
+                datePicker.Show(ChildFragmentManager, "Date");
+                datePicker.mOnDatePicked += (object sender, DatePickerDialog.DateSetEventArgs e) =>
+                {
+                    if (e.Date < DateTime.Now) //if new date is earlier than current date
+                    {
+                        Toast.MakeText(Context, "Date already passed", ToastLength.Long).Show();//Show a toast informing the user that they cannot change to that date
+                    }
+                    else
+                    {
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(Context);
+                        alertDialog.SetTitle("Warning!");
+                        if(e.Date > DateTime.Now.Date) 
+                        {
+                            //if the user had set a new date to be later than the old one, give a penalty to his reward
+                            alertDialog.SetMessage("The chosen date is later than the current date, there will be a penalty in the reward. \nDo you want to change the date?");
+                            alertDialog.SetPositiveButton("Yes", delegate { DateChange(true, e.Date); });
+                        }
+                        else
+                        {
+                            //otherwise change the date normally
+                            alertDialog.SetMessage("Do you want to change the date?");
+                            alertDialog.SetPositiveButton("Yes", delegate { DateChange(false, e.Date); });
+                        }
+                        alertDialog.SetNegativeButton("No", delegate { alertDialog.Dispose(); });
+                        alertDialog.Show();
+                    }
+                };
+            };
+            //Time Edit Button:
+            ImageView editTime = view.FindViewById<ImageView>(Resource.Id.task_base_time_edit_image);
+            editTime.Click += (object sender, EventArgs e) =>
+            {
+                Dialog_TimePicker timePicker = new Dialog_TimePicker();
+                timePicker.Show(ChildFragmentManager, "Date");
+                timePicker.mOnTimePicked += (object sender, TimePickerDialog.TimeSetEventArgs e) =>
+                {
+                    if(mTask.Deadline.Date == DateTime.Now.Date) //if the user is setting the time on the same date as the deadline date
+                    {
+                        if(e.HourOfDay < DateTime.Now.Hour || (e.HourOfDay == DateTime.Now.Hour && e.Minute <= DateTime.Now.Minute)) //if new hour is smaller than the current hour, or (if the new hour and current hour are the same and the new minute is smaller than the current minute)
+                        {
+                            Toast.MakeText(Context, "Time already passed", ToastLength.Long).Show(); //Show a toast informing the user that they cannot change to that time
+                            return; //end the mOnTimePicked function
+                        }
+                    }
+                    //Create the dialog for the user to confirm the date change
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(Context);
+                    alertDialog.SetTitle("Warning!");
+                    alertDialog.SetMessage("Do you want to change the time?");
+                    alertDialog.SetPositiveButton("Yes", delegate { TimeChange(e.HourOfDay,e.Minute); });
+                    alertDialog.SetNegativeButton("No", delegate { alertDialog.Dispose(); });
+                    alertDialog.Show();
+                };
+            };
 
             return view;
         }
+        public void DateChange(bool penalty,DateTime newDate)
+        {
+            if (penalty) 
+            { 
+                //Functionality to be added later
+                Console.WriteLine("You loose 2000 zł"); 
+            }
+            mTask.Deadline = newDate + mTask.Deadline.TimeOfDay; //add the new date and old time to create a new time
+            taskDeadline.Text = mTask.Deadline.ToString("dd/MM/yyyy HH:mm"); //change the date in Task fragemnt
+        }
+        public void TimeChange(int hours, int minutes)
+        {
+            TimeSpan newTime = new TimeSpan(hours, minutes,0); //create a new time span equal to the new time
+            mTask.Deadline = mTask.Deadline.Date.Add(newTime); //set the new deadline to be the old date set with the time of 00:00 and add a new time to it
+            taskDeadline.Text = mTask.Deadline.ToString("dd/MM/yyyy HH:mm"); //change the time in Task fragemnt
+        }
+
+
+
     }
 }

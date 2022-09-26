@@ -18,7 +18,6 @@ namespace functional_bubble.NET.Fragments
     public class TodoBase : Fragment
     {
         private Button mBtnNewTask;
-        private Button mTestButton;
         private List<Task> mItems;
         private ListView mainListView;
         private DatabaseHandler mdatabaseHandler;

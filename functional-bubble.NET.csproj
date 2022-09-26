@@ -65,6 +65,7 @@
     <Compile Include="Classes\Calendar.cs" />
     <Compile Include="Classes\DatabaseHandler.cs" />
     <Compile Include="Classes\Database\database.cs" />
+    <Compile Include="Classes\Dialogs\Dialog_DateTimeEdit.cs" />
     <Compile Include="Classes\Dialogs\Dialog_DatePicker.cs" />
     <Compile Include="Classes\Dialogs\Dialog_TimePicker.cs" />
     <Compile Include="Classes\GestureListener.cs" />
@@ -152,7 +153,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\task_row_style.xml">
+    <AndroidResource Include="Resources\drawable\task_row_low.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -222,6 +223,30 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\xd.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\task_row_medium.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\task_row_high.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\task_row_critical.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\date_and_time_layout.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\date_and_time_style.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
