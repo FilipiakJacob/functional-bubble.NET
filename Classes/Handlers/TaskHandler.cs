@@ -100,6 +100,17 @@ namespace functional_bubble.NET.Classes
             return sortedTasks;
         }
 
+        /// <summary>
+        /// You get sorted tasks by priorities and deadline as IEnumerable 
+        /// </summary>
+        /// <returns>IEnumerable sortedTasks</returns>
+        public IEnumerable<Task> GetSortedTasksAsIEnumerable()
+        {
+            List<Task> sortedTasks = GetSortedTasks();
+
+            return sortedTasks.AsEnumerable();
+        }
+
         public List<Task> SortedByDeadlineTasks(List<Task> tasks) // sort list of tasks by deadline
         {
             tasks.Sort((a, b) => a.Deadline.CompareTo(b.Deadline));
