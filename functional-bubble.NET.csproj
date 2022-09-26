@@ -38,6 +38,12 @@
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <AndroidSupportedAbis />
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -63,14 +69,22 @@
   <ItemGroup>
     <Compile Include="Classes\Adapters\ListViewAdapter.cs" />
     <Compile Include="Classes\Calendar.cs" />
-    <Compile Include="Classes\DatabaseHandler.cs" />
-    <Compile Include="Classes\Database\database.cs" />
     <Compile Include="Classes\Dialogs\Dialog_DateTimeEdit.cs" />
     <Compile Include="Classes\Dialogs\Dialog_DatePicker.cs" />
     <Compile Include="Classes\Dialogs\Dialog_TimePicker.cs" />
+    <Compile Include="Classes\Handlers\DatabaseHandler.cs" />
+    <Compile Include="Classes\Database\database.cs" />
+    <Compile Include="Classes\Handlers\StatisticsHandler.cs" />
+    <Compile Include="Classes\Handlers\UserHandler.cs" />
+    <Compile Include="Classes\Label.cs" />
+    <Compile Include="Classes\Handlers\LabelHandler.cs" />
     <Compile Include="Classes\GestureListener.cs" />
+    <Compile Include="Classes\Priority.cs" />
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\Dialogs\Dialog_NewTask.cs" />
+    <Compile Include="Classes\Handlers\TaskHandler.cs" />
+    <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\WidgetTodo.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
     <Compile Include="Fragments\PenguinBase.cs" />
@@ -90,6 +104,22 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.xml">
       <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\todo_base.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\navigation\penguin_graph.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\navigation\shop_graph.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\navigation\todo_graph.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\dimens.xml" />
@@ -183,9 +213,6 @@
     <AndroidResource Include="Resources\drawable\gory.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Todo_base.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\szczalka_off.png" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +274,27 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\date_and_time_style.xml" />
+    <AndroidResource Include="Resources\layout\widget_todo.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\xml\appwidgetprovider.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\widget_todo_task.xml">
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\widget_todo_style.xml">
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\widget_todo_tasks_style.xml">
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\plus_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

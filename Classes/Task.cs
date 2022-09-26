@@ -11,7 +11,7 @@ using System.Text;
 using SQLite; //you need to add this to use sqlite 
 using functional_bubble.NET.Classes;
 
-namespace functional_bubble.NET
+namespace functional_bubble.NET.Classes
 {
     [Table("Tasks")] //name of the table that stores task objects
     public class Task
@@ -40,7 +40,7 @@ namespace functional_bubble.NET
         [Column("LabelInt")]
         public int Label { get; set; }
         [Column("CreationTime")]
-        public DateTime CreationTime { get; set; }
+        public DateTime CreationTime { get; set; } = DateTime.Now;
         [Column("Deadline")]
         public DateTime Deadline { get; set; }
         [Column("CoinsReward")]
@@ -61,11 +61,19 @@ namespace functional_bubble.NET
         ///This method fills in the data from the form and saves it to the database, as well as the task object.
         {
             //Create form
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            dbHandler.AddTask(this);
+            Console.WriteLine(Title);
+            TaskHandler db = new TaskHandler();
+            db.Add(this);
             return 0;
         }
-        
+        public int update_data()
+        {
+            //This method will update the Task in the database when called
+            TaskHandler db = new TaskHandler();
+            db.Update(this);
+            return 0;
+        }
+
         public void gen_Id()
         ///Search the database for a free ID number and return it
         {
@@ -76,9 +84,18 @@ namespace functional_bubble.NET
         public int delete_data()
         ///This method deletes the task from the database and returns 0 if it was succesfull
         {
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            dbHandler.DeleteTask(this);
+            TaskHandler db = new TaskHandler();
+            db.DeleteTask(this);
             return 0;
+        }
+
+        /* 
+         * this method checks if this.Deadline is before compared to Datetime.now (present time) 
+         * and if yes returns true which means task is expired 
+         */
+        public bool CheckIfDeadlineExpired() 
+        {
+            return (this.Deadline < DateTime.Now);  
         }
     }
 }

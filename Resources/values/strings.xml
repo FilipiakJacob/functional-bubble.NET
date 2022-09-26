@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">functional_bubble.NET</string>
-    <string name="title_home">Tasks</string>
-    <string name="title_dashboard">Shop</string>
-    <string name="title_notifications">Penguin</string>
+    <string name="title_todo">Tasks</string>
+    <string name="title_shop">Shop</string>
+    <string name="title_penguin">Penguin</string>
 	
 	<string name="priority_prompt">Priority</string>
 	<string-array name="priorities_array">
@@ -19,4 +19,5 @@
 		<item>Drugs</item>
 		<item>Hobby</item>
 	</string-array>
+	<string name="plus_button_desc">A plus icon</string>
 </resources>
