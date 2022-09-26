@@ -115,6 +115,18 @@ namespace functional_bubble.NET.Classes
             return sortedTasks;
         }
 
+
+        /// <summary>
+        /// Get n amount of SortedTasks in form of IEnumerable right now!
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns>IEnumerable nTasks</returns>
+        public IEnumerable<Task> GetSortedTasks(int n)
+        {
+            IEnumerable<Task> nTasks = GetSortedTasks();
+            return nTasks.Take(n);
+        }
+
         /// <summary>
         /// sort list of tasks by deadline
         /// </summary>
