@@ -15,32 +15,39 @@ namespace functional_bubble.NET.Classes
 {
     public class TaskHandler : DatabaseHandler
     {
-        public const int LOWEST_PRIORITY = 0;
-        public const int HIGHEST_PRIORITY = 3;
+        public const int LOWEST_PRIORITY = 0; //lowest priority id in database
+        public const int HIGHEST_PRIORITY = 3; //highest priority id in database
 
-        public void Add(Task task) // inserts task object to Task table
+        /// <summary>
+        /// inserts task object to Task table
+        /// </summary>
+        /// <param name="task"></param>
+        public void Add(Task task) 
         {
-            UserHandler userHandler = new UserHandler();
+            //UserHandler userHandler = new UserHandler();
 
-            task.CoinsReward = userHandler.CalculateReward(task);
+            //task.CoinsReward = userHandler.CalculateReward(task);
 
             _db.Insert(task);    
         }
-        public Task Get(int id) // returns task object with given id
+
+        /// <summary>
+        /// returns task object with given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Task object</returns>
+        public Task Get(int id)
         {
             Task task = _db.Get<Task>(id);
             return task;
         }
 
-        /*
-         * @author Mikołaj Petri
-         * 
-         * completing task, 
-         * adding reward to user's account, 
-         * deleting completed task
-         * 
-         * no @return
-         */
+        /// <summary>
+        /// completing task, 
+        /// adding reward to user's account.
+        /// deleting completed task
+        /// </summary>
+        /// <param name="id"></param>
         public void CompleteTask(int id)  
         {
             Task task = _db.Get<Task>(id); //get task
@@ -51,11 +58,21 @@ namespace functional_bubble.NET.Classes
             DeleteTask(task); //deleting completed task from database
         }
 
-        public void Update(Task task) //updates task in Tasks table
+        /// <summary>
+        /// updates task in Tasks table
+        /// </summary>
+        /// <param name="task"></param>
+        public void Update(Task task)
         {
             _db.Update(task);
         }
 
+        /// <summary>
+        /// updates task's Title (choice = t) or Description (choice = d) in Tasks table with change string
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <param name="choice"></param>
+        /// <param name="change"></param>
         public void Update(int taskId, char choice, string change)
         {
             switch (choice)
@@ -69,6 +86,10 @@ namespace functional_bubble.NET.Classes
             }
         }
 
+        /// <summary>
+        /// Get all Tasks from table
+        /// </summary>
+        /// <returns>List of tasks object</returns>
         public List<Task> GetAllTasks() 
         {
             List<Task> allTasks = _db.Query<Task>("SELECT * FROM Tasks");
@@ -111,20 +132,22 @@ namespace functional_bubble.NET.Classes
             return sortedTasks.AsEnumerable();
         }
 
-        public List<Task> SortedByDeadlineTasks(List<Task> tasks) // sort list of tasks by deadline
+        /// <summary>
+        /// sort list of tasks by deadline
+        /// </summary>
+        /// <param name="tasks"></param>
+        /// <returns>List of tasks objects</returns>
+        public List<Task> SortedByDeadlineTasks(List<Task> tasks) 
         {
             tasks.Sort((a, b) => a.Deadline.CompareTo(b.Deadline));
             return tasks;
         }
 
-        /*
-         * @param task - to identify what task is set to be checked
-         * 
-         * this method checks if user deleted task 30+ mins after creating it 
-         * and if yes it applies penalty to his account 
-         * 
-         * no @return
-         */
+        /// <summary>
+        /// this method checks if user deleted task 30+ mins after creating it 
+        /// and if yes it applies penalty to his account
+        /// </summary>
+        /// <param name="task"></param>
         public void CheckIfAbandonPenalty(Task task)
         {
             TimeSpan minsFromCreationTask = DateTime.Now.Subtract(task.CreationTime); // minutes that passed from the moment of creating task to NOW
@@ -141,17 +164,23 @@ namespace functional_bubble.NET.Classes
 
 
         //@author Mateusz Staszek
+        /// <summary>
+        /// Delete task from database
+        /// </summary>
+        /// <param name="task"></param>
         public void DeleteTask(Task task)
         {
-            CheckIfAbandonPenalty(task);  // line 102
+            //CheckIfAbandonPenalty(task);  // line 102
             _db.Delete(task);
         }
-        
+
         //@author Mateusz Staszek
+        /// <summary>
+        ///for TESTING purpouses only
+        ///deletes all record in the database
+        /// </summary>
         public void DeleteAll()
         {
-            //for testing purpouses only
-            //deletes all record in the database
             _db.DeleteAll<Task>();
         }
 

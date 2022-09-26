@@ -15,11 +15,18 @@ namespace functional_bubble.NET.Classes
 {
     public class UserHandler : DatabaseHandler
     {
-        public UserHandler() // constructor 
+        /// <summary>
+        /// Constructor, calls CheckTableIfOK()
+        /// </summary>
+        public UserHandler()
         {
             CheckTableIfOK();
         }
-        public void CheckTableIfOK() // this method checks if table is up with assummed conditions 
+
+        /// <summary>
+        /// this method checks if table is up with assummed conditions 
+        /// </summary>
+        public void CheckTableIfOK()
         {
             List<User> table = this.GetAll();
             if (table == null) // if table is empty this method adds new user
@@ -34,24 +41,41 @@ namespace functional_bubble.NET.Classes
             }
             return;
         }
-        public List<User> GetAll() //method used for checking if user table is ok
+
+        /// <summary>
+        /// Get all users from table, used in CheckTableIfOk()
+        /// </summary>
+        /// <returns>List of user objects</returns>
+        public List<User> GetAll()
         {
             List<User> userTable = _db.Query<User>("SELECT * FROM User");
             return userTable;
         }
 
-        public User GetUser() // method used for all operations on user
+        /// <summary>
+        /// method used for all operations on user
+        /// </summary>
+        /// <returns>user</returns>
+        public User GetUser()
         {
             User user = _db.Get<User>(0);
             return user;
         }
 
-        public void Update(User user) //updates user in database
+        /// <summary>
+        /// updates user in database
+        /// </summary>
+        /// <param name="user"></param>
+        public void Update(User user)
         {
             _db.Update(user);
         }
 
-        public bool CheckStreak() // checks if user has a streak 
+        /// <summary>
+        /// checks if user has a streak 
+        /// </summary>
+        /// <returns>bool</returns>
+        public bool CheckStreak()
         {
             User user = GetUser();
 
@@ -84,13 +108,20 @@ namespace functional_bubble.NET.Classes
          
         }
 
-        public void InitialUserTable() //Initial state of the user table
+        /// <summary>
+        /// Initial state of the user table
+        /// </summary>
+        public void InitialUserTable()
         {
             User user = new User();
             _db.Insert(user);
         }
 
-        public void DeleteAdditionalUsers(List<User> userTable) //deletes all additional users in table
+        /// <summary>
+        /// deletes all additional users in table
+        /// </summary>
+        /// <param name="userTable"></param>
+        public void DeleteAdditionalUsers(List<User> userTable) 
         {
             for (int i = 1; i < userTable.Count; i++)
             {
@@ -98,13 +129,10 @@ namespace functional_bubble.NET.Classes
             }
         }
 
-        /*
-         * @param int reward - reward that user was set to earn from completing task
-         * 
-         * calculates penalty and casts RemoveCoins method with penalty param
-         * 
-         * no @return
-         */
+        /// <summary>
+        /// calculates penalty based on reward and casts RemoveCoins method with penalty param
+        /// </summary>
+        /// <param name="reward"></param>
         public void Penalty(int reward) 
         {
             int penalty = (int)((-1 * reward) * 0.15f);
@@ -112,8 +140,11 @@ namespace functional_bubble.NET.Classes
             RemoveCoins(penalty);
         }
 
-        //calculates reward based on various variables and returns it as INT
-        //@return int reward
+        /// <summary>
+        /// calculates reward based on various variables
+        /// </summary>
+        /// <param name="task"></param>
+        /// <returns>int reward</returns>
         public int CalculateReward(Task task)
         {
             int reward;
@@ -131,7 +162,11 @@ namespace functional_bubble.NET.Classes
             return reward;
         }
 
-        public void AddRewardCoins(Task task) //adding reward coins to user
+        /// <summary>
+        /// adding reward coins to user
+        /// </summary>
+        /// <param name="task"></param>
+        public void AddRewardCoins(Task task)
         {
             User user = GetUser();
 
@@ -140,7 +175,11 @@ namespace functional_bubble.NET.Classes
             Update(user); //update user in database 
         }
 
-        public void RemoveCoins(int coinsRemove) // removing coins from user's account
+        /// <summary>
+        /// removing coins from user's account
+        /// </summary>
+        /// <param name="coinsRemove"></param>
+        public void RemoveCoins(int coinsRemove)
         {
             User user = GetUser();
 
@@ -149,6 +188,10 @@ namespace functional_bubble.NET.Classes
             Update(user); //update user in database 
         }
 
+        /// <summary>
+        /// Calculates Streak Multiplier based on streak's duration
+        /// </summary>
+        /// <returns>flaot streakMultiplier</returns>
         public float CalculateStreakMultiplier()
         {
             User user = GetUser();
