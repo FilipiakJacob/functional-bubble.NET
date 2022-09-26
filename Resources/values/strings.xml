@@ -11,5 +11,13 @@
 		<item>High</item>
 		<item>Critical</item>
 	</string-array>
+
+	<string name="label_prompt">Priority</string>
+	<string-array name="labels_array">
+		<item>Work</item>
+		<item>Life</item>
+		<item>Drugs</item>
+		<item>Hobby</item>
+	</string-array>
 	<string name="plus_button_desc">A plus icon</string>
 </resources>

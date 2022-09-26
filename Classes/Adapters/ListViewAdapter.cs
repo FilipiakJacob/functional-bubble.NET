@@ -46,8 +46,7 @@ namespace functional_bubble.NET
         bool goBack = true; //true if the task row needs to go to its original position, false if not
         public GestureDetector mGestureDetecor; //a class detecting various gestures like double tap or long click
         public GestureListener mGestureListener; //child class of Gesture Detector which handles what to do when a gesture had been made
-        public string[] mSpinnerEntries = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
-
+        int[] task_row_background_color = {Resource.Drawable.task_row_low,Resource.Drawable.task_row_medium, Resource.Drawable.task_row_high, Resource.Drawable.task_row_critical};
         public ListViewAdapter(Context context, List<Task> items, View parentView)
         {
             //Class Constructor which initialises context and Task list of the class
@@ -91,6 +90,7 @@ namespace functional_bubble.NET
             }
             GridLayout task_row_grid = row.FindViewById<GridLayout>(Resource.Id.task_row_grid);//Get the grid layout from task_row (this is where the task row is displayed in the list)
             task_row_grid.Tag = mItems[position].Id; //set the ID of task grid to be the id of the task
+            task_row_grid.SetBackgroundResource(task_row_background_color[mItems[position].Priority]);
             task_row_grid.SetOnTouchListener(this); //Set a listener that will respond when task row had been touched
 
             TextView task_row_id = row.FindViewById<TextView>(Resource.Id.task_row_title); //Get task_row_title TextView from task_row 
@@ -107,9 +107,6 @@ namespace functional_bubble.NET
                 string shortenedTxt = mItems[position].Description.Substring(0, 17);
                 task_row_task.Text = shortenedTxt + "...";
             };
-
-            TextView task_row_priority = row.FindViewById<TextView>(Resource.Id.task_row_priority);//Get task_row_priority TextView from task_row
-            task_row_priority.Text = mSpinnerEntries[mItems[position].Priority];//mItems[position].Priority; //Set Text of that task_row_priority to be the Priority attribute of Task instance
 
             return row;
         }

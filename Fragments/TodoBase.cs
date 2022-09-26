@@ -11,6 +11,7 @@ using System.Text;
 using AndroidX.Fragment.App;
 using AndroidX.Navigation;
 using functional_bubble.NET.Classes;
+using Android.Graphics.Drawables;
 
 
 namespace functional_bubble.NET.Fragments
@@ -18,7 +19,6 @@ namespace functional_bubble.NET.Fragments
     public class TodoBase : Fragment
     {
         private Button mBtnNewTask;
-        private Button mTestButton;
         private List<Task> mItems;
         private ListView mainListView;
         private TaskHandler mdatabaseHandler;
@@ -48,12 +48,12 @@ namespace functional_bubble.NET.Fragments
 
             ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems, view);
             mainListView.Adapter = adapter;
-
             mBtnNewTask = view.FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
             mBtnNewTask.Click += (object sender, EventArgs e) =>
             {
                 //Method for creating DialogFragment from Dialog_NewTask Class
                 Dialog_NewTask newTaskDialog = new Dialog_NewTask(); //Create a new Dialog Fragment
+                
                 newTaskDialog.Show(ChildFragmentManager, "Dialog"); //Show on screen the Dialog Fragment
                 newTaskDialog.mNewTaskComplete += (object sender, onNewTaskEventArgs e) =>
                 {
