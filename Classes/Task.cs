@@ -48,14 +48,9 @@ namespace functional_bubble.NET.Classes
         [Column("Priority")]
         public int Priority { get; set; }
         [Column("Repeatable")]
-        public bool Repeatable { get; set; }
+        public bool Repeatable { get; set; } = false;
         [Column("Pinned")]
         public bool Pinned { get; set; }
-        
-        public Task()
-        {
-            Repeatable = false;
-        }
         
         public int input_data()
         ///This method fills in the data from the form and saves it to the database, as well as the task object.

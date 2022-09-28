@@ -97,10 +97,16 @@ namespace functional_bubble.NET.Classes
         }
 
         /// <summary>
-        /// return sorted tasks by priorities and then deadline
+        /// You get all tasks as IEnumerable
         /// </summary>
-        /// <returns>List of task objects</returns>
-        public List<Task> GetSortedTasks() // 
+        /// <returns>IEnumerable allTasks</returns>
+        public IEnumerable<Task> GetAllTasksAsIEnumerable()
+        {
+            List<Task> allTasks = GetAllTasks();
+            return allTasks.AsEnumerable();
+        }
+
+        public List<Task> GetSortedTasks() // return sorted tasks by priorities and deadline
         {
             List<Task> sortedTasks = new List<Task>();
             List<Task> tempTasks = new List<Task>();
@@ -125,6 +131,17 @@ namespace functional_bubble.NET.Classes
         {
             IEnumerable<Task> nTasks = GetSortedTasks();
             return nTasks.Take(n);
+        }
+
+        /// <summary>
+        /// You get sorted tasks by priorities and deadline as IEnumerable 
+        /// </summary>
+        /// <returns>IEnumerable sortedTasks</returns>
+        public IEnumerable<Task> GetSortedTasksAsIEnumerable()
+        {
+            List<Task> sortedTasks = GetSortedTasks();
+
+            return sortedTasks.AsEnumerable();
         }
 
         /// <summary>
