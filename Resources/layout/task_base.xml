@@ -12,6 +12,7 @@
         android:background="@android:color/transparent"
         android:textAlignment="center"
         android:textSize="30sp"
+        android:text="Title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +26,7 @@
         android:background="@android:color/transparent"
         android:textAlignment="center"
         android:textSize="30sp"
+        android:text="description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +114,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/task_base_deadline"
         app:layout_constraintEnd_toEndOf="@+id/task_base_deadline"
         app:layout_constraintHeight_percent="0.035"
-        app:layout_constraintHorizontal_bias="0.81"
+        app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toStartOf="@+id/task_base_deadline"
         app:layout_constraintTop_toTopOf="@+id/task_base_deadline"
         app:layout_constraintVertical_bias="0.0"
@@ -127,12 +129,47 @@
         app:layout_constraintBottom_toBottomOf="@+id/task_base_deadline"
         app:layout_constraintEnd_toEndOf="@+id/task_base_deadline"
         app:layout_constraintHeight_percent="0.035"
-        app:layout_constraintHorizontal_bias="0.81"
+        app:layout_constraintHorizontal_bias="0.83"
         app:layout_constraintStart_toStartOf="@+id/task_base_deadline"
         app:layout_constraintTop_toTopOf="@+id/task_base_deadline"
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintWidth_percent="0.07"
         app:srcCompat="@drawable/zegar" />
+
+    <TextView
+        android:id="@+id/task_base_priority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Priority"
+        app:layout_constraintBottom_toBottomOf="@+id/task_base_goBackButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toEndOf="@+id/task_base_goBackButton"
+        app:layout_constraintTop_toTopOf="@+id/task_base_goBackButton" />
+
+    <TextView
+        android:id="@+id/task_base_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Label"
+        app:layout_constraintBottom_toBottomOf="@+id/task_base_priority"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/task_base_slash"
+        app:layout_constraintTop_toTopOf="@+id/task_base_priority" />
+
+    <TextView
+        android:id="@+id/task_base_slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/task_base_priority"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toEndOf="@+id/task_base_priority"
+        app:layout_constraintTop_toTopOf="@+id/task_base_priority" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

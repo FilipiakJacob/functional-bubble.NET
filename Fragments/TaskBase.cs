@@ -22,6 +22,9 @@ namespace functional_bubble.NET.Fragments
         Calendar mCalendar = new Calendar();
         Task mTask;
         TextView taskDeadline;
+        public string[] mPrioritiesArray = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
+        public string[] mLabelsArray = Application.Context.Resources.GetStringArray(Resource.Array.labels_array);
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -52,6 +55,14 @@ namespace functional_bubble.NET.Fragments
                 mTask.Description = description.Text;
                 mTask.update_data(); //update record in database
             };
+
+            //Task Priority
+            TextView priority = view.FindViewById<TextView>(Resource.Id.task_base_priority);
+            priority.Text = mPrioritiesArray[mTask.Priority];
+
+            //Task Label
+            TextView label = view.FindViewById<TextView>(Resource.Id.task_base_label);
+            label.Text = mLabelsArray[mTask.Label];
 
             //Go Back Button:
             view.FindViewById<Button>(Resource.Id.task_base_goBackButton).Click += (object sender, EventArgs e) => 
@@ -132,6 +143,7 @@ namespace functional_bubble.NET.Fragments
                     }
                 };
             };
+
             //Time Edit Button:
             ImageView editTime = view.FindViewById<ImageView>(Resource.Id.task_base_time_edit_image);
             editTime.Click += (object sender, EventArgs e) =>
