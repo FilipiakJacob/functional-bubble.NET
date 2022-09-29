@@ -47,7 +47,6 @@ namespace functional_bubble.NET
         private Spinner mNewTaskPriority;
         private TextView mNewTaskWrongDate;
         private TimePicker mTimePicker;
-        private ViewStub mViewStub;
         private Button mBtnCreateTask; //Confirmation Button When All data about a new task had been written
         public Task mNewTask = new Task();
         public Calendar mCalendar = new Calendar();
@@ -71,11 +70,6 @@ namespace functional_bubble.NET
             }
             AlertDialog dialog = builder.Create();
             dialog.Window.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
-            
-            mViewStub = view.FindViewById<ViewStub>(Resource.Id.viewStub1);
-            mViewStub.LayoutInflater = this.LayoutInflater;
-            mViewStub.LayoutResource = Resource.Layout.date_and_time_layout;
-            mViewStub.Inflate();
             
 
             //Task Title:
