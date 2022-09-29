@@ -22,14 +22,7 @@ namespace functional_bubble.NET.Classes
             DefaultRows();
         }
 
-        /// <summary>
-        /// inserts Label object to Task table
-        /// </summary>
-        /// <param name="label"></param>
-        public void Add(Label label)
-        {
-            _db.Insert(label);
-        }
+        #region GET/ADD/UPDATE
 
         /// <summary>
         /// returns Label object with given id
@@ -43,15 +36,6 @@ namespace functional_bubble.NET.Classes
         }
 
         /// <summary>
-        /// updates label row in Labels table
-        /// </summary>
-        /// <param name="label"></param>
-        public void Update(Label label) 
-        {
-            _db.Update(label);
-        }
-
-        /// <summary>
         /// Gets all Labels
         /// </summary>
         /// <returns>List of Label objects</returns>
@@ -60,6 +44,50 @@ namespace functional_bubble.NET.Classes
             List<Label> allLabels = _db.Query<Label>("SELECT * FROM Labels");
             return allLabels;
         }
+
+        /// <summary>
+        /// inserts Label object to Task table
+        /// </summary>
+        /// <param name="label"></param>
+        public void Add(Label label)
+        {
+            _db.Insert(label);
+        }
+
+        /// <summary>
+        /// updates label row in Labels table
+        /// </summary>
+        /// <param name="label"></param>
+        public void Update(Label label)
+        {
+            _db.Update(label);
+        }
+
+        #endregion
+
+        #region DELETE
+
+        /// @author Mateusz Staszek
+        /// <summary>
+        /// Deletes row which is equal to given Label object
+        /// </summary>
+        /// <param name="label"></param>
+        public void Delete(Label label)
+        {
+            _db.Delete(label);
+        }
+
+        /// <summary>
+        /// for TESTING purpouses only deletes all record in the database
+        /// </summary>
+        public void DeleteAll()
+        {
+            _db.DeleteAll<Label>();
+        }
+
+        #endregion
+
+        #region OTHER_METHODS
 
         /// <summary>
         /// If Label table has zero rows than initials default rows
@@ -80,23 +108,6 @@ namespace functional_bubble.NET.Classes
                 _db.Insert(label);
             }
         }
-
-        /// @author Mateusz Staszek
-        /// <summary>
-        /// Deletes row which is equal to given Label object
-        /// </summary>
-        /// <param name="label"></param>
-        public void Delete(Label label)
-        {
-            _db.Delete(label);
-        }
-
-        /// <summary>
-        /// for TESTING purpouses only deletes all record in the database
-        /// </summary>
-        public void DeleteAll()
-        {
-            _db.DeleteAll<Label>();
-        }
+        #endregion
     }
 }
