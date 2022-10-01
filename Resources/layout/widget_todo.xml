@@ -43,11 +43,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/widget_top_bar"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp">
+>
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/task_row_1"
             android:layout_below="@id/widget_top_bar"
@@ -59,8 +58,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:textSize="25sp"
-                    android:layout_marginLeft="10dp" />
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="14sp"
+                    android:textColor="@android:color/black"/>
                 <TextView
                     android:id="@+id/task_row_time_left_1"
                     android:text="Time Left"
@@ -68,13 +69,14 @@
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:layout_marginRight="10dp" />
+                    android:textSize="@dimen/material_text_size_sp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@android:color/black"/>
         </RelativeLayout>
 
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/task_row_2"
             android:layout_below="@+id/task_row_1"
@@ -87,8 +89,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:textSize="25sp"
-                    android:layout_marginLeft="10dp" />
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="14sp"
+                    android:textColor="@android:color/black"/>
                 <TextView
                     android:id="@+id/task_row_time_left_2"
                     android:text="Time Left"
@@ -96,13 +100,14 @@
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:layout_marginRight="10dp" />
+                    android:textSize="@dimen/material_text_size_sp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@android:color/black"/>
         </RelativeLayout>
 
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/task_row_3"
             android:layout_below="@+id/task_row_2"
@@ -114,8 +119,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:textSize="25sp"
-                    android:layout_marginLeft="10dp" />
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="14sp"
+                    android:textColor="@android:color/black" />
                 <TextView
                     android:id="@+id/task_row_time_left_3"
                     android:text="Time Left"
@@ -123,13 +130,14 @@
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:layout_marginRight="10dp" />
+                    android:textSize="@dimen/material_text_size_sp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@android:color/black"/>
         </RelativeLayout>
 
         <RelativeLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/task_row_4"
             android:layout_below="@+id/task_row_3"
@@ -141,8 +149,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentLeft="true"
-                    android:textSize="25sp"
-                    android:layout_marginLeft="10dp" />
+                    android:textSize="16sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="14sp"
+                    android:textColor="@android:color/black"/>
                 <TextView
                     android:id="@+id/task_row_time_left_4"
                     android:text="Time Left"
@@ -150,8 +160,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:layout_marginRight="10dp" />
+                    android:textSize="@dimen/material_text_size_sp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@android:color/black"/>
         </RelativeLayout>
 
     </RelativeLayout>

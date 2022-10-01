@@ -12,6 +12,7 @@ using Android.Appwidget;
 using Android.Util;
 using AndroidX.Navigation;
 using Android.Content.PM;
+using System.Drawing;
 
 namespace functional_bubble.NET.Classes
 {
@@ -57,6 +58,7 @@ namespace functional_bubble.NET.Classes
         /// <summary>
         /// Inflates the tasks and replaces the ViewStubs in the widget's layout, if tasks are present.
         /// </summary>
+        /// <param name="context"></param>
         /// <param name="widgetView"></param>
         /// <param name="numTasks"></param>
         private void UpdateTasks(Context context, RemoteViews widgetView, int numTasks)
@@ -76,10 +78,20 @@ namespace functional_bubble.NET.Classes
             int j = 0;
             foreach (Task task in sortedTasks)
             {
+                String untilDeadlineStr;
+                TimeSpan untilDeadline = task.Deadline.Subtract(DateTime.Now);
+                if (untilDeadline.Days >= 1)
+                {
+                    untilDeadlineStr = (untilDeadline.Days.ToString() + "d left");
+                }
+                else
+                {
+                    untilDeadlineStr = (untilDeadline.Hours.ToString() + "h left");
+                }
                 Console.WriteLine(task.Id);
                 widgetView.SetViewVisibility(rowViewIds[j], ViewStates.Visible); //SetViewVisibility should inflate the layout.
                 widgetView.SetTextViewText(titleViewIds[j], task.Title);
-                widgetView.SetTextViewText(deadlineViewIds[j], task.Deadline.ToString());
+                widgetView.SetTextViewText(deadlineViewIds[j], untilDeadlineStr);
                 j++;
                 Console.WriteLine("i = " + j);
             }

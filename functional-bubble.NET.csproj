@@ -249,10 +249,6 @@
     <AndroidResource Include="Resources\xml\appwidgetprovider.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\widget_todo_task.xml">
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\widget_todo_style.xml">
     </AndroidResource>
   </ItemGroup>
