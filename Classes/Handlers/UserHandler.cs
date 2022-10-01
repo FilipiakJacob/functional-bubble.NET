@@ -23,24 +23,20 @@ namespace functional_bubble.NET.Classes
             CheckTableIfOK();
         }
 
+        #region UPDATE
+
         /// <summary>
-        /// this method checks if table is up with assummed conditions 
+        /// updates user in database
         /// </summary>
-        public void CheckTableIfOK()
+        /// <param name="user"></param>
+        public void Update(User user)
         {
-            List<User> table = this.GetAll();
-            if (table == null) // if table is empty this method adds new user
-            {
-                InitialUserTable();
-                return;
-            }
-            if(table.Count > 1) // if table has more then one user it deletes additional users
-            {
-                DeleteAdditionalUsers(table);
-                return;
-            }
-            return;
+            _db.Update(user);
         }
+
+        #endregion
+
+        #region GETTERS
 
         /// <summary>
         /// Get all users from table, used in CheckTableIfOk()
@@ -62,14 +58,9 @@ namespace functional_bubble.NET.Classes
             return user;
         }
 
-        /// <summary>
-        /// updates user in database
-        /// </summary>
-        /// <param name="user"></param>
-        public void Update(User user)
-        {
-            _db.Update(user);
-        }
+        #endregion
+
+        #region STREAK_RELATED
 
         /// <summary>
         /// checks if user has a streak 
@@ -105,35 +96,18 @@ namespace functional_bubble.NET.Classes
                 return true;
             }
             return true;
-         
+
         }
 
-        /// <summary>
-        /// Initial state of the user table
-        /// </summary>
-        public void InitialUserTable()
-        {
-            User user = new User();
-            _db.Insert(user);
-        }
+        #endregion
 
-        /// <summary>
-        /// deletes all additional users in table
-        /// </summary>
-        /// <param name="userTable"></param>
-        public void DeleteAdditionalUsers(List<User> userTable) 
-        {
-            for (int i = 1; i < userTable.Count; i++)
-            {
-                _db.Query<User>("DELETE FROM User WHERE id={0}", i);
-            }
-        }
+        #region REWARD_RELATED
 
         /// <summary>
         /// calculates penalty based on reward and casts RemoveCoins method with penalty param
         /// </summary>
         /// <param name="reward"></param>
-        public void Penalty(int reward) 
+        public void Penalty(int reward)
         {
             int penalty = (int)((-1 * reward) * 0.15f);
 
@@ -152,7 +126,7 @@ namespace functional_bubble.NET.Classes
             Random rnd = new Random(); // random that will generate base variable that will be multiplied by multipliers
             int baseCoin = rnd.Next(1, daysToDeadline.Days); // random base variable that has range from 1 to substract (line 104)
 
-            float streakMultiplier = CalculateStreakMultiplier(); 
+            float streakMultiplier = CalculateStreakMultiplier();
 
             float streakMultipliedPart = streakMultiplier * baseCoin; // calculated var based on streak multiplier
             float priorityMultipliedPart = task.Priority * baseCoin; // calculated var based on priority multiplier
@@ -160,32 +134,6 @@ namespace functional_bubble.NET.Classes
             reward = (int)(streakMultipliedPart + priorityMultipliedPart); // final reward calculation
 
             return reward;
-        }
-
-        /// <summary>
-        /// adding reward coins to user
-        /// </summary>
-        /// <param name="task"></param>
-        public void AddRewardCoins(Task task)
-        {
-            User user = GetUser();
-
-            user.Money += task.CoinsReward; //adding reward to user's account 
-
-            Update(user); //update user in database 
-        }
-
-        /// <summary>
-        /// removing coins from user's account
-        /// </summary>
-        /// <param name="coinsRemove"></param>
-        public void RemoveCoins(int coinsRemove)
-        {
-            User user = GetUser();
-
-            user.Money -= coinsRemove; //removing reward from user's account 
-
-            Update(user); //update user in database 
         }
 
         /// <summary>
@@ -223,5 +171,81 @@ namespace functional_bubble.NET.Classes
                 return 0;
             }
         }
+
+            #region ADD/REMOVE_COINS
+
+        /// <summary>
+        /// adding reward coins to user
+        /// </summary>
+        /// <param name="task"></param>
+        public void AddRewardCoins(Task task)
+        {
+            User user = GetUser();
+
+            user.Money += task.CoinsReward; //adding reward to user's account 
+
+            Update(user); //update user in database 
+        }
+
+        /// <summary>
+        /// removing coins from user's account
+        /// </summary>
+        /// <param name="coinsRemove"></param>
+        public void RemoveCoins(int coinsRemove)
+        {
+            User user = GetUser();
+
+            user.Money -= coinsRemove; //removing reward from user's account 
+
+            Update(user); //update user in database 
+        }
+
+        #endregion
+
+        #endregion
+
+        #region DEFAULT_METHODS
+
+        /// <summary>
+        /// this method checks if table is up with assummed conditions 
+        /// </summary>
+        public void CheckTableIfOK()
+        {
+            List<User> table = this.GetAll();
+            if (table == null) // if table is empty this method adds new user
+            {
+                InitialUserTable();
+                return;
+            }
+            if(table.Count > 1) // if table has more then one user it deletes additional users
+            {
+                DeleteAdditionalUsers(table);
+                return;
+            }
+            return;
+        }
+
+        /// <summary>
+        /// Initial state of the user table
+        /// </summary>
+        public void InitialUserTable()
+        {
+            User user = new User();
+            _db.Insert(user);
+        }
+
+        /// <summary>
+        /// deletes all additional users in table
+        /// </summary>
+        /// <param name="userTable"></param>
+        public void DeleteAdditionalUsers(List<User> userTable) 
+        {
+            for (int i = 1; i < userTable.Count; i++)
+            {
+                _db.Query<User>("DELETE FROM User WHERE id={0}", i);
+            }
+        }
+
+        #endregion
     }
 }

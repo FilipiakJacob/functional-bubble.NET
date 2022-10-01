@@ -13,6 +13,8 @@ namespace functional_bubble.NET.Classes
 {
     public class StatisticsHandler : UserHandler
     {
+
+        #region ADD_STATISTICS
         /// <summary>
         /// +1 to total tasks statistic
         /// </summary>
@@ -53,6 +55,9 @@ namespace functional_bubble.NET.Classes
         /// Get exact number of total tasks statistic
         /// </summary>
         /// <returns>int</returns>
+        #endregion
+
+        #region GET_STATISTICS
         public int GetTotalTask()
         {
             User user = GetUser();
@@ -81,5 +86,6 @@ namespace functional_bubble.NET.Classes
 
             return user.AbandonedTasks;
         }
+        #endregion
     }
 }
