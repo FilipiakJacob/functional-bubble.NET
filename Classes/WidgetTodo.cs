@@ -13,6 +13,9 @@ using Android.Util;
 using AndroidX.Navigation;
 using Android.Content.PM;
 using System.Drawing;
+using Java.Lang;
+using System.Runtime.Remoting.Contexts;
+using Context = Android.Content.Context;
 
 namespace functional_bubble.NET.Classes
 {
@@ -36,31 +39,22 @@ namespace functional_bubble.NET.Classes
             //Build view
             RemoteViews widgetView = new RemoteViews(context.PackageName, Resource.Layout.widget_todo);
 
-            //Change text in widget
-            SetWidgetContents(context, widgetView);
+            //Set the top bar
+            SetTopBar(context, widgetView);
 
-            //Handle buttons in widget
-            RegisterClicks(context, appWidgetIds, widgetView);
+            //Set the tasks 
+            UpdateTasks(context, widgetView, 4);
 
             return widgetView;
         }
 
 
         /// <summary>
-        /// Sets the content of the widget's view.
-        /// </summary>
-        /// <param name="widgetView"></param>
-        private void SetWidgetContents(Context context, RemoteViews widgetView)
-        {
-            UpdateTasks(context, widgetView, 4); //Updates the tasks shown in the widget
-        }
-
-        /// <summary>
         /// Inflates the tasks and replaces the ViewStubs in the widget's layout, if tasks are present.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">Context in which the receiver is running</param>
         /// <param name="widgetView"></param>
-        /// <param name="numTasks"></param>
+        /// <param name="numTasks">Number of tasks to display (currently only 4 or less works) </param>
         private void UpdateTasks(Context context, RemoteViews widgetView, int numTasks)
         {
             //widgetView.SetTextViewText(Resource.Id.todo_widget_text, "PENGUIN");
@@ -78,7 +72,7 @@ namespace functional_bubble.NET.Classes
             int j = 0;
             foreach (Task task in sortedTasks)
             {
-                String untilDeadlineStr;
+                string untilDeadlineStr;
                 TimeSpan untilDeadline = task.Deadline.Subtract(DateTime.Now);
                 if (untilDeadline.Days >= 1)
                 {
@@ -88,20 +82,19 @@ namespace functional_bubble.NET.Classes
                 {
                     untilDeadlineStr = (untilDeadline.Hours.ToString() + "h left");
                 }
-                Console.WriteLine(task.Id);
                 widgetView.SetViewVisibility(rowViewIds[j], ViewStates.Visible); //SetViewVisibility should inflate the layout.
                 widgetView.SetTextViewText(titleViewIds[j], task.Title);
                 widgetView.SetTextViewText(deadlineViewIds[j], untilDeadlineStr);
+                PendingIntent pendingIntent = CreateDeepLink(context,Resource.Id.dest_task,"taskID",task.Id);
+                widgetView.SetOnClickPendingIntent(rowViewIds[j],pendingIntent); //When the row is clicked, the user should be deeplinked to the task.
                 j++;
-                Console.WriteLine("i = " + j);
             }
-            Console.WriteLine("That's All Folks");
         }
 
         /// <summary>
         /// Retrieves a certain amount of highest priority tasks from database.
         /// </summary>
-        /// <param name="numTask"></param>
+        /// <param name="numTask">Number of tasks</param>
         /// <returns></returns>
         private IEnumerable<Task> RetrieveTasks(int numTask) //TODO: Once database handler is updated,
                                                              //there should be a method that only returns a certain amount of tasks.
@@ -112,16 +105,51 @@ namespace functional_bubble.NET.Classes
             return sortedTasks;
         }
 
+        /// <summary>
+        /// Sets the contents of the top bar of the widget
+        /// </summary>
+        /// <param name="context">Context in which the receiver is running</param>
+        /// <param name="widgetView"></param>
+        private void SetTopBar(Context context, RemoteViews widgetView)
+        {
+            //Use NavDeepLinkBuilder to create a PendingIntent that deeplinks to the New Task dialog.
+            PendingIntent pendingIntent = CreateDeepLink(context, Resource.Id.dest_todo, "openDialog", 1);
+            widgetView.SetOnClickPendingIntent(Resource.Id.widget_new_task_button, pendingIntent);
+        }
+
+        /// <summary>
+        /// Use NavDeepLinkBuilder to create a PendingIntent that deeplinks to a a destination.
+        /// </summary>
+        /// <param name="destination">Usually just Resource.Id.rourcename</param>
+        /// <param name="context">Context in which the receiver is running</param>
+        /// <param name="bundleVarType">The pending intent sends a bundle of arguments to the target destination of the deeplink</param>
+        /// <param name="bundleVarValue"></param>
+        /// <returns>A pending intent</returns>
+        private PendingIntent CreateDeepLink(Context context, int destination, string bundleVarType, int bundleVarValue )
+        {
+            Bundle bundle = new Bundle();
+            bundle.PutInt(bundleVarType, bundleVarValue);
+            PendingIntent pendingIntent = new NavDeepLinkBuilder(context)
+                .SetGraph(Resource.Navigation.nav_graph)
+                .SetDestination(destination)
+                .SetArguments(bundle)
+                .CreatePendingIntent();
+            return pendingIntent;
+        }
+
+
+        public override void OnReceive(Context context, Intent intent)
+            //Method is called when the widget receives an intent broadcast.
+        {
+            base.OnReceive(context, intent); //Since OnReceive is overrridden, need to call
+                                             //base class to make sure OnUpdate and similar methods ale triggered by this method.
+            Toast.MakeText(context, "Received intent!", ToastLength.Short).Show();
+        }
+        /*
         private void RegisterClicks(Context context, int[] appWidgetIds, RemoteViews widgetView)
         {
             //Use NavDeepLinkBuilder to create a PendingIntent that deeplinks to the New Task dialog.
-            Bundle bundle = new Bundle();
-            bundle.PutInt("openDialog", 1);
-            PendingIntent pendingIntent = new NavDeepLinkBuilder(context)
-                .SetGraph(Resource.Navigation.nav_graph)
-                .SetDestination(Resource.Id.dest_todo)
-                .SetArguments(bundle)
-                .CreatePendingIntent();
+            PendingIntent pendingIntent = CreateDeepLink(context,Resource.Id.dest_todo,"openDialog",1);
 
             widgetView.SetOnClickPendingIntent(Resource.Id.widget_new_task_button, pendingIntent);
 
@@ -133,14 +161,6 @@ namespace functional_bubble.NET.Classes
             //var widgetButton1 = PendingIntent.GetBroadcast(context, 0, intent, PendingIntentFlags.UpdateCurrent);
             //widgetView.SetOnClickPendingIntent(Resource.Id.button1, widgetButton1);
         }
-
-
-        public override void OnReceive(Context context, Intent intent)
-            //Method is called when the widget receives an intent broadcast.
-        {
-            base.OnReceive(context, intent); //Since OnReceive is overrridden, need to call
-                                             //base class to make sure OnUpdate and similar methods ale triggered by this method.
-            Toast.MakeText(context, "Received intent!", ToastLength.Short).Show();
-        }
+        */
     }
 }
