@@ -136,6 +136,20 @@
         app:layout_constraintWidth_percent="0.07"
         app:srcCompat="@drawable/zegar" />
 
+    <ImageView
+        android:id="@+id/task_base_priority_and_label_view"        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/label_priority_drawable"
+        app:srcCompat="@drawable/gradient_try"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/task_base_goBackButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintHorizontal_bias="0.71"
+        app:layout_constraintStart_toEndOf="@+id/task_base_goBackButton"
+        app:layout_constraintTop_toTopOf="@+id/task_base_goBackButton"
+        app:layout_constraintWidth_percent="0.32" />
+
     <TextView
         android:id="@+id/task_base_priority"
         android:layout_width="wrap_content"

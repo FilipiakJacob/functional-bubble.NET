@@ -45,15 +45,16 @@ namespace functional_bubble.NET
         private EditText mNewTaskDeadlineDate;
         private EditText mNewTaskDeadlineTime;
         private Spinner mNewTaskPriority;
+        private Spinner mNewTaskLabel;
         private TextView mNewTaskWrongDate;
         private TimePicker mTimePicker;
-        private ViewStub mViewStub;
         private Button mBtnCreateTask; //Confirmation Button When All data about a new task had been written
         public Task mNewTask = new Task();
         public Calendar mCalendar = new Calendar();
-        public string[] mSpinnerEntries = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
+        public string[] mPrioritySpinnerEntries = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
+        public string[] mLabelSpinnerEntries = Application.Context.Resources.GetStringArray(Resource.Array.labels_array);
         public string dateForTheseAmericans;
-        
+
         public EventHandler<TimePickerDialog.TimeSetEventArgs> OnTimeSet { get; private set; }
         public EventHandler<DatePickerDialog.DateSetEventArgs> OnDateSet;
 
@@ -64,19 +65,14 @@ namespace functional_bubble.NET
             LayoutInflater inflater = Activity.LayoutInflater;
 
             View view = inflater.Inflate(Resource.Layout.dialog_new_task, null);
-            AlertDialog.Builder builder = new AlertDialog.Builder(Activity,Resource.Style.WrapContentDialog);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Activity, Resource.Style.WrapContentDialog);
             if (view != null)
             {
                 builder.SetView(view);
             }
             AlertDialog dialog = builder.Create();
             dialog.Window.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
-            
-            mViewStub = view.FindViewById<ViewStub>(Resource.Id.viewStub1);
-            mViewStub.LayoutInflater = this.LayoutInflater;
-            mViewStub.LayoutResource = Resource.Layout.date_and_time_layout;
-            mViewStub.Inflate();
-            
+
 
             //Task Title:
             mNewTaskTitle = view.FindViewById<EditText>(Resource.Id.new_task_title);
@@ -87,8 +83,11 @@ namespace functional_bubble.NET
             //Priotiry Spinner:
             mNewTaskPriority = view.FindViewById<Spinner>(Resource.Id.new_task_priority);
 
+            //Label Spinner:
+            mNewTaskLabel = view.FindViewById<Spinner>(Resource.Id.new_task_label);
+
             //Add Task button:
-            mBtnCreateTask = view.FindViewById<Button>(Resource.Id.new_task_button);            
+            mBtnCreateTask = view.FindViewById<Button>(Resource.Id.new_task_button);
             mBtnCreateTask.Click += MBtnCreateTask_Click; //Method executed when Confirmation Button is clicked
 
             //Wrong date TextView:
@@ -99,6 +98,7 @@ namespace functional_bubble.NET
             mNewTaskDeadlineDate.TextChanged += (object sender, TextChangedEventArgs e) =>
             {
                 dateForTheseAmericans = mCalendar.dateChange(mNewTaskDeadlineDate.Text, e, mNewTaskDeadlineDate, mNewTaskWrongDate);
+                Console.WriteLine(dateForTheseAmericans);
             };
 
             //DatePicker button:
@@ -106,8 +106,8 @@ namespace functional_bubble.NET
             mDateButton.Click += (object sender, EventArgs e) =>
             {
                 Dialog_DatePicker datePicker = new Dialog_DatePicker();
-                datePicker.Show(ChildFragmentManager,"Date");
-                datePicker.mOnDatePicked += (object sender, DatePickerDialog.DateSetEventArgs e) => 
+                datePicker.Show(ChildFragmentManager, "Date");
+                datePicker.mOnDatePicked += (object sender, DatePickerDialog.DateSetEventArgs e) =>
                 {
                     mNewTaskDeadlineDate.Text = mCalendar.twoDigitDate(e.DayOfMonth) + "/" + mCalendar.twoDigitDate(e.Month + 1) + "/" + (e.Year).ToString();
                     dateForTheseAmericans = mCalendar.twoDigitDate(e.Month + 1) + "/" + mCalendar.twoDigitDate(e.DayOfMonth) + "/" + (e.Year).ToString();
@@ -119,7 +119,7 @@ namespace functional_bubble.NET
             mNewTaskDeadlineTime = view.FindViewById<EditText>(Resource.Id.new_task_deadline_time);
             mNewTaskDeadlineTime.TextChanged += (object sender, TextChangedEventArgs e) =>
             {
-                mCalendar.timeChange(mNewTaskDeadlineTime.Text,e,mNewTaskDeadlineTime,mNewTaskWrongDate);
+                mCalendar.timeChange(mNewTaskDeadlineTime.Text, e, mNewTaskDeadlineTime, mNewTaskWrongDate);
             };
 
             //TimePicker button:
@@ -140,21 +140,22 @@ namespace functional_bubble.NET
         private void MBtnCreateTask_Click(object sender, EventArgs e)
         {
             //User clicked the Confirmation Button
-            if (!DateTime.TryParseExact(mNewTaskDeadlineDate.Text,"dd/MM/yyyy",null, System.Globalization.DateTimeStyles.None, out _))
-            { 
+            if (!DateTime.TryParseExact(mNewTaskDeadlineDate.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out _))
+            {
                 //try to parse the date from string to DateTime, if it is wrong, execute this if statement
                 mNewTaskWrongDate.Text = "Wrong Date";
                 return;
             }
-            if (!DateTime.TryParseExact(mNewTaskDeadlineTime.Text,"HH:mm",null, System.Globalization.DateTimeStyles.None, out _))
-            { 
+            if (!DateTime.TryParseExact(mNewTaskDeadlineTime.Text, "HH:mm", null, System.Globalization.DateTimeStyles.None, out _))
+            {
                 //try to parse the time from string to DateTime, if it is wrong, execute this if statement
                 mNewTaskWrongDate.Text = "Wrong Time";
-                return; 
+                return;
             }
             mNewTask.Title = mNewTaskTitle.Text;
             mNewTask.Description = mNewTaskDescription.Text;
-            mNewTask.Priority = Array.IndexOf(mSpinnerEntries, mNewTaskPriority.SelectedItem.ToString()); //mNewTaskPriority.SelectedItem.ToString();
+            mNewTask.Priority = Array.IndexOf(mPrioritySpinnerEntries, mNewTaskPriority.SelectedItem.ToString());
+            mNewTask.Label = Array.IndexOf(mLabelSpinnerEntries, mNewTaskLabel.SelectedItem.ToString()); 
             mNewTask.Deadline = DateTime.Parse(dateForTheseAmericans + " " + mNewTaskDeadlineTime.Text);
             if (mNewTask.Deadline < DateTime.Now) //If the date provided already happened
             {

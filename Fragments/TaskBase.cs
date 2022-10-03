@@ -14,6 +14,8 @@ using AndroidX.Navigation;
 using functional_bubble.NET.Classes.Dialogs;
 using AndroidX.ConstraintLayout.Widget;
 using Android.App;
+using Android.Graphics.Drawables;
+using Android.Graphics;
 
 namespace functional_bubble.NET.Fragments
 {
@@ -36,7 +38,7 @@ namespace functional_bubble.NET.Fragments
 
             int ID = Arguments.GetInt("taskID");//get id of a task passed from ToDo fragment
             TaskHandler db = new TaskHandler();
-            Task mTask = db.Get(ID);
+            mTask = db.Get(ID);
 
             //Tasks Title:
             EditText title = view.FindViewById<EditText>(Resource.Id.task_base_title);
@@ -180,12 +182,14 @@ namespace functional_bubble.NET.Fragments
                 Console.WriteLine("You loose 2000 zł"); 
             }
             mTask.Deadline = newDate + mTask.Deadline.TimeOfDay; //add the new date and old time to create a new time
+            mTask.update_data(); //update record in the database
             taskDeadline.Text = mTask.Deadline.ToString("dd/MM/yyyy HH:mm"); //change the date in Task fragemnt
         }
         public void TimeChange(int hours, int minutes)
         {
             TimeSpan newTime = new TimeSpan(hours, minutes,0); //create a new time span equal to the new time
             mTask.Deadline = mTask.Deadline.Date.Add(newTime); //set the new deadline to be the old date set with the time of 00:00 and add a new time to it
+            mTask.update_data(); //update record in the database
             taskDeadline.Text = mTask.Deadline.ToString("dd/MM/yyyy HH:mm"); //change the time in Task fragemnt
         }
 
