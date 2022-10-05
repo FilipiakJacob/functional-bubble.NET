@@ -96,6 +96,10 @@ namespace functional_bubble.NET.Classes
             return allTasks.AsEnumerable();
         }
 
+        /// <summary>
+        /// sorting tasks by priorities and deadline
+        /// </summary>
+        /// <returns>List<Task> sortedTasks</returns>
         public List<Task> GetSortedTasks()
         {
             List<Task> allTasksList = GetAllTasks();
