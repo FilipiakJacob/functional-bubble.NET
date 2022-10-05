@@ -107,7 +107,7 @@ namespace functional_bubble.NET.Classes
             //LINQ expression
             var sortedTasks = allTasksList. //takes allTasks
                 OrderByDescending(t => t.Priority). //order them by priorities (descending bc highest priority is 3)
-                ThenByDescending(t => t.Deadline).ToList(); //order them by deadline descending
+                ThenBy(t => t.Deadline).ToList(); //order them by deadline descending
 
             return sortedTasks;
         }
