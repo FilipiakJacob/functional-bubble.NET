@@ -143,6 +143,7 @@ namespace functional_bubble.NET.Classes
         /// <param name="task"></param>
         public void DeleteTask(Task task)
         {
+            //TODO: uncomment this snippet for implementation of penalty system
             //CheckIfAbandonPenalty(task);  // line 102
             _db.Delete(task);
         }
