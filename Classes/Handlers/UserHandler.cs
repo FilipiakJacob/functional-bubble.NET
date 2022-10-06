@@ -200,7 +200,7 @@ namespace functional_bubble.NET.Classes
             Update(user); //update user in database 
         }
 
-        #endregion
+            #endregion
 
         #endregion
 
@@ -242,7 +242,7 @@ namespace functional_bubble.NET.Classes
         {
             for (int i = 1; i < userTable.Count; i++)
             {
-                _db.Query<User>("DELETE FROM User WHERE id={0}", i);
+                _db.Delete<User>(i);
             }
         }
 
