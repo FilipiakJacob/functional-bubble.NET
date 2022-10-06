@@ -44,7 +44,7 @@ namespace functional_bubble.NET.Classes
         /// <returns>List of user objects</returns>
         public List<User> GetAll()
         {
-            List<User> userTable = _db.Query<User>("SELECT * FROM User");
+            List<User> userTable = _db.Table<User>().ToList();
             return userTable;
         }
 
