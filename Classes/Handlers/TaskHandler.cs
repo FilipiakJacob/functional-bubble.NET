@@ -23,6 +23,7 @@ namespace functional_bubble.NET.Classes
         /// <param name="task"></param>
         public void Add(Task task) 
         {
+            //TODO: uncomment this snippet for reward implementation
             //UserHandler userHandler = new UserHandler();
 
             //task.CoinsReward = userHandler.CalculateReward(task);
@@ -77,7 +78,8 @@ namespace functional_bubble.NET.Classes
         /// <returns>List of tasks object</returns>
         public List<Task> GetAllTasks()
         {
-            List<Task> allTasks = _db.Query<Task>("SELECT * FROM Tasks");
+            List<Task> allTasks = _db.Table<Task>().ToList();
+
             return allTasks;
         }
 
