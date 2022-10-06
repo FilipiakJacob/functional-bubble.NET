@@ -72,24 +72,21 @@ namespace functional_bubble.NET.Classes
 
             TimeSpan result = DateTime.Now.Subtract(user.LastCompletedTaskDate);
 
-            if (result.Days == -1) // condition when user's last completed task isn't with todays date
-            {
-                AddDayStreak(user);
-                return true;
-            }
             //condition for situation when user completes task, but didn't complete task the day before
-            else if (result.Days < -1)
+            if (result.Days < -1)
             {
                 ZeroStreak(user);
                 return false;
             }
-            //condition for situation when user completes multiple tasks in one day
-            else if (result.Days == 0)
+            // condition when user's last completed task isn't with todays date
+            else if (result.Days == -1) 
             {
-                return true;
+                AddDayStreak(user);
             }
-            return true;
+            //if any of upper if statements wasn't triggered it means
+            //that user's LastCompletedTaskDate is today and his streak is active
 
+            return true;
         }
 
         /// <summary>
