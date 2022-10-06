@@ -128,9 +128,9 @@ namespace functional_bubble.NET.Classes
         /// <returns>IEnumerable sortedTasks</returns>
         public IEnumerable<Task> GetSortedTasksAsIEnumerable()
         {
-            List<Task> sortedTasks = GetSortedTasks();
+            IEnumerable<Task> sortedTasks = GetSortedTasks();
 
-            return sortedTasks.AsEnumerable();
+            return sortedTasks;
         }
 
         #endregion
