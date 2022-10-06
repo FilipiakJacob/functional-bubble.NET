@@ -77,15 +77,12 @@ namespace functional_bubble.NET.Classes
 
         public List<Task> GetSortedTasks() // return sorted tasks by priorities and deadline
         {
-            List<Task> sortedTasks = new List<Task>();
-            List<Task> tempTasks = new List<Task>();
+            List<Task> allTasksList = GetAllTasks();
 
-            for (int i = HIGHEST_PRIORITY; i >= LOWEST_PRIORITY; i--)
-            {
-                tempTasks = _db.Query<Task>("SELECT * FROM Tasks WHERE Priority=?", i);
-                SortedByDeadlineTasks(tempTasks);
-                sortedTasks.AddRange(tempTasks);
-            }
+            //LINQ expression
+            var sortedTasks = allTasksList. //takes allTasks
+                OrderByDescending(t => t.Priority). //order them by priorities (descending bc highest priority is 3)
+                ThenBy(t => t.Deadline).ToList(); //order them by deadline descending
 
             return sortedTasks;
         }

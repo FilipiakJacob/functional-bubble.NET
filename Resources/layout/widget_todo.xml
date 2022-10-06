@@ -61,6 +61,7 @@
                     android:textSize="16sp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="14sp"
+                    android:maxLines="1"
                     android:textColor="@android:color/black"/>
                 <TextView
                     android:id="@+id/task_row_time_left_1"
@@ -71,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/material_text_size_sp"
                     android:layout_marginRight="10dp"
+                    android:maxLines="1"
                     android:textColor="@android:color/black"/>
         </RelativeLayout>
 
@@ -81,7 +83,12 @@
             android:id="@+id/task_row_2"
             android:layout_below="@+id/task_row_1"
             android:visibility="gone">
-
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"
+                    android:layout_marginRight="10.0dp"
+                    android:layout_marginLeft="10.0dp"/>
                 <TextView
                     android:id="@+id/task_row_title_2"
                     android:text="Title"
@@ -92,6 +99,7 @@
                     android:textSize="16sp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="14sp"
+                    android:maxLines="1"
                     android:textColor="@android:color/black"/>
                 <TextView
                     android:id="@+id/task_row_time_left_2"
@@ -102,6 +110,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/material_text_size_sp"
                     android:layout_marginRight="10dp"
+                    android:maxLines="1"
                     android:textColor="@android:color/black"/>
         </RelativeLayout>
 
@@ -112,6 +121,12 @@
             android:id="@+id/task_row_3"
             android:layout_below="@+id/task_row_2"
             android:visibility="gone">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"
+                    android:layout_marginRight="10.0dp"
+                    android:layout_marginLeft="10.0dp"/>
                 <TextView
                     android:id="@+id/task_row_title_3"
                     android:text="Title"
@@ -122,6 +137,7 @@
                     android:textSize="16sp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="14sp"
+                    android:maxLines="1"
                     android:textColor="@android:color/black" />
                 <TextView
                     android:id="@+id/task_row_time_left_3"
@@ -132,6 +148,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/material_text_size_sp"
                     android:layout_marginRight="10dp"
+                    android:maxLines="1"
                     android:textColor="@android:color/black"/>
         </RelativeLayout>
 
@@ -142,6 +159,12 @@
             android:id="@+id/task_row_4"
             android:layout_below="@+id/task_row_3"
             android:visibility="gone">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"
+                    android:layout_marginRight="10.0dp"
+                    android:layout_marginLeft="10.0dp"/>
                 <TextView
                     android:id="@+id/task_row_title_4"
                     android:text="Title"
@@ -152,6 +175,7 @@
                     android:textSize="16sp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="14sp"
+                    android:maxLines="1"
                     android:textColor="@android:color/black"/>
                 <TextView
                     android:id="@+id/task_row_time_left_4"
@@ -162,6 +186,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/material_text_size_sp"
                     android:layout_marginRight="10dp"
+                    android:maxLines="1"
                     android:textColor="@android:color/black"/>
         </RelativeLayout>
 
