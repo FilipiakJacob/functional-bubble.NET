@@ -16,11 +16,6 @@ namespace functional_bubble.NET.Classes
     public class TaskHandler : DatabaseHandler
     {
 
-        #region CONSTANTS
-        public const int LOWEST_PRIORITY = 0; //lowest priority id in database
-        public const int HIGHEST_PRIORITY = 3; //highest priority id in database
-        #endregion
-
         #region ADD/UPDATE
         /// <summary>
         /// inserts task object to Task table
