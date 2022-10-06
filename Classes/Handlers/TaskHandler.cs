@@ -89,8 +89,9 @@ namespace functional_bubble.NET.Classes
         /// <returns>IEnumerable allTasks</returns>
         public IEnumerable<Task> GetAllTasksAsIEnumerable()
         {
-            List<Task> allTasks = GetAllTasks();
-            return allTasks.AsEnumerable();
+            IEnumerable<Task> allTasks = GetAllTasks();
+
+            return allTasks;
         }
 
         /// <summary>
