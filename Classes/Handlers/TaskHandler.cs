@@ -28,9 +28,9 @@ namespace functional_bubble.NET.Classes
         /// <param name="task"></param>
         public void Add(Task task) 
         {
-            //UserHandler userHandler = new UserHandler();
+            UserHandler userHandler = new UserHandler();
 
-            //task.CoinsReward = userHandler.CalculateReward(task);
+            task.CoinsReward = userHandler.CalculateReward(task);
 
             _db.Insert(task);    
         }
@@ -144,7 +144,7 @@ namespace functional_bubble.NET.Classes
         /// <param name="task"></param>
         public void DeleteTask(Task task)
         {
-            //CheckIfAbandonPenalty(task);  // line 102
+            CheckIfAbandonPenalty(task);  // line 102
             _db.Delete(task);
         }
 
