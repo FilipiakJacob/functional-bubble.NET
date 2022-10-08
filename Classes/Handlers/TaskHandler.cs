@@ -15,9 +15,13 @@ namespace functional_bubble.NET.Classes
 {
     public class TaskHandler : DatabaseHandler
     {
+
+        #region CONSTANTS
         public const int LOWEST_PRIORITY = 0; //lowest priority id in database
         public const int HIGHEST_PRIORITY = 3; //highest priority id in database
+        #endregion
 
+        #region ADD/UPDATE
         /// <summary>
         /// inserts task object to Task table
         /// </summary>
@@ -29,33 +33,6 @@ namespace functional_bubble.NET.Classes
             //task.CoinsReward = userHandler.CalculateReward(task);
 
             _db.Insert(task);    
-        }
-
-        /// <summary>
-        /// returns task object with given id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>Task object</returns>
-        public Task Get(int id)
-        {
-            Task task = _db.Get<Task>(id);
-            return task;
-        }
-
-        /// <summary>
-        /// completing task, 
-        /// adding reward to user's account.
-        /// deleting completed task
-        /// </summary>
-        /// <param name="id"></param>
-        public void CompleteTask(int id)  
-        {
-            Task task = _db.Get<Task>(id); //get task
-            UserHandler user = new UserHandler(); //get user
-
-            user.AddRewardCoins(task); //adding reward to user's account
-
-            DeleteTask(task); //deleting completed task from database
         }
 
         /// <summary>
@@ -85,22 +62,41 @@ namespace functional_bubble.NET.Classes
                     break;
             }
         }
+        #endregion
+
+        #region GETTERS
+        /// <summary>
+        /// returns task object with given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Task object</returns>
+        public Task Get(int id)
+        {
+            Task task = _db.Get<Task>(id);
+            return task;
+        }
 
         /// <summary>
         /// Get all Tasks from table
         /// </summary>
         /// <returns>List of tasks object</returns>
-        public List<Task> GetAllTasks() 
+        public List<Task> GetAllTasks()
         {
             List<Task> allTasks = _db.Query<Task>("SELECT * FROM Tasks");
             return allTasks;
         }
 
         /// <summary>
-        /// return sorted tasks by priorities and then deadline
+        /// You get all tasks as IEnumerable
         /// </summary>
-        /// <returns>List of task objects</returns>
-        public List<Task> GetSortedTasks() // 
+        /// <returns>IEnumerable allTasks</returns>
+        public IEnumerable<Task> GetAllTasksAsIEnumerable()
+        {
+            List<Task> allTasks = GetAllTasks();
+            return allTasks.AsEnumerable();
+        }
+
+        public List<Task> GetSortedTasks() // return sorted tasks by priorities and deadline
         {
             List<Task> sortedTasks = new List<Task>();
             List<Task> tempTasks = new List<Task>();
@@ -113,6 +109,71 @@ namespace functional_bubble.NET.Classes
             }
 
             return sortedTasks;
+        }
+
+
+        /// <summary>
+        /// Get n amount of SortedTasks in form of IEnumerable right now!
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns>IEnumerable nTasks</returns>
+        public IEnumerable<Task> GetSortedTasks(int n)
+        {
+            IEnumerable<Task> nTasks = GetSortedTasks();
+            return nTasks.Take(n);
+        }
+
+        /// <summary>
+        /// You get sorted tasks by priorities and deadline as IEnumerable 
+        /// </summary>
+        /// <returns>IEnumerable sortedTasks</returns>
+        public IEnumerable<Task> GetSortedTasksAsIEnumerable()
+        {
+            List<Task> sortedTasks = GetSortedTasks();
+
+            return sortedTasks.AsEnumerable();
+        }
+
+        #endregion
+
+        #region DELETE
+        //@author Mateusz Staszek
+        /// <summary>
+        /// Delete task from database
+        /// </summary>
+        /// <param name="task"></param>
+        public void DeleteTask(Task task)
+        {
+            //CheckIfAbandonPenalty(task);  // line 102
+            _db.Delete(task);
+        }
+
+        //@author Mateusz Staszek
+        /// <summary>
+        ///for TESTING purpouses only
+        ///deletes all record in the database
+        /// </summary>
+        public void DeleteAll()
+        {
+            _db.DeleteAll<Task>();
+        }
+        #endregion
+
+        #region OTHER_METHODS
+        /// <summary>
+        /// completing task, 
+        /// adding reward to user's account.
+        /// deleting completed task
+        /// </summary>
+        /// <param name="id"></param>
+        public void CompleteTask(int id)  
+        {
+            Task task = _db.Get<Task>(id); //get task
+            UserHandler user = new UserHandler(); //get user
+
+            user.AddRewardCoins(task); //adding reward to user's account
+
+            DeleteTask(task); //deleting completed task from database
         }
 
         /// <summary>
@@ -144,28 +205,7 @@ namespace functional_bubble.NET.Classes
 
             // if no does nothing
         }
-
-
-        //@author Mateusz Staszek
-        /// <summary>
-        /// Delete task from database
-        /// </summary>
-        /// <param name="task"></param>
-        public void DeleteTask(Task task)
-        {
-            //CheckIfAbandonPenalty(task);  // line 102
-            _db.Delete(task);
-        }
-
-        //@author Mateusz Staszek
-        /// <summary>
-        ///for TESTING purpouses only
-        ///deletes all record in the database
-        /// </summary>
-        public void DeleteAll()
-        {
-            _db.DeleteAll<Task>();
-        }
+        #endregion
 
     }
 }

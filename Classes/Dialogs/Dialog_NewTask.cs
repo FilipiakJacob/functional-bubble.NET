@@ -73,7 +73,6 @@ namespace functional_bubble.NET
             AlertDialog dialog = builder.Create();
             dialog.Window.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Transparent));
 
-
             //Task Title:
             mNewTaskTitle = view.FindViewById<EditText>(Resource.Id.new_task_title);
 
