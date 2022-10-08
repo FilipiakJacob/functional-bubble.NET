@@ -16,11 +16,6 @@ namespace functional_bubble.NET.Classes
     public class TaskHandler : DatabaseHandler
     {
 
-        #region CONSTANTS
-        public const int LOWEST_PRIORITY = 0; //lowest priority id in database
-        public const int HIGHEST_PRIORITY = 3; //highest priority id in database
-        #endregion
-
         #region ADD/UPDATE
         /// <summary>
         /// inserts task object to Task table
@@ -28,6 +23,7 @@ namespace functional_bubble.NET.Classes
         /// <param name="task"></param>
         public void Add(Task task) 
         {
+            //TODO: uncomment this snippet for reward implementation
             //UserHandler userHandler = new UserHandler();
 
             //task.CoinsReward = userHandler.CalculateReward(task);
@@ -82,7 +78,8 @@ namespace functional_bubble.NET.Classes
         /// <returns>List of tasks object</returns>
         public List<Task> GetAllTasks()
         {
-            List<Task> allTasks = _db.Query<Task>("SELECT * FROM Tasks");
+            List<Task> allTasks = _db.Table<Task>().ToList();
+
             return allTasks;
         }
 
@@ -92,21 +89,23 @@ namespace functional_bubble.NET.Classes
         /// <returns>IEnumerable allTasks</returns>
         public IEnumerable<Task> GetAllTasksAsIEnumerable()
         {
-            List<Task> allTasks = GetAllTasks();
-            return allTasks.AsEnumerable();
+            IEnumerable<Task> allTasks = GetAllTasks();
+
+            return allTasks;
         }
 
-        public List<Task> GetSortedTasks() // return sorted tasks by priorities and deadline
+        /// <summary>
+        /// sorting tasks by priorities and deadline
+        /// </summary>
+        /// <returns>List<Task> sortedTasks</returns>
+        public List<Task> GetSortedTasks()
         {
-            List<Task> sortedTasks = new List<Task>();
-            List<Task> tempTasks = new List<Task>();
+            List<Task> allTasksList = GetAllTasks();
 
-            for (int i = HIGHEST_PRIORITY; i >= LOWEST_PRIORITY; i--)
-            {
-                tempTasks = _db.Query<Task>("SELECT * FROM Tasks WHERE Priority=?", i);
-                SortedByDeadlineTasks(tempTasks);
-                sortedTasks.AddRange(tempTasks);
-            }
+            //LINQ expression
+            var sortedTasks = allTasksList. //takes allTasks
+                OrderByDescending(t => t.Priority). //order them by priorities (descending bc highest priority is 3)
+                ThenBy(t => t.Deadline).ToList(); //order them by deadline descending
 
             return sortedTasks;
         }
@@ -129,9 +128,9 @@ namespace functional_bubble.NET.Classes
         /// <returns>IEnumerable sortedTasks</returns>
         public IEnumerable<Task> GetSortedTasksAsIEnumerable()
         {
-            List<Task> sortedTasks = GetSortedTasks();
+            IEnumerable<Task> sortedTasks = GetSortedTasks();
 
-            return sortedTasks.AsEnumerable();
+            return sortedTasks;
         }
 
 
@@ -155,6 +154,7 @@ namespace functional_bubble.NET.Classes
         /// <param name="task"></param>
         public void DeleteTask(Task task)
         {
+            //TODO: uncomment this snippet for implementation of penalty system
             //CheckIfAbandonPenalty(task);  // line 102
             _db.Delete(task);
         }
@@ -185,17 +185,6 @@ namespace functional_bubble.NET.Classes
             user.AddRewardCoins(task); //adding reward to user's account
 
             DeleteTask(task); //deleting completed task from database
-        }
-
-        /// <summary>
-        /// sort list of tasks by deadline
-        /// </summary>
-        /// <param name="tasks"></param>
-        /// <returns>List of tasks objects</returns>
-        public List<Task> SortedByDeadlineTasks(List<Task> tasks) 
-        {
-            tasks.Sort((a, b) => a.Deadline.CompareTo(b.Deadline));
-            return tasks;
         }
 
         /// <summary>
