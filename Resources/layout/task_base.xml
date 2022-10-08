@@ -137,9 +137,9 @@
         app:srcCompat="@drawable/zegar" />
 
     <ImageView
-        android:id="@+id/task_base_priority_and_label_view"        android:layout_width="0dp"
+        android:id="@+id/task_base_priority_and_label_view"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/label_priority_drawable"
         app:srcCompat="@drawable/gradient_try"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="@+id/task_base_goBackButton"
@@ -168,22 +168,11 @@
         android:text="Label"
         app:layout_constraintBottom_toBottomOf="@+id/task_base_priority"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toEndOf="@+id/task_base_slash"
-        app:layout_constraintTop_toTopOf="@+id/task_base_priority" />
-
-    <TextView
-        android:id="@+id/task_base_slash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="/"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/task_base_priority"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.27"
         app:layout_constraintStart_toEndOf="@+id/task_base_priority"
         app:layout_constraintTop_toTopOf="@+id/task_base_priority" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
