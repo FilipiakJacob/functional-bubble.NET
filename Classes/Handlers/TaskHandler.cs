@@ -134,6 +134,17 @@ namespace functional_bubble.NET.Classes
             return sortedTasks.AsEnumerable();
         }
 
+
+        public IEnumerable<Task> GetFilteredTasks(string filter,bool ascend)
+        {
+
+            if (!ascend)
+            {
+                return _db.Query<Task>("SELECT * ORDER BY ? DESC", filter);
+            }
+
+            return _db.Query<Task>("SELECT * ORDER BY ?", filter); 
+        }
         #endregion
 
         #region DELETE
