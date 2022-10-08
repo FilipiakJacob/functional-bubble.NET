@@ -16,7 +16,7 @@
 	<string-array name="labels_array">
 		<item>Work</item>
 		<item>Life</item>
-		<item>Drugs</item>
+		<item>Fishing</item>
 		<item>Hobby</item>
 	</string-array>
 	<string name="plus_button_desc">A plus icon</string>

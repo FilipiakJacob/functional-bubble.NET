@@ -59,7 +59,6 @@ namespace functional_bubble.NET.Fragments
                 {
                     //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
                     adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI 
-                    
                 };
             };
             

@@ -109,18 +109,19 @@ namespace functional_bubble.NET.Classes
             }
             if (date.Length == 10) 
             { 
-                Int32.TryParse(date.Substring(6, 4), out int l); if (monthNum == 2) 
+                Int32.TryParse(date.Substring(6, 4), out int l); 
+                if (monthNum == 2) 
                 {
                     if (!correctFebruary(dayNum, l)) 
                     { 
                         badDateText.Text = "Wrong February";
                         properDate = false; 
                     } 
-                    if (properDate) 
-                    {
-                        americanDate = normalToAmericanDate(date); 
-                    } 
                 } 
+                if (properDate)
+                {
+                    americanDate = normalToAmericanDate(date);
+                }
             }
             if (properDate) 
             {

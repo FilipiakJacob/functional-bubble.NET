@@ -14,6 +14,8 @@ using AndroidX.Navigation;
 using functional_bubble.NET.Classes.Dialogs;
 using AndroidX.ConstraintLayout.Widget;
 using Android.App;
+using Android.Graphics.Drawables;
+using Android.Graphics;
 
 namespace functional_bubble.NET.Fragments
 {
@@ -22,6 +24,9 @@ namespace functional_bubble.NET.Fragments
         Calendar mCalendar = new Calendar();
         Task mTask;
         TextView taskDeadline;
+        public string[] mPrioritiesArray = Application.Context.Resources.GetStringArray(Resource.Array.priorities_array);
+        public string[] mLabelsArray = Application.Context.Resources.GetStringArray(Resource.Array.labels_array);
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -33,7 +38,7 @@ namespace functional_bubble.NET.Fragments
 
             int ID = Arguments.GetInt("taskID");//get id of a task passed from ToDo fragment
             TaskHandler db = new TaskHandler();
-            Task mTask = db.Get(ID);
+            mTask = db.Get(ID);
 
             //Tasks Title:
             EditText title = view.FindViewById<EditText>(Resource.Id.task_base_title);
@@ -52,6 +57,14 @@ namespace functional_bubble.NET.Fragments
                 mTask.Description = description.Text;
                 mTask.update_data(); //update record in database
             };
+
+            //Task Priority
+            TextView priority = view.FindViewById<TextView>(Resource.Id.task_base_priority);
+            priority.Text = mPrioritiesArray[mTask.Priority];
+
+            //Task Label
+            TextView label = view.FindViewById<TextView>(Resource.Id.task_base_label);
+            label.Text = mLabelsArray[mTask.Label];
 
             //Go Back Button:
             view.FindViewById<Button>(Resource.Id.task_base_goBackButton).Click += (object sender, EventArgs e) => 
@@ -132,6 +145,7 @@ namespace functional_bubble.NET.Fragments
                     }
                 };
             };
+
             //Time Edit Button:
             ImageView editTime = view.FindViewById<ImageView>(Resource.Id.task_base_time_edit_image);
             editTime.Click += (object sender, EventArgs e) =>
@@ -168,12 +182,14 @@ namespace functional_bubble.NET.Fragments
                 Console.WriteLine("You loose 2000 zł"); 
             }
             mTask.Deadline = newDate + mTask.Deadline.TimeOfDay; //add the new date and old time to create a new time
+            mTask.update_data(); //update record in the database
             taskDeadline.Text = mTask.Deadline.ToString("dd/MM/yyyy HH:mm"); //change the date in Task fragemnt
         }
         public void TimeChange(int hours, int minutes)
         {
             TimeSpan newTime = new TimeSpan(hours, minutes,0); //create a new time span equal to the new time
             mTask.Deadline = mTask.Deadline.Date.Add(newTime); //set the new deadline to be the old date set with the time of 00:00 and add a new time to it
+            mTask.update_data(); //update record in the database
             taskDeadline.Text = mTask.Deadline.ToString("dd/MM/yyyy HH:mm"); //change the time in Task fragemnt
         }
 

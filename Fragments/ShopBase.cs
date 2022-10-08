@@ -29,7 +29,7 @@ namespace functional_bubble.NET.Fragments
             quackButton.SoundEffectsEnabled = false; //disable deafult button clicking sound
             quackButton.Click += (object sender, EventArgs e) =>
             {
-                mPlayer = Android.Media.MediaPlayer.Create(Android.App.Application.Context, Resource.Raw.easter_egg);//get the sound to play
+                mPlayer = Android.Media.MediaPlayer.Create(Android.App.Application.Context, Resource.Raw.quack);//get the sound to play
                 mPlayer.Start();
             };
             return view;
