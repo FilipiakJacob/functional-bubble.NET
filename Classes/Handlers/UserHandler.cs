@@ -72,32 +72,47 @@ namespace functional_bubble.NET.Classes
 
             TimeSpan result = DateTime.Now.Subtract(user.LastCompletedTaskDate);
 
-
-            if (result.Days == -1) // condition when user's last completed task isn't with todays date
-            {
-                user.LastCompletedTaskDate = DateTime.Now;
-                user.StreakIsActive = true;
-                user.StreakCount++;
-
-                Update(user);
-                return true;
-            }
             //condition for situation when user completes task, but didn't complete task the day before
-            else if (result.Days < -1)
+            if (result.Days < -1)
             {
-                user.StreakCount = 0;
-                user.StreakIsActive = false;
-                Update(user);
+                ZeroStreak(user);
                 return false;
             }
-            //condition for situation when user completes multiple tasks in one day
-            else if (result.Days == 0)
+            // condition when user's last completed task isn't with todays date
+            else if (result.Days == -1) 
             {
-                return true;
+                AddDayStreak(user);
             }
-            return true;
+            //if any of upper if statements wasn't triggered it means
+            //that user's LastCompletedTaskDate is today and his streak is active
 
+            return true;
         }
+
+        /// <summary>
+        /// Makes Streak active, adds to streakCount and changes LastCompletedTaskDate to now
+        /// </summary>
+        /// <param name="user">user</param>
+        public void AddDayStreak(User user)
+        {
+            user.LastCompletedTaskDate = DateTime.Now;
+            user.StreakIsActive = true;
+            user.StreakCount++;
+
+            Update(user);
+        }
+
+        /// <summary>
+        /// Makes streak unactive, zeros StreakCount
+        /// </summary>
+        /// <param name="user">user</param>
+        public void ZeroStreak(User user)
+        {
+            user.StreakCount = 0;
+            user.StreakIsActive = false;
+
+            Update(user);
+        } 
 
         #endregion
 
