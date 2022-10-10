@@ -183,9 +183,9 @@ namespace functional_bubble.NET.Classes
 
             user.AddRewardCoins(task); //adding reward to user's account
 
-            if (task.Repeatable)
+            if (task.Repeatable) // if task is repeatable then we dont delete this task
             {
-                RepeatableTask(task);
+                RepeatableTask(task); // just change its variables :)
                 return;
             }
 
