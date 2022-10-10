@@ -44,7 +44,7 @@ namespace functional_bubble.NET.Classes
         /// <returns>List of user objects</returns>
         public List<User> GetAll()
         {
-            List<User> userTable = _db.Query<User>("SELECT * FROM User");
+            List<User> userTable = _db.Table<User>().ToList();
             return userTable;
         }
 
@@ -72,32 +72,47 @@ namespace functional_bubble.NET.Classes
 
             TimeSpan result = DateTime.Now.Subtract(user.LastCompletedTaskDate);
 
-
-            if (result.Days == -1) // condition when user's last completed task isn't with todays date
-            {
-                user.LastCompletedTaskDate = DateTime.Now;
-                user.StreakIsActive = true;
-                user.StreakCount++;
-
-                Update(user);
-                return true;
-            }
             //condition for situation when user completes task, but didn't complete task the day before
-            else if (result.Days < -1)
+            if (result.Days < -1)
             {
-                user.StreakCount = 0;
-                user.StreakIsActive = false;
-                Update(user);
+                ZeroStreak(user);
                 return false;
             }
-            //condition for situation when user completes multiple tasks in one day
-            else if (result.Days == 0)
+            // condition when user's last completed task isn't with todays date
+            else if (result.Days == -1) 
             {
-                return true;
+                AddDayStreak(user);
             }
-            return true;
+            //if any of upper if statements wasn't triggered it means
+            //that user's LastCompletedTaskDate is today and his streak is active
 
+            return true;
         }
+
+        /// <summary>
+        /// Makes Streak active, adds to streakCount and changes LastCompletedTaskDate to now
+        /// </summary>
+        /// <param name="user">user</param>
+        public void AddDayStreak(User user)
+        {
+            user.LastCompletedTaskDate = DateTime.Now;
+            user.StreakIsActive = true;
+            user.StreakCount++;
+
+            Update(user);
+        }
+
+        /// <summary>
+        /// Makes streak unactive, zeros StreakCount
+        /// </summary>
+        /// <param name="user">user</param>
+        public void ZeroStreak(User user)
+        {
+            user.StreakCount = 0;
+            user.StreakIsActive = false;
+
+            Update(user);
+        } 
 
         #endregion
 
@@ -124,7 +139,7 @@ namespace functional_bubble.NET.Classes
             int reward;
             TimeSpan daysToDeadline = task.Deadline.Subtract(DateTime.Now); // days to deadline 
             Random rnd = new Random(); // random that will generate base variable that will be multiplied by multipliers
-            int baseCoin = rnd.Next(1, daysToDeadline.Days); // random base variable that has range from 1 to substract (line 104)
+            int baseCoin = rnd.Next(1, (daysToDeadline.Days + 1)); // random base variable that has range from 1 to substract (line 104)
 
             float streakMultiplier = CalculateStreakMultiplier();
 
@@ -200,7 +215,7 @@ namespace functional_bubble.NET.Classes
             Update(user); //update user in database 
         }
 
-        #endregion
+            #endregion
 
         #endregion
 
@@ -242,7 +257,7 @@ namespace functional_bubble.NET.Classes
         {
             for (int i = 1; i < userTable.Count; i++)
             {
-                _db.Query<User>("DELETE FROM User WHERE id={0}", i);
+                _db.Delete<User>(i);
             }
         }
 
