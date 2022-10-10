@@ -78,17 +78,9 @@ namespace functional_bubble.NET.Classes
         /// <returns>List of tasks object</returns>
         public List<Task> GetAllTasks()
         {
+            CheckAndAdaptRepeatableTasks();
+
             List<Task> allTasks = _db.Table<Task>().ToList();
-
-            var repeatableTasks = allTasks.
-                Where(t => t.DoneToday == true).
-                Where(t => t.LastCompleted != DateTime.Today).ToList();
-
-            foreach (var task in repeatableTasks)
-            {
-                task.DoneToday = false;
-                Update(task);
-            }
 
             return allTasks;
         }
@@ -232,6 +224,22 @@ namespace functional_bubble.NET.Classes
             task.Deadline = task.Deadline.AddDays(1);
 
             Update(task);
+        }
+
+        /// <summary>
+        /// Checks if repeatable tasks have correct parameters and if not changes them
+        /// </summary>
+        public void CheckAndAdaptRepeatableTasks()
+        {
+            var repeatableTasks = _db.Table<Task>().
+                Where(t => t.DoneToday == true).
+                Where(t => t.LastCompleted != DateTime.Today).ToList();
+
+            foreach (var task in repeatableTasks)
+            {
+                task.DoneToday = false;
+                Update(task);
+            }
         }
         #endregion
 
