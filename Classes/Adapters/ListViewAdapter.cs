@@ -115,8 +115,9 @@ namespace functional_bubble.NET
         public void Add(Task newTask)
         {
             //A method for adding new Tasks into the Task list
-            mItems.Add(newTask);
-            newTask.input_data();//place the newly created task in the database
+            TaskHandler db = new TaskHandler(); //create a new handler of Task table in the database
+            db.Add(newTask); //place the newly created task in the database
+            mItems = db.GetSortedTasks(); //update the list so that the added task is sorted in it
             NotifyDataSetChanged();//Refresh Task UI
         }
 

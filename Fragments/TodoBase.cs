@@ -42,8 +42,9 @@ namespace functional_bubble.NET.Fragments
         // OnViewCreated is called after OnCreateView and can access the inflated View to findById.
         {
             mainListView = view.FindViewById<ListView>(Resource.Id.MainView);
-            mdatabaseHandler = new TaskHandler();
-            mItems = mdatabaseHandler.GetAllTasks();
+            mdatabaseHandler = new TaskHandler(); //create a handler with methods related to handling the table with tasks in the database
+            mItems = mdatabaseHandler.GetSortedTasks();
+
 
 
             ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems, view);
@@ -59,6 +60,7 @@ namespace functional_bubble.NET.Fragments
                 {
                     //Method executed when onNewTaskEventArgs in Dialog_newTask is Invoked
                     adapter.Add(e.mNewTaskInEvent); //Add Task from onNewTaskEventArgs class as a new list row in Task UI 
+
                 };
             };
             

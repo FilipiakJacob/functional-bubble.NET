@@ -52,15 +52,7 @@ namespace functional_bubble.NET.Classes
         [Column("Pinned")]
         public bool Pinned { get; set; }
         
-        public int input_data()
-        ///This method fills in the data from the form and saves it to the database, as well as the task object.
-        {
-            //Create form
-            Console.WriteLine(Title);
-            TaskHandler db = new TaskHandler();
-            db.Add(this);
-            return 0;
-        }
+
         public int update_data()
         {
             //This method will update the Task in the database when called
@@ -69,12 +61,6 @@ namespace functional_bubble.NET.Classes
             return 0;
         }
 
-        public void gen_Id()
-        ///Search the database for a free ID number and return it
-        {
-            int id = 0; //TODO: Search the database, find a free Id number.
-            Id = id; 
-        }
 
         public int delete_data()
         ///This method deletes the task from the database and returns 0 if it was succesfull

@@ -48,6 +48,15 @@ namespace functional_bubble.NET.Fragments
                 mTask.Title = title.Text;
                 mTask.update_data(); //update record in database
             };
+            title.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
+            {
+                if (title.Text.Length == 30)
+                {
+                    //lower the keyboard and clear the focus if max length was reached
+                    title.Enabled = false;
+                    title.Enabled = true;
+                }
+            };
 
             //Tasks Description:
             EditText description = view.FindViewById<EditText>(Resource.Id.task_base_description);
@@ -174,6 +183,8 @@ namespace functional_bubble.NET.Fragments
 
             return view;
         }
+
+
         public void DateChange(bool penalty,DateTime newDate)
         {
             if (penalty) 

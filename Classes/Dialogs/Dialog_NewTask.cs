@@ -75,6 +75,15 @@ namespace functional_bubble.NET
 
             //Task Title:
             mNewTaskTitle = view.FindViewById<EditText>(Resource.Id.new_task_title);
+            mNewTaskTitle.TextChanged += (object sender, TextChangedEventArgs e) =>
+            {
+                if (mNewTaskTitle.Text.Length == 30)
+                {
+                    //lower the keyboard and clear the focus if max length was reached
+                    mNewTaskTitle.Enabled = false;
+                    mNewTaskTitle.Enabled = true;
+                }
+            };
 
             //Task Description:
             mNewTaskDescription = view.FindViewById<EditText>(Resource.Id.new_task_description);
@@ -135,6 +144,7 @@ namespace functional_bubble.NET
 
             return dialog;
         }
+
 
         private void MBtnCreateTask_Click(object sender, EventArgs e)
         {
