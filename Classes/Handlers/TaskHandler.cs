@@ -231,16 +231,22 @@ namespace functional_bubble.NET.Classes
         /// </summary>
         public void CheckAndAdaptRepeatableTasks()
         {
-            var repeatableTasks = _db.Table<Task>().
+            //this query only gets repeatable tasks that wasn't done today,
+            //but their parameters imply that them was
+
+            List<Task> repeatableTasks = _db.Table<Task>().
                 Where(t => t.DoneToday == true).
                 Where(t => t.LastCompleted != DateTime.Today).ToList();
 
+            //in this loop every repeatable task that wasnt correct
+            //gets a proper treatment and becomes correct
             foreach (var task in repeatableTasks)
             {
                 task.DoneToday = false;
                 Update(task);
             }
         }
+
         #endregion
 
     }
