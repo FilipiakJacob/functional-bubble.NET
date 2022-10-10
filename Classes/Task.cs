@@ -75,10 +75,11 @@ namespace functional_bubble.NET.Classes
             return 0;
         }
 
-        /* 
-         * this method checks if this.Deadline is before compared to Datetime.now (present time) 
-         * and if yes returns true which means task is expired 
-         */
+        /// <summary>
+        /// this method checks if this.Deadline is before compared to Datetime.now (present time) 
+        /// and if yes returns true which means task is expired 
+        /// </summary>
+        /// <returns>bool expired</returns>
         public bool CheckIfDeadlineExpired() 
         {
             return (this.Deadline < DateTime.Now);  

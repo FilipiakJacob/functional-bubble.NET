@@ -183,6 +183,12 @@ namespace functional_bubble.NET.Classes
 
             user.AddRewardCoins(task); //adding reward to user's account
 
+            if (task.Repeatable)
+            {
+                RepeatableTask(task);
+                return;
+            }
+
             DeleteTask(task); //deleting completed task from database
         }
 
@@ -203,6 +209,19 @@ namespace functional_bubble.NET.Classes
             }
 
             // if no does nothing
+        }
+
+        /// <summary>
+        /// changes var in repeatable task and updates this task
+        /// </summary>
+        /// <param name="task"></param>
+        public void RepeatableTask(Task task)
+        {
+            task.DoneToday = true;
+            task.LastCompleted = DateTime.Now;
+            task.Deadline = task.Deadline.AddDays(1);
+
+            Update(task);
         }
         #endregion
 
