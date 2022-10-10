@@ -23,10 +23,10 @@ namespace functional_bubble.NET.Classes
         /// <param name="task"></param>
         public void Add(Task task) 
         {
-            //TODO: uncomment this snippet for reward implementation
-            //UserHandler userHandler = new UserHandler();
+            UserHandler userHandler = new UserHandler();
 
-            //task.CoinsReward = userHandler.CalculateReward(task);
+
+            task.CoinsReward = userHandler.CalculateReward(task);
 
             _db.Insert(task);    
         }
@@ -154,8 +154,7 @@ namespace functional_bubble.NET.Classes
         /// <param name="task"></param>
         public void DeleteTask(Task task)
         {
-            //TODO: uncomment this snippet for implementation of penalty system
-            //CheckIfAbandonPenalty(task);  // line 102
+            CheckIfAbandonPenalty(task);
             _db.Delete(task);
         }
 
