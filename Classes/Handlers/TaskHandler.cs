@@ -80,6 +80,16 @@ namespace functional_bubble.NET.Classes
         {
             List<Task> allTasks = _db.Table<Task>().ToList();
 
+            var repeatableTasks = allTasks.
+                Where(t => t.DoneToday == true).
+                Where(t => t.LastCompleted != DateTime.Today).ToList();
+
+            foreach (var task in repeatableTasks)
+            {
+                task.DoneToday = false;
+                Update(task);
+            }
+
             return allTasks;
         }
 
