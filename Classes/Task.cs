@@ -49,8 +49,13 @@ namespace functional_bubble.NET.Classes
         public int Priority { get; set; }
         [Column("Repeatable")]
         public bool Repeatable { get; set; } = false;
+        [Column("DoneToday")]
+        public bool DoneToday { get; set; } = false;
+        [Column("LastCompleted")]
+        public DateTime LastCompleted { get; set; }
         [Column("Pinned")]
         public bool Pinned { get; set; }
+        
         
 
         public int update_data()
