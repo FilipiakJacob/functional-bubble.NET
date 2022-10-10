@@ -221,7 +221,8 @@ namespace functional_bubble.NET.Classes
         {
             task.DoneToday = true;
             task.LastCompleted = DateTime.Now;
-            task.Deadline = task.Deadline.AddDays(1);
+            task.Deadline = task.Deadline.AddDays(
+                task.RepeatEveryNDays);
 
             Update(task);
         }
