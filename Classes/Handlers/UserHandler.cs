@@ -227,7 +227,7 @@ namespace functional_bubble.NET.Classes
         public void CheckTableIfOK()
         {
             List<User> table = this.GetAll();
-            if (table == null) // if table is empty this method adds new user
+            if (table.Count == 0) // if table is empty this method adds new user
             {
                 InitialUserTable();
                 return;
