@@ -49,8 +49,15 @@ namespace functional_bubble.NET.Classes
         public int Priority { get; set; }
         [Column("Repeatable")]
         public bool Repeatable { get; set; } = false;
+        [Column("RepeatEveryNDays")]
+        public int RepeatEveryNDays { get; set; }
+        [Column("DoneToday")]
+        public bool DoneToday { get; set; } = false;
+        [Column("LastCompleted")]
+        public DateTime LastCompleted { get; set; }
         [Column("Pinned")]
         public bool Pinned { get; set; }
+        
         
 
         public int update_data()
@@ -70,10 +77,11 @@ namespace functional_bubble.NET.Classes
             return 0;
         }
 
-        /* 
-         * this method checks if this.Deadline is before compared to Datetime.now (present time) 
-         * and if yes returns true which means task is expired 
-         */
+        /// <summary>
+        /// this method checks if this.Deadline is before compared to Datetime.now (present time) 
+        /// and if yes returns true which means task is expired 
+        /// </summary>
+        /// <returns>bool expired</returns>
         public bool CheckIfDeadlineExpired() 
         {
             return (this.Deadline < DateTime.Now);  

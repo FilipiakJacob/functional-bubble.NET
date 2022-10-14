@@ -78,6 +78,8 @@ namespace functional_bubble.NET.Classes
         /// <returns>List of tasks object</returns>
         public List<Task> GetAllTasks()
         {
+            CheckAndAdaptRepeatableTasks();
+
             List<Task> allTasks = _db.Table<Task>().ToList();
 
             return allTasks;
@@ -183,6 +185,12 @@ namespace functional_bubble.NET.Classes
 
             user.AddRewardCoins(task); //adding reward to user's account
 
+            if (task.Repeatable) // if task is repeatable then we dont delete this task
+            {
+                RepeatableTask(task); // just change its variables :)
+                return;
+            }
+
             DeleteTask(task); //deleting completed task from database
         }
 
@@ -204,6 +212,42 @@ namespace functional_bubble.NET.Classes
 
             // if no does nothing
         }
+
+        /// <summary>
+        /// changes var in repeatable task and updates this task
+        /// </summary>
+        /// <param name="task"></param>
+        public void RepeatableTask(Task task)
+        {
+            task.DoneToday = true;
+            task.LastCompleted = DateTime.Now;
+            task.Deadline = task.Deadline.AddDays(
+                task.RepeatEveryNDays);
+
+            Update(task);
+        }
+
+        /// <summary>
+        /// Checks if repeatable tasks have correct parameters and if not changes them
+        /// </summary>
+        public void CheckAndAdaptRepeatableTasks()
+        {
+            //this query only gets repeatable tasks that wasn't done today,
+            //but their parameters imply that them was
+
+            List<Task> repeatableTasks = _db.Table<Task>().
+                Where(t => t.DoneToday == true).
+                Where(t => t.LastCompleted != DateTime.Today).ToList();
+
+            //in this loop every repeatable task that wasnt correct
+            //gets a proper treatment and becomes correct
+            foreach (var task in repeatableTasks)
+            {
+                task.DoneToday = false;
+                Update(task);
+            }
+        }
+
         #endregion
 
     }
