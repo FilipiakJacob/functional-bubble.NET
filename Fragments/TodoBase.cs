@@ -22,10 +22,12 @@ namespace functional_bubble.NET.Fragments
         private List<Task> mItems;
         private ListView mainListView;
         private TaskHandler mdatabaseHandler;
+        private int openDialog;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            openDialog = Arguments.GetInt("openDialog"); //Reading the bundle in OnCreate means it is only read once, when the fragment is first created.
 
         }
 
@@ -70,6 +72,5 @@ namespace functional_bubble.NET.Fragments
                     
             };
 
-        }
     }
 }
