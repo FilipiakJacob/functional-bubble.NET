@@ -215,7 +215,32 @@ namespace functional_bubble.NET.Classes
             Update(user); //update user in database 
         }
 
-            #endregion
+        #endregion
+
+        #endregion
+
+        #region TASK_VACATION
+
+        /// <summary>
+        /// when vacation is toggled on, we add days to deadline of the tasks that would have its deadline gone during vacation
+        /// </summary>
+        /// <param name="vacDuration">duration of the vacation / number of days user is absent</param>
+        public void Vacation(int vacDuration)
+        {
+            TaskHandler taskHandler = new TaskHandler();
+
+            List<Task> allTasks = taskHandler.GetAllTasks();
+
+            DateTime endOfVacation = DateTime.Now.AddDays(vacDuration);
+
+            var duringVacTasks = allTasks.Where<Task>(t => (t.Deadline.CompareTo(endOfVacation) > 0) );
+
+            foreach (Task task in duringVacTasks)
+            {
+                task.Deadline.AddDays(vacDuration);
+                task.update_data();
+            }
+        }
 
         #endregion
 
