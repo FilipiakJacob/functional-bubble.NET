@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text;
 using SQLite;
 using System.IO;
-using functional_bubble.NET.Classes;
 
 using functional_bubble.NET.Classes;
 /*
@@ -19,7 +18,7 @@ using functional_bubble.NET.Classes;
  * Class that handles all operations on database ( 4 now only Task table operations hihi )
  */
 
-namespace functional_bubble.NET
+namespace functional_bubble.NET.Classes
 {
     public abstract class DatabaseHandler
     {
