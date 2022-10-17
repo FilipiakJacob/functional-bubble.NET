@@ -109,6 +109,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\navigation\nav_graph.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\navigation\nav_graph.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
     <AndroidResource Include="Resources\navigation\penguin_graph.xml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
@@ -155,18 +163,24 @@
     <PackageReference Include="Xamarin.Android.Support.v4">
       <Version>28.0.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.4.2.1" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.5.0" />
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
       <Version>1.0.0.14</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
-      <Version>2.4.1.2</Version>
+      <Version>2.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Navigation.Common">
+      <Version>2.5.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment">
-      <Version>2.4.2.1</Version>
+      <Version>2.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Navigation.Runtime">
+      <Version>2.5.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Navigation.UI">
-      <Version>2.4.2.1</Version>
+      <Version>2.5.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Window">
       <Version>1.0.0.9</Version>
@@ -282,10 +296,6 @@
     <AndroidResource Include="Resources\xml\appwidgetprovider.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\widget_todo_task.xml">
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\widget_todo_style.xml">
     </AndroidResource>
   </ItemGroup>
@@ -294,13 +304,13 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\plus_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\label_priority_drawable.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\gradient_try.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\plus_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

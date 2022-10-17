@@ -22,10 +22,12 @@ namespace functional_bubble.NET.Fragments
         private List<Task> mItems;
         private ListView mainListView;
         private TaskHandler mdatabaseHandler;
+        private int openDialog;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            openDialog = Arguments.GetInt("openDialog"); //Reading the bundle in OnCreate means it is only read once, when the fragment is first created.
 
         }
 
@@ -37,7 +39,7 @@ namespace functional_bubble.NET.Fragments
             return view;
         }
 
-        
+
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         // OnViewCreated is called after OnCreateView and can access the inflated View to findById.
         {
@@ -54,7 +56,7 @@ namespace functional_bubble.NET.Fragments
             {
                 //Method for creating DialogFragment from Dialog_NewTask Class
                 Dialog_NewTask newTaskDialog = new Dialog_NewTask(); //Create a new Dialog Fragment
-                
+
                 newTaskDialog.Show(ChildFragmentManager, "Dialog"); //Show on screen the Dialog Fragment
                 newTaskDialog.mNewTaskComplete += (object sender, onNewTaskEventArgs e) =>
                 {
@@ -63,13 +65,12 @@ namespace functional_bubble.NET.Fragments
 
                 };
             };
-            
+
             adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
             {
                 //This function will be needed to show comfirmation window before task deletion. Yet to be developed
-                    
-            };
 
+            };
         }
     }
 }

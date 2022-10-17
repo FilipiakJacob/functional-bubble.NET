@@ -11,6 +11,7 @@ using System.Text;
 using Android.Animation;
 using AndroidX.Navigation;
 using functional_bubble.NET.Classes;
+using Android.Appwidget;
 
 namespace functional_bubble.NET
 {
@@ -198,6 +199,24 @@ namespace functional_bubble.NET
             }
 
 
+        }
+
+        /// <summary>
+        /// This method calls base.NotifyDataSetChanged and then updates the widget on top of it.
+        /// </summary>
+        public override void NotifyDataSetChanged()
+        {
+            //Update the viewadapter
+            base.NotifyDataSetChanged();
+            //Update the widget
+            var intent = new Intent(mContext, typeof(WidgetTodo)); //Create new intent
+            intent.SetAction(Android.Appwidget.AppWidgetManager.ActionAppwidgetUpdate);
+            AppWidgetManager appWidgetManager = AppWidgetManager.GetInstance(mContext); //Get an instance of appwidgetmanager
+                                                                                            //This line of code translates weirdly from Java, I'm not sure if this is optimal but it works.
+            ComponentName name = new ComponentName(mContext, Java.Lang.Class.FromType(typeof(WidgetTodo)).Name);
+            int[] appWidgetIds = appWidgetManager.GetAppWidgetIds(name);
+            intent.PutExtra(Android.Appwidget.AppWidgetManager.ExtraAppwidgetIds, appWidgetIds);
+            mContext.SendBroadcast(intent); //Send the intent
         }
     }
 }
