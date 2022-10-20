@@ -28,7 +28,9 @@ namespace functional_bubble.NET.Classes
     {
         [PrimaryKey, AutoIncrement, Unique, Column("id")]
         public int Id { get; set; }
-
+        /// <summary>
+        /// name of the label
+        /// </summary>
         [Column("Description")]
         public string Description { get; set; }
 
