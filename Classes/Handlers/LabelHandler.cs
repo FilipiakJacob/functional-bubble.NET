@@ -97,8 +97,7 @@ namespace functional_bubble.NET.Classes
             List<Label> LabelTable = GetAll();
             if (LabelTable.Count == 0)
             {
-                Label label= new Label();
-                label.Description = "Work";
+                Label label= new Label() { Description = "Work" };
                 _db.Insert(label);
                 label.Description = "Personal";
                 _db.Insert(label);
