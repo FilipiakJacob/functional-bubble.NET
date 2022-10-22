@@ -12,7 +12,7 @@ using SQLite;
 
 namespace functional_bubble.NET.Classes.Database
 {
-    internal class database
+    internal class Database
     {
     }
 }

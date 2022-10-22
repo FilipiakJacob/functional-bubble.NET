@@ -13,6 +13,9 @@ using functional_bubble.NET.Classes;
 
 namespace functional_bubble.NET.Classes
 {
+    /// <summary>
+    /// Task class used as a template to the task table in database ;
+    /// </summary>
     [Table("Tasks")] //name of the table that stores task objects
     public class Task
     {
@@ -49,12 +52,24 @@ namespace functional_bubble.NET.Classes
         public int Priority { get; set; }
         [Column("Repeatable")]
         public bool Repeatable { get; set; } = false;
+        /// <summary>
+        /// if task is repeatable then this is int that tell on how it is repeatable
+        /// </summary>
         [Column("RepeatEveryNDays")]
         public int RepeatEveryNDays { get; set; }
+        /// <summary>
+        /// if task is repeatable then this is bool that if task was done today
+        /// </summary>
         [Column("DoneToday")]
         public bool DoneToday { get; set; } = false;
+        /// <summary>
+        /// if task is repeatable then this is dateTime that tell what is the last date that this was last completed
+        /// </summary>
         [Column("LastCompleted")]
         public DateTime LastCompleted { get; set; }
+        /// <summary>
+        /// Pinned to the top of the todo list
+        /// </summary>
         [Column("Pinned")]
         public bool Pinned { get; set; }
         
