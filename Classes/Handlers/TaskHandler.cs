@@ -151,7 +151,7 @@ namespace functional_bubble.NET.Classes
         /// You get sorted Tasks by Deadline
         /// </summary>
         /// <returns>IEnumerable</returns>
-        public IEnumerable<Task> GetTasksByDeadline()
+        public IEnumerable<Task> GetTasksByDeadline(int n = 4)
         {
             IEnumerable<Task> allTasks = GetAllTasks();
 
@@ -159,8 +159,9 @@ namespace functional_bubble.NET.Classes
             var tasksByDeadline = allTasks.
                 OrderBy(t => t.Deadline).AsEnumerable();
 
-            return tasksByDeadline;
+            return tasksByDeadline.Take(n);
         }
+
         #endregion
 
         #region DELETE
