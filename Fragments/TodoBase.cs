@@ -24,13 +24,13 @@ namespace functional_bubble.NET.Fragments
         private ListView mainListView;
         private TaskHandler mdatabaseHandler;
         private int openDialog;
-        ListViewAdapter adapter;
+
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             //Reading the bundle in OnCreate means it is only read once, when the fragment is first created.
-            //When the user enters the todo fragment normally, the value is set to 0. If they use a deeplink to add a new task, the value is set to 1.
+            //When the user enters the todo fragment normally, the value is set to 0. If they use a deeplink to add a e
             openDialog = Arguments.GetInt("openDialog");
 
         }
@@ -47,12 +47,6 @@ namespace functional_bubble.NET.Fragments
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         // OnViewCreated is called after OnCreateView and can access the inflated View to findById.
         {
-            if (openDialog == 1)
-            {
-                openDialog = 0;
-                openNewTaskDialog();
-            }
-
             mainListView = view.FindViewById<ListView>(Resource.Id.MainView);
             mdatabaseHandler = new TaskHandler(); //create a handler with methods related to handling the table with tasks in the database
             mItems = mdatabaseHandler.GetSortedTasks();
@@ -62,9 +56,16 @@ namespace functional_bubble.NET.Fragments
             ListViewAdapter adapter = new ListViewAdapter(Android.App.Application.Context, mItems, view);
             mainListView.Adapter = adapter;
             mBtnNewTask = view.FindViewById<Button>(Resource.Id.activity_main_buttonNewTask);
+
+            if (openDialog == 1)
+            {
+                openDialog = 0;
+                openNewTaskDialog(adapter);
+            }
+
             mBtnNewTask.Click += (object sender, EventArgs e) =>
             {
-                openNewTaskDialog();
+                openNewTaskDialog(adapter);
             };
 
             adapter.mDeleteClicked += (object sender, onDeleteClicked e) =>
@@ -73,7 +74,7 @@ namespace functional_bubble.NET.Fragments
 
             };
         }
-        public void openNewTaskDialog()
+        public void openNewTaskDialog(ListViewAdapter adapter)
         {
             //Method for creating DialogFragment from Dialog_NewTask Class
             Dialog_NewTask newTaskDialog = new Dialog_NewTask(); //Create a new Dialog Fragment

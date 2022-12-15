@@ -209,14 +209,7 @@ namespace functional_bubble.NET
             //Update the viewadapter
             base.NotifyDataSetChanged();
             //Update the widget
-            var intent = new Intent(mContext, typeof(WidgetTodo)); //Create new intent
-            intent.SetAction(Android.Appwidget.AppWidgetManager.ActionAppwidgetUpdate);
-            AppWidgetManager appWidgetManager = AppWidgetManager.GetInstance(mContext); //Get an instance of appwidgetmanager
-                                                                                            //This line of code translates weirdly from Java, I'm not sure if this is optimal but it works.
-            ComponentName name = new ComponentName(mContext, Java.Lang.Class.FromType(typeof(WidgetTodo)).Name);
-            int[] appWidgetIds = appWidgetManager.GetAppWidgetIds(name);
-            intent.PutExtra(Android.Appwidget.AppWidgetManager.ExtraAppwidgetIds, appWidgetIds);
-            mContext.SendBroadcast(intent); //Send the intent
+            WidgetTodo.UpdateWidget();
         }
     }
 }

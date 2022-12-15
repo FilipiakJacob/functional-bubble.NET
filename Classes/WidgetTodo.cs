@@ -1,20 +1,13 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Android.Appwidget;
-using Android.Util;
 using AndroidX.Navigation;
-using Android.Content.PM;
-using System.Drawing;
-using Java.Lang;
-using System.Runtime.Remoting.Contexts;
 using Context = Android.Content.Context;
 
 namespace functional_bubble.NET.Classes
@@ -96,8 +89,7 @@ namespace functional_bubble.NET.Classes
         /// </summary>
         /// <param name="numTask">Number of tasks</param>
         /// <returns></returns>
-        private IEnumerable<Task> RetrieveTasks(int numTask) //TODO: Once database handler is updated,
-                                                             //there should be a method that only returns a certain amount of tasks.
+        private IEnumerable<Task> RetrieveTasks(int numTask) 
         {
             TaskHandler taskHandler = new TaskHandler();
             Console.WriteLine("Num of Tasks = " + taskHandler.GetSortedTasks().Count);
@@ -122,13 +114,16 @@ namespace functional_bubble.NET.Classes
         /// </summary>
         /// <param name="destination">Usually just Resource.Id.rourcename</param>
         /// <param name="context">Context in which the receiver is running</param>
-        /// <param name="bundleVarType">The pending intent sends a bundle of arguments to the target destination of the deeplink</param>
-        /// <param name="bundleVarValue"></param>
+        /// <param name="bundleVarType">DEFAULT = null. The pending intent sends a bundle of arguments to the target destination of the deeplink. </param>
+        /// <param name="bundleVarValue">DEFAULT = 0. This argument is only used if bundleVarType is not null. </param>
         /// <returns>A pending intent</returns>
-        private PendingIntent CreateDeepLink(Context context, int destination, string bundleVarType, int bundleVarValue )
+        private PendingIntent CreateDeepLink(Context context, int destination, string bundleVarType = null, int bundleVarValue = 0 )
         {
             Bundle bundle = new Bundle();
-            bundle.PutInt(bundleVarType, bundleVarValue);
+            if (bundleVarType != null)
+            {
+                bundle.PutInt(bundleVarType, bundleVarValue);
+            }
             PendingIntent pendingIntent = new NavDeepLinkBuilder(context)
                 .SetGraph(Resource.Navigation.nav_graph)
                 .SetDestination(destination)
@@ -145,22 +140,24 @@ namespace functional_bubble.NET.Classes
                                              //base class to make sure OnUpdate and similar methods ale triggered by this method.
             Toast.MakeText(context, "Received intent!", ToastLength.Short).Show();
         }
-        /*
-        private void RegisterClicks(Context context, int[] appWidgetIds, RemoteViews widgetView)
+
+        /// <summary>
+        ///
+        /// Call this method to update the widget 
+        /// </summary>
+        public static void UpdateWidget()
         {
-            //Use NavDeepLinkBuilder to create a PendingIntent that deeplinks to the New Task dialog.
-            PendingIntent pendingIntent = CreateDeepLink(context,Resource.Id.dest_todo,"openDialog",1);
-
-            widgetView.SetOnClickPendingIntent(Resource.Id.widget_new_task_button, pendingIntent);
-
-            //var intent = new Intent(context, typeof(WidgetTodo));
-            //intent.SetAction(AppWidgetManager.ActionAppwidgetUpdate);
-            //intent.PutExtra(AppWidgetManager.ExtraAppwidgetIds, appWidgetIds);
-
-            // Register click event for button1
-            //var widgetButton1 = PendingIntent.GetBroadcast(context, 0, intent, PendingIntentFlags.UpdateCurrent);
-            //widgetView.SetOnClickPendingIntent(Resource.Id.button1, widgetButton1);
+            //TODO: Check if widget exists before updating it.
+            Context mContext = Application.Context;
+            //Update the widget
+            var intent = new Intent(mContext, typeof(WidgetTodo)); //Create new intent
+            intent.SetAction(AppWidgetManager.ActionAppwidgetUpdate);
+            AppWidgetManager appWidgetManager = AppWidgetManager.GetInstance(mContext); //Get an instance of appwidgetmanager
+            //This line of code translates weirdly from Java, I'm not sure if this is optimal but it works.
+            ComponentName name = new ComponentName(mContext, Java.Lang.Class.FromType(typeof(WidgetTodo)).Name);
+            int[] appWidgetIds = appWidgetManager.GetAppWidgetIds(name);
+            intent.PutExtra(AppWidgetManager.ExtraAppwidgetIds, appWidgetIds);
+            mContext.SendBroadcast(intent); //Send the intent
         }
-        */
     }
 }
