@@ -146,6 +146,21 @@ namespace functional_bubble.NET.Classes
 
             return _db.Query<Task>("SELECT * ORDER BY ?", filter); 
         }
+
+        /// <summary>
+        /// You get sorted Tasks by Deadline
+        /// </summary>
+        /// <returns>IEnumerable</returns>
+        public IEnumerable<Task> GetTasksByDeadline()
+        {
+            IEnumerable<Task> allTasks = GetAllTasks();
+
+            //LINQ expression - ordering by deadlines and presenting 
+            var tasksByDeadline = allTasks.
+                OrderBy(t => t.Deadline).AsEnumerable();
+
+            return tasksByDeadline;
+        }
         #endregion
 
         #region DELETE
