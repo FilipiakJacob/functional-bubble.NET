@@ -148,7 +148,7 @@ namespace functional_bubble.NET.Classes
         }
 
         /// <summary>
-        /// You get sorted Tasks by Deadline
+        /// You get n sorted Tasks by Deadline (by default 4)
         /// </summary>
         /// <returns>IEnumerable</returns>
         public IEnumerable<Task> GetTasksByDeadline(int n = 4)
