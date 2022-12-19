@@ -162,6 +162,41 @@ namespace functional_bubble.NET.Classes
             return tasksByDeadline.Take(n);
         }
 
+        /// <summary>
+        /// Each position in the IEnumerable is equal to the number of hours in which the notification should be sent.
+        /// If the task ends in the first half of an hour, the user will get notified between 1h and 1,5h before the task.
+        /// If the task ends in the second half of an hour, the user will get notified between 0,5h and 1h before the task.
+        /// </summary>
+        /// <returns>A list where each position signifies the number of tasks that will end in that hour in the future, between 1 and 7 hours from now.
+        /// </returns>
+        public IEnumerable<int> GetApproachingDeadlines()
+        {
+            IEnumerable<Task> allTasks = GetAllTasks();
+            
+            int[] deadlineCount = { 0, 0, 0, 0, 0, 0 };
+
+            TimeSpan timeSpan = new TimeSpan();
+            foreach (Task task in allTasks)
+            {
+                timeSpan = task.Deadline.Subtract(DateTime.Now);
+                if (timeSpan.Hours > 6 || timeSpan.Hours < 1)
+                {
+                    continue;
+                }
+                //The task counts to the closest hour. E.g. 1:26 is in 1 hour, 1:57 is in 2 hours.
+                if (timeSpan.Minutes<30)
+                {
+                    deadlineCount[(timeSpan.Hours - 1)]++; 
+                }
+
+                else
+                {
+                    deadlineCount[(timeSpan.Hours)]++; 
+                }
+            }
+            return deadlineCount;
+        }
+
         #endregion
 
         #region DELETE
