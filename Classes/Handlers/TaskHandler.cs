@@ -170,13 +170,11 @@ namespace functional_bubble.NET.Classes
         /// <returns>A list where each position signifies the number of tasks that will end in that hour in the future, between 1 and 7 hours from now.
         /// </returns>
         public IEnumerable<int> GetApproachingDeadlines()
-        {
-            IEnumerable<Task> allTasks = GetAllTasks();
-            
+        {   
             int[] deadlineCount = { 0, 0, 0, 0, 0, 0 };
 
             TimeSpan timeSpan = new TimeSpan();
-            foreach (Task task in allTasks)
+            foreach (Task task in GetAllTasks())
             {
                 timeSpan = task.Deadline.Subtract(DateTime.Now);
                 if (timeSpan.Hours > 6 || timeSpan.Hours < 1)
@@ -186,7 +184,7 @@ namespace functional_bubble.NET.Classes
                 //The task counts to the closest hour. E.g. 1:26 is in 1 hour, 1:57 is in 2 hours.
                 if (timeSpan.Minutes<30)
                 {
-                    deadlineCount[(timeSpan.Hours - 1)]++; 
+                    deadlineCount[(timeSpan.Hours - 1)]++;
                 }
 
                 else
@@ -195,6 +193,25 @@ namespace functional_bubble.NET.Classes
                 }
             }
             return deadlineCount;
+        }
+
+        /// <summary>
+        /// Method which returns all tasks that end between 1 and 2 hours from the moment it is triggered.
+        /// </summary>
+        /// <returns> List<Task> </returns>
+        public List<Task> GetTasksDueNextHour()
+        {
+            List<Task> approachingTasks = new List<Task>();
+            TimeSpan timeSpan = new TimeSpan();
+            foreach (Task task in GetAllTasks())
+            {
+                timeSpan = task.Deadline.Subtract(DateTime.Now);
+                if (timeSpan.Hours == 1)
+                {
+                    approachingTasks.Add(task);
+                }
+            }
+            return approachingTasks;
         }
 
         #endregion

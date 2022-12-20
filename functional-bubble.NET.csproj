@@ -84,7 +84,7 @@
     <Compile Include="Classes\Handlers\TaskHandler.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\WidgetTodo.cs" />
-    <Compile Include="Classes\Workers\DeadlineWorker.cs" />
+    <Compile Include="Classes\Workers\PeriodicTaskDeadlineWorker.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
     <Compile Include="Fragments\PenguinBase.cs" />
