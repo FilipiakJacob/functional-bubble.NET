@@ -8,5 +8,5 @@ android:minResizeHeight="110dip"
 android:resizeMode="horizontal"
 android:initialLayout="@layout/widget_todo"
 android:previewImage="@drawable/penguin"
-android:updatePeriodMillis="1000"
+android:updatePeriodMillis="0"
 />

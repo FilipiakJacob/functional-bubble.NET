@@ -12,6 +12,8 @@ using functional_bubble.NET.Fragments;
 using AndroidX.Navigation;
 using AndroidX.Navigation.Fragment;
 using AndroidX.Navigation.UI;
+using AndroidX.Work;
+using functional_bubble.NET.Classes.Workers;
 
 namespace functional_bubble.NET
 
@@ -35,6 +37,15 @@ namespace functional_bubble.NET
             NavController navController = Navigation.FindNavController(this, Resource.Id.main_nav_host_fragment); //navController manages the swapping of destinations in the NavHostFragment.
             BottomNavigationView bottomNavigation = FindViewById<BottomNavigationView>(Resource.Id.main_bottom_nav_view);
             NavigationUI.SetupWithNavController(bottomNavigation, navController); //Connects the bottomNavigation with the NavController. 
+
+            //Create a periodic work request which triggers every hour.
+            PeriodicWorkRequest periodicTaskDeadlineWorkRequest = PeriodicWorkRequest.Builder.From<PeriodicTaskDeadlineWorker>(TimeSpan.FromHours(1),TimeSpan.FromMinutes(15)).Build();
+            
+            //Schedule the work request
+            WorkManager.GetInstance(Android.App.Application.Context).EnqueueUniquePeriodicWork(
+                "periodicTaskDeadlineUpdate",
+                ExistingPeriodicWorkPolicy.Keep,
+                periodicTaskDeadlineWorkRequest);
         }
         protected override void OnSaveInstanceState(Bundle outState)
         {
