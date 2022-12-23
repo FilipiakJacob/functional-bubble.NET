@@ -195,6 +195,7 @@ namespace functional_bubble.NET.Classes
             return deadlineCount;
         }
 
+
         /// <summary>
         /// Method which returns all tasks that end between 1 and 2 hours from the moment it is triggered.
         /// </summary>
@@ -202,11 +203,15 @@ namespace functional_bubble.NET.Classes
         public List<Task> GetTasksDueNextHour()
         {
             List<Task> approachingTasks = new List<Task>();
-            TimeSpan timeSpan = new TimeSpan();
-            foreach (Task task in GetAllTasks())
+            IEnumerable<Task> allTasks= GetAllTasks();
+            IEnumerable<Task> tasksSameDay = allTasks.
+                Where(t => t.Deadline.Equals(DateTime.Today)).
+                OrderBy(t => t.Deadline);
+            int timeSpan;
+            foreach (Task task in tasksSameDay)
             {
-                timeSpan = task.Deadline.Subtract(DateTime.Now);
-                if (timeSpan.Hours == 1)
+                timeSpan = task.Deadline.Hour - DateTime.Now.Hour;
+                if (timeSpan == 1)
                 {
                     approachingTasks.Add(task);
                 }

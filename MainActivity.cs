@@ -40,7 +40,7 @@ namespace functional_bubble.NET
 
             //Create a periodic work request which triggers every hour.
             PeriodicWorkRequest periodicTaskDeadlineWorkRequest = PeriodicWorkRequest.Builder.From<PeriodicTaskDeadlineWorker>(TimeSpan.FromHours(1),TimeSpan.FromMinutes(15)).Build();
-
+            
             //Schedule the work request
             WorkManager.GetInstance(Android.App.Application.Context).EnqueueUniquePeriodicWork(
                 "periodicTaskDeadlineUpdate",
