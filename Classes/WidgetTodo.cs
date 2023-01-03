@@ -9,6 +9,7 @@ using System.Linq;
 using Android.Appwidget;
 using AndroidX.Navigation;
 using Context = Android.Content.Context;
+using functional_bubble.NET.Classes.Handlers;
 
 namespace functional_bubble.NET.Classes
 {
@@ -78,7 +79,8 @@ namespace functional_bubble.NET.Classes
                 widgetView.SetViewVisibility(rowViewIds[j], ViewStates.Visible); //SetViewVisibility should inflate the layout.
                 widgetView.SetTextViewText(titleViewIds[j], task.Title);
                 widgetView.SetTextViewText(deadlineViewIds[j], untilDeadlineStr);
-                PendingIntent pendingIntent = CreateDeepLink(context,Resource.Id.dest_task,"taskID",task.Id);
+                DeeplinkHandler dl = new DeeplinkHandler();
+                PendingIntent pendingIntent = dl.CreateDeeplink(context,Resource.Id.dest_task,"taskID",task.Id);
                 widgetView.SetOnClickPendingIntent(rowViewIds[j],pendingIntent); //When the row is clicked, the user should be deeplinked to the task.
                 j++;
             }
@@ -105,32 +107,11 @@ namespace functional_bubble.NET.Classes
         private void SetTopBar(Context context, RemoteViews widgetView)
         {
             //Use NavDeepLinkBuilder to create a PendingIntent that deeplinks to the New Task dialog.
-            PendingIntent pendingIntent = CreateDeepLink(context, Resource.Id.dest_todo, "openDialog", 1);
+            DeeplinkHandler dl = new DeeplinkHandler();
+            PendingIntent pendingIntent = dl.CreateDeeplink(context, Resource.Id.dest_todo, "openDialog", 1);
             widgetView.SetOnClickPendingIntent(Resource.Id.widget_new_task_button, pendingIntent);
         }
 
-        /// <summary>
-        /// Use NavDeepLinkBuilder to create a PendingIntent that deeplinks to a a destination.
-        /// </summary>
-        /// <param name="destination">Usually just Resource.Id.rourcename</param>
-        /// <param name="context">Context in which the receiver is running</param>
-        /// <param name="bundleVarType">DEFAULT = null. The pending intent sends a bundle of arguments to the target destination of the deeplink. </param>
-        /// <param name="bundleVarValue">DEFAULT = 0. This argument is only used if bundleVarType is not null. </param>
-        /// <returns>A pending intent</returns>
-        private PendingIntent CreateDeepLink(Context context, int destination, string bundleVarType = null, int bundleVarValue = 0 )
-        {
-            Bundle bundle = new Bundle();
-            if (bundleVarType != null)
-            {
-                bundle.PutInt(bundleVarType, bundleVarValue);
-            }
-            PendingIntent pendingIntent = new NavDeepLinkBuilder(context)
-                .SetGraph(Resource.Navigation.nav_graph)
-                .SetDestination(destination)
-                .SetArguments(bundle)
-                .CreatePendingIntent();
-            return pendingIntent;
-        }
 
 
         public override void OnReceive(Context context, Intent intent)
