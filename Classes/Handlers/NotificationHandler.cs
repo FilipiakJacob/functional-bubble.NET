@@ -20,7 +20,7 @@ namespace functional_bubble.NET.Classes.Handlers
         private static readonly string CHANNEL_ID = "local_notification";
 
         /// <summary>
-        /// 
+        /// sends notification to the user screaming TEST TEST TEST TEST
         /// </summary>
         public void Notification()
         {
