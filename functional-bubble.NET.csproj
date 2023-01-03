@@ -74,6 +74,7 @@
     <Compile Include="Classes\Dialogs\Dialog_TimePicker.cs" />
     <Compile Include="Classes\Handlers\DatabaseHandler.cs" />
     <Compile Include="Classes\Database\database.cs" />
+    <Compile Include="Classes\Handlers\NotificationHandler.cs" />
     <Compile Include="Classes\Handlers\StatisticsHandler.cs" />
     <Compile Include="Classes\Handlers\UserHandler.cs" />
     <Compile Include="Classes\Label.cs" />
