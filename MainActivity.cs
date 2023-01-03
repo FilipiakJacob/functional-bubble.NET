@@ -54,6 +54,9 @@ namespace functional_bubble.NET
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+        /// <summary>
+        /// this method creates notification channel so app can send notifications to user
+        /// </summary>
         public void CreateNotificationChannel()
         {
             if (Build.VERSION.SdkInt < BuildVersionCodes.O)
@@ -64,8 +67,8 @@ namespace functional_bubble.NET
                 return;
             }
 
-            var channelName = Resource.String.channel_name.ToString();
-            var channelDescription = Resource.String.channel_description.ToString();
+            string channelName = Resource.String.channel_name.ToString();
+            string channelDescription = Resource.String.channel_description.ToString();
             var channel = new NotificationChannel(CHANNEL_ID, channelName, NotificationImportance.Default)
             {
                 Description = channelDescription
