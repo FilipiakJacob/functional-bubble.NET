@@ -20,4 +20,7 @@
 		<item>Hobby</item>
 	</string-array>
 	<string name="plus_button_desc">A plus icon</string>
+
+  <string name="channel_name">local_notification</string>
+  <string name="channel_description">local notifications</string>
 </resources>
