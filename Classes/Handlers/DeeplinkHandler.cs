@@ -19,21 +19,30 @@ namespace functional_bubble.NET.Classes.Handlers
         /// </summary>
         /// <param name="destination">Usually just Resource.Id.rourcename</param>
         /// <param name="context">Context in which the receiver is running</param>
-        /// <param name="bundleVarType">DEFAULT = null. The pending intent sends a bundle of arguments to the target destination of the deeplink. </param>
-        /// <param name="bundleVarValue">DEFAULT = 0. This argument is only used if bundleVarType is not null. </param>
-        /// <returns>A pending intent</returns>
-        public PendingIntent CreateDeeplink(Context context, int destination, string bundleVarType = null, int bundleVarValue = 0)
+        /// <param name="bundleArgName">DEFAULT = null. If not null, the pending intent sends a bundle of arguments to the target destination of the deeplink. </param>
+        /// <param name="bundleArgValue">DEFAULT = 0. This argument is only used if bundleVarType is not null. </param>
+        /// <returns>A pending intent. The intent will contain a bundle if argument name was specified, or no bundle if argument name was not specified.</returns>
+        public PendingIntent CreateDeeplink(Context context, int destination, string bundleArgName = null, int bundleArgValue = 0)
         {
-            Bundle bundle = new Bundle();
-            if (bundleVarType != null)
+            PendingIntent pendingIntent;
+            if (bundleArgName != null)
             {
-                bundle.PutInt(bundleVarType, bundleVarValue);
+                Bundle bundle = new Bundle();
+                bundle.PutInt(bundleArgName, bundleArgValue);
+                pendingIntent = new NavDeepLinkBuilder(context)
+                    .SetGraph(Resource.Navigation.nav_graph)
+                    .SetDestination(destination)
+                    .SetArguments(bundle)
+                    .CreatePendingIntent();
             }
-            PendingIntent pendingIntent = new NavDeepLinkBuilder(context)
-                .SetGraph(Resource.Navigation.nav_graph)
-                .SetDestination(destination)
-                .SetArguments(bundle)
-                .CreatePendingIntent();
+            else
+            {
+                pendingIntent = new NavDeepLinkBuilder(context)
+                    .SetGraph(Resource.Navigation.nav_graph)
+                    .SetDestination(destination)
+                    .CreatePendingIntent();
+            }
+
             return pendingIntent;
         }
 
