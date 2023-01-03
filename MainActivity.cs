@@ -14,6 +14,8 @@ using AndroidX.Navigation.Fragment;
 using AndroidX.Navigation.UI;
 using Android.App;
 using Android.Renderscripts;
+using AndroidX.Work;
+using functional_bubble.NET.Classes.Workers;
 
 namespace functional_bubble.NET
 
@@ -40,6 +42,14 @@ namespace functional_bubble.NET
             NavigationUI.SetupWithNavController(bottomNavigation, navController); //Connects the bottomNavigation with the NavController. 
             CreateNotificationChannel();
 
+            //Create a periodic work request which triggers every hour.
+            PeriodicWorkRequest periodicTaskDeadlineWorkRequest = PeriodicWorkRequest.Builder.From<PeriodicTaskDeadlineWorker>(TimeSpan.FromHours(1),TimeSpan.FromMinutes(15)).Build();
+            
+            //Schedule the work request
+            WorkManager.GetInstance(Android.App.Application.Context).EnqueueUniquePeriodicWork(
+                "periodicTaskDeadlineUpdate",
+                ExistingPeriodicWorkPolicy.Keep,
+                periodicTaskDeadlineWorkRequest);
         }
         protected override void OnSaveInstanceState(Bundle outState)
         {

@@ -75,6 +75,7 @@
     <Compile Include="Classes\Handlers\DatabaseHandler.cs" />
     <Compile Include="Classes\Database\database.cs" />
     <Compile Include="Classes\Handlers\NotificationHandler.cs" />
+    <Compile Include="Classes\Handlers\DeeplinkHandler.cs" />
     <Compile Include="Classes\Handlers\StatisticsHandler.cs" />
     <Compile Include="Classes\Handlers\UserHandler.cs" />
     <Compile Include="Classes\Label.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Classes\Handlers\TaskHandler.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Classes\WidgetTodo.cs" />
+    <Compile Include="Classes\Workers\PeriodicTaskDeadlineWorker.cs" />
     <Compile Include="Fragments\TaskBase.cs" />
     <Compile Include="Fragments\TodoBase.cs" />
     <Compile Include="Fragments\PenguinBase.cs" />
@@ -106,10 +108,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\todo_base.xml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\navigation\nav_graph.xml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
@@ -158,38 +156,38 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl">
-      <Version>1.8.116</Version>
+      <Version>1.9.141-beta</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v4">
       <Version>28.0.0.3</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.5.0" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.5.1.1" />
     <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4">
-      <Version>1.0.0.14</Version>
+      <Version>1.0.0.15</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData">
-      <Version>2.5.1</Version>
+      <Version>2.5.1.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Navigation.Common">
-      <Version>2.5.1</Version>
+      <Version>2.5.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Navigation.Fragment">
-      <Version>2.5.1</Version>
+      <Version>2.5.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Navigation.Runtime">
-      <Version>2.5.1</Version>
+      <Version>2.5.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Navigation.UI">
-      <Version>2.5.1</Version>
+      <Version>2.5.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Window">
-      <Version>1.0.0.9</Version>
+      <Version>1.0.0.10</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Work.Runtime">
       <Version>2.7.1.5</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.6.1.1" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.7.0.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.4" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ButtonAddTaskStyle.xml" />
@@ -243,9 +241,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Raw\easter_egg.mp3" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\navigation\nav_graph.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\timeAndDateBorders.xml" />

@@ -146,6 +146,79 @@ namespace functional_bubble.NET.Classes
 
             return _db.Query<Task>("SELECT * ORDER BY ?", filter); 
         }
+
+        /// <summary>
+        /// You get n sorted Tasks by Deadline (by default 4)
+        /// </summary>
+        /// <returns>IEnumerable</returns>
+        public IEnumerable<Task> GetTasksByDeadline(int n = 4)
+        {
+            IEnumerable<Task> allTasks = GetAllTasks();
+
+            //LINQ expression - ordering by deadlines and presenting 
+            var tasksByDeadline = allTasks.
+                OrderBy(t => t.Deadline).AsEnumerable();
+
+            return tasksByDeadline.Take(n);
+        }
+
+        /// <summary>
+        /// Each position in the IEnumerable is equal to the number of hours in which the notification should be sent.
+        /// If the task ends in the first half of an hour, the user will get notified between 1h and 1,5h before the task.
+        /// If the task ends in the second half of an hour, the user will get notified between 0,5h and 1h before the task.
+        /// </summary>
+        /// <returns>A list where each position signifies the number of tasks that will end in that hour in the future, between 1 and 7 hours from now.
+        /// </returns>
+        public IEnumerable<int> GetApproachingDeadlines()
+        {   
+            int[] deadlineCount = { 0, 0, 0, 0, 0, 0 };
+
+            TimeSpan timeSpan = new TimeSpan();
+            foreach (Task task in GetAllTasks())
+            {
+                timeSpan = task.Deadline.Subtract(DateTime.Now);
+                if (timeSpan.Hours > 6 || timeSpan.Hours < 1)
+                {
+                    continue;
+                }
+                //The task counts to the closest hour. E.g. 1:26 is in 1 hour, 1:57 is in 2 hours.
+                if (timeSpan.Minutes<30)
+                {
+                    deadlineCount[(timeSpan.Hours - 1)]++;
+                }
+
+                else
+                {
+                    deadlineCount[(timeSpan.Hours)]++; 
+                }
+            }
+            return deadlineCount;
+        }
+
+
+        /// <summary>
+        /// Method which returns all tasks that end between 1 and 2 hours from the moment it is triggered.
+        /// </summary>
+        /// <returns> List<Task> </returns>
+        public List<Task> GetTasksDueNextHour()
+        {
+            List<Task> approachingTasks = new List<Task>();
+            IEnumerable<Task> allTasks= GetAllTasks();
+            IEnumerable<Task> tasksSameDay = allTasks.
+                Where(t => t.Deadline.Equals(DateTime.Today)).
+                OrderBy(t => t.Deadline);
+            int timeSpan;
+            foreach (Task task in tasksSameDay)
+            {
+                timeSpan = task.Deadline.Hour - DateTime.Now.Hour;
+                if (timeSpan == 1)
+                {
+                    approachingTasks.Add(task);
+                }
+            }
+            return approachingTasks;
+        }
+
         #endregion
 
         #region DELETE
