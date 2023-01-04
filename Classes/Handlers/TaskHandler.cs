@@ -219,6 +219,11 @@ namespace functional_bubble.NET.Classes
             return approachingTasks;
         }
 
+        /// <summary>
+        /// Method to get list of all tasks with tasks under one hour to deadline on top
+        /// rest is sorted with our sorting principles
+        /// </summary>
+        /// <returns>List<Task> with tasks sub hour to deadline on top and the rest is just sorted</returns>
         public List<Task> GetTasksSubHourOnTop()
         {
             List<Task> allTasks= GetAllTasks();
