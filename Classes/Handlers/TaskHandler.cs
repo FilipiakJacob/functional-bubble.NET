@@ -219,6 +219,14 @@ namespace functional_bubble.NET.Classes
             return approachingTasks;
         }
 
+        public List<Task> GetTasksSubHourOnTop()
+        {
+            List<Task> allTasks= GetAllTasks();
+            List<Task> taskSubHourTop = new List<Task>();
+
+            return taskSubHourTop;
+        }
+
         #endregion
 
         #region DELETE
