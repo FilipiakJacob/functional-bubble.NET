@@ -226,20 +226,16 @@ namespace functional_bubble.NET.Classes
         /// <returns>List<Task> with tasks sub hour to deadline on top and the rest is just sorted</returns>
         public List<Task> GetTasksSubHourOnTop()
         {
-            List<Task> allTasks= GetAllTasks();
+            List<Task> allTasks= GetSortedTasks();
             List<Task> temp = new List<Task>();
             List<Task> taskSubHourTop = new List<Task>();
 
             taskSubHourTop = allTasks
                 .Where(t=> t.Deadline.Subtract(DateTime.Now).Hours < 1)
-                .OrderByDescending(t => t.Priority)
-                .ThenBy(t => t.Deadline)
                 .ToList();
 
             temp = allTasks
                 .Where(t => t.Deadline.Subtract(DateTime.Now).Hours >= 1)
-                .OrderByDescending(t => t.Priority)
-                .ThenBy(t => t.Deadline)
                 .ToList();
 
             foreach(Task task in temp)
