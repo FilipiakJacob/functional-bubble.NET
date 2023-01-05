@@ -97,7 +97,7 @@ namespace functional_bubble.NET.Classes
         }
 
         /// <summary>
-        /// sorting tasks by priorities and deadline
+        /// sorting tasks by priorities and deadline, but tasks with deadline sub one hour is on top of the list
         /// </summary>
         /// <returns>List<Task> sortedTasks</returns>
         public List<Task> GetSortedTasks()
@@ -106,19 +106,20 @@ namespace functional_bubble.NET.Classes
             List<Task> temp = new List<Task>();
             List<Task> sortedTasks = new List<Task>();
 
-            //LINQ expressions 
+            // LINQ expressions 
             sortedTasks = allTasksList
-                .Where(t => t.Deadline.Subtract(DateTime.Now).Hours < 1)
-                .OrderByDescending(t => t.Priority)
-                .ThenByDescending(t => t.Deadline)
-                .ToList();
+                .Where(t => t.Deadline.Subtract(DateTime.Now).Hours < 1) // getting tasks with deadline under one hour 
+                .OrderByDescending(t => t.Priority) // ordering them by priority ( higher priority = higher place on list )
+                .ThenByDescending(t => t.Deadline) // ordering priority groups by deadline 
+                .ToList(); // getting this sorted tasks and put them to list<Task>
 
             temp = allTasksList
-                .Where(t => t.Deadline.Subtract(DateTime.Now).Hours >= 1)
-                .OrderByDescending(t => t.Priority)
-                .ThenByDescending(t => t.Deadline)
-                .ToList();
+                .Where(t => t.Deadline.Subtract(DateTime.Now).Hours >= 1) // getting tasks with deadline over one hour 
+                .OrderByDescending(t => t.Priority) // ordering them by priority ( higher priority = higher place on list )
+                .ThenByDescending(t => t.Deadline) // ordering priority groups by deadline 
+                .ToList(); // getting this sorted tasks and put them to list<Task>
 
+            // loop that puts tasks from temp list to the sortedTasks list
             foreach (Task task in temp)
             {
                 sortedTasks.Add(task);
