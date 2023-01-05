@@ -132,7 +132,7 @@ namespace functional_bubble.NET.Classes
         /// <summary>
         /// calculates reward based on various variables
         /// </summary>
-        /// <param name="task"></param>
+        /// <param name="task">Task to calculate reward on</param>
         /// <returns>int reward</returns>
         public int CalculateReward(Task task)
         {
@@ -197,7 +197,7 @@ namespace functional_bubble.NET.Classes
         {
             User user = GetUser();
 
-            user.Money += task.CoinsReward; //adding reward to user's account 
+            user.Money += task.CoinsReward; // adding reward to user's account 
 
             Update(user); //update user in database 
         }
@@ -210,9 +210,9 @@ namespace functional_bubble.NET.Classes
         {
             User user = GetUser();
 
-            user.Money -= coinsRemove; //removing reward from user's account 
+            user.Money -= coinsRemove; // removing reward from user's account 
 
-            Update(user); //update user in database 
+            Update(user); // update user in database 
         }
 
         #endregion
@@ -228,17 +228,17 @@ namespace functional_bubble.NET.Classes
         public void Vacation(int vacDuration)
         {
             TaskHandler taskHandler = new TaskHandler();
+            List<Task> allTasks = taskHandler.GetAllTasks(); // getting all the tasks 
+            DateTime endOfVacation = DateTime.Now.AddDays(vacDuration); // last day of the vacation 
 
-            List<Task> allTasks = taskHandler.GetAllTasks();
+            // LiNQ expression that gets all the tasks that end during vacation
+            var duringVacTasks = allTasks
+                .Where<Task>(t => (t.Deadline.CompareTo(endOfVacation) > 0) ); 
 
-            DateTime endOfVacation = DateTime.Now.AddDays(vacDuration);
-
-            var duringVacTasks = allTasks.Where<Task>(t => (t.Deadline.CompareTo(endOfVacation) > 0) );
-
-            foreach (Task task in duringVacTasks)
+            foreach (Task task in duringVacTasks) // loop to operate on tasks ending during vacation
             {
-                task.Deadline.AddDays(vacDuration);
-                task.update_data();
+                task.Deadline.AddDays(vacDuration); // adding days to the task
+                task.update_data(); // updating task data
             }
         }
 
@@ -262,7 +262,6 @@ namespace functional_bubble.NET.Classes
                 DeleteAdditionalUsers(table);
                 return;
             }
-            return;
         }
 
         /// <summary>
