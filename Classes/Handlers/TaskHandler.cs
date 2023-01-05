@@ -97,7 +97,7 @@ namespace functional_bubble.NET.Classes
         }
 
         /// <summary>
-        /// sorting tasks by priorities and deadline, but tasks with deadline sub one hour is on top of the list
+        /// sorting tasks by priorities and deadline, but tasks with deadline sub one hour are on top of the list
         /// </summary>
         /// <returns>List<Task> sortedTasks</returns>
         public List<Task> GetSortedTasks()
