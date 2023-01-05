@@ -103,11 +103,26 @@ namespace functional_bubble.NET.Classes
         public List<Task> GetSortedTasks()
         {
             List<Task> allTasksList = GetAllTasks();
+            List<Task> temp = new List<Task>();
+            List<Task> sortedTasks = new List<Task>();
 
-            //LINQ expression
-            var sortedTasks = allTasksList. //takes allTasks
-                OrderByDescending(t => t.Priority). //order them by priorities (descending bc highest priority is 3)
-                ThenBy(t => t.Deadline).ToList(); //order them by deadline descending
+            //LINQ expressions 
+            sortedTasks = allTasksList
+                .Where(t => t.Deadline.Subtract(DateTime.Now).Hours < 1)
+                .OrderByDescending(t => t.Priority)
+                .ThenByDescending(t => t.Deadline)
+                .ToList();
+
+            temp = allTasksList
+                .Where(t => t.Deadline.Subtract(DateTime.Now).Hours >= 1)
+                .OrderByDescending(t => t.Priority)
+                .ThenByDescending(t => t.Deadline)
+                .ToList();
+
+            foreach (Task task in temp)
+            {
+                sortedTasks.Add(task);
+            }
 
             return sortedTasks;
         }
@@ -217,33 +232,6 @@ namespace functional_bubble.NET.Classes
                 }
             }
             return approachingTasks;
-        }
-
-        /// <summary>
-        /// Method to get list of all tasks with tasks under one hour to deadline on top
-        /// rest is sorted with our sorting principles
-        /// </summary>
-        /// <returns>List<Task> with tasks sub hour to deadline on top and the rest is just sorted</returns>
-        public List<Task> GetTasksSubHourOnTop()
-        {
-            List<Task> allTasks= GetSortedTasks();
-            List<Task> temp = new List<Task>();
-            List<Task> taskSubHourTop = new List<Task>();
-
-            taskSubHourTop = allTasks
-                .Where(t=> t.Deadline.Subtract(DateTime.Now).Hours < 1)
-                .ToList();
-
-            temp = allTasks
-                .Where(t => t.Deadline.Subtract(DateTime.Now).Hours >= 1)
-                .ToList();
-
-            foreach(Task task in temp)
-            {
-                taskSubHourTop.Add(task);
-            }
-
-            return taskSubHourTop;
         }
 
         #endregion
