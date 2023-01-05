@@ -25,7 +25,6 @@ namespace functional_bubble.NET.Classes
         {
             UserHandler userHandler = new UserHandler();
 
-
             task.CoinsReward = userHandler.CalculateReward(task);
 
             _db.Insert(task);    
@@ -86,17 +85,6 @@ namespace functional_bubble.NET.Classes
         }
 
         /// <summary>
-        /// You get all tasks as IEnumerable
-        /// </summary>
-        /// <returns>IEnumerable allTasks</returns>
-        public IEnumerable<Task> GetAllTasksAsIEnumerable()
-        {
-            IEnumerable<Task> allTasks = GetAllTasks();
-
-            return allTasks;
-        }
-
-        /// <summary>
         /// sorting tasks by priorities and deadline
         /// </summary>
         /// <returns>List<Task> sortedTasks</returns>
@@ -111,30 +99,6 @@ namespace functional_bubble.NET.Classes
 
             return sortedTasks;
         }
-
-
-        /// <summary>
-        /// Get n amount of SortedTasks in form of IEnumerable right now!
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns>IEnumerable nTasks</returns>
-        public IEnumerable<Task> GetSortedTasks(int n)
-        {
-            IEnumerable<Task> nTasks = GetSortedTasks();
-            return nTasks.Take(n);
-        }
-
-        /// <summary>
-        /// You get sorted tasks by priorities and deadline as IEnumerable 
-        /// </summary>
-        /// <returns>IEnumerable sortedTasks</returns>
-        public IEnumerable<Task> GetSortedTasksAsIEnumerable()
-        {
-            IEnumerable<Task> sortedTasks = GetSortedTasks();
-
-            return sortedTasks;
-        }
-
 
         public IEnumerable<Task> GetFilteredTasks(string filter,bool ascend)
         {
@@ -173,10 +137,9 @@ namespace functional_bubble.NET.Classes
         {   
             int[] deadlineCount = { 0, 0, 0, 0, 0, 0 };
 
-            TimeSpan timeSpan = new TimeSpan();
             foreach (Task task in GetAllTasks())
             {
-                timeSpan = task.Deadline.Subtract(DateTime.Now);
+                TimeSpan timeSpan = task.Deadline.Subtract(DateTime.Now);
                 if (timeSpan.Hours > 6 || timeSpan.Hours < 1)
                 {
                     continue;
