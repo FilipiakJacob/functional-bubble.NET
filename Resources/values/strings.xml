@@ -21,6 +21,14 @@
 	</string-array>
 	<string name="plus_button_desc">A plus icon</string>
 
+  <string name="msg_prompt">Msg</string>
+  <string-array name="msg_array">
+    <item>"Hey! There's a task to do"</item>
+    <item>"Just do the task plz"</item>
+    <item>"You need to complete this task"</item>
+    <item>"There's a task"</item>
+  </string-array>
+  
   <string name="channel_name">local_notification</string>
   <string name="channel_description">local notifications</string>
 </resources>
