@@ -41,7 +41,7 @@ namespace functional_bubble.NET.Classes
         /// <returns>List of Label objects</returns>
         public List<Label> GetAll()
         {
-            List<Label> allLabels = _db.Query<Label>("SELECT * FROM Labels");
+            List<Label> allLabels = _db.Table<Label>().ToList();
             return allLabels;
         }
 

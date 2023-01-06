@@ -25,7 +25,6 @@ namespace functional_bubble.NET.Classes
         {
             UserHandler userHandler = new UserHandler();
 
-
             task.CoinsReward = userHandler.CalculateReward(task);
 
             _db.Insert(task);    
@@ -86,17 +85,6 @@ namespace functional_bubble.NET.Classes
         }
 
         /// <summary>
-        /// You get all tasks as IEnumerable
-        /// </summary>
-        /// <returns>IEnumerable allTasks</returns>
-        public IEnumerable<Task> GetAllTasksAsIEnumerable()
-        {
-            IEnumerable<Task> allTasks = GetAllTasks();
-
-            return allTasks;
-        }
-
-        /// <summary>
         /// sorting tasks by priorities and deadline, but tasks with deadline sub one hour are on top of the list
         /// </summary>
         /// <returns>List<Task> sortedTasks</returns>
@@ -126,30 +114,6 @@ namespace functional_bubble.NET.Classes
             return sortedTasks;
         }
 
-
-        /// <summary>
-        /// Get n amount of SortedTasks in form of IEnumerable right now!
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns>IEnumerable nTasks</returns>
-        public IEnumerable<Task> GetSortedTasks(int n)
-        {
-            IEnumerable<Task> nTasks = GetSortedTasks();
-            return nTasks.Take(n);
-        }
-
-        /// <summary>
-        /// You get sorted tasks by priorities and deadline as IEnumerable 
-        /// </summary>
-        /// <returns>IEnumerable sortedTasks</returns>
-        public IEnumerable<Task> GetSortedTasksAsIEnumerable()
-        {
-            IEnumerable<Task> sortedTasks = GetSortedTasks();
-
-            return sortedTasks;
-        }
-
-
         public IEnumerable<Task> GetFilteredTasks(string filter,bool ascend)
         {
 
@@ -160,55 +124,6 @@ namespace functional_bubble.NET.Classes
 
             return _db.Query<Task>("SELECT * ORDER BY ?", filter); 
         }
-
-        /// <summary>
-        /// You get n sorted Tasks by Deadline (by default 4)
-        /// </summary>
-        /// <returns>IEnumerable</returns>
-        public IEnumerable<Task> GetTasksByDeadline(int n = 4)
-        {
-            IEnumerable<Task> allTasks = GetAllTasks();
-
-            //LINQ expression - ordering by deadlines and presenting 
-            var tasksByDeadline = allTasks.
-                OrderBy(t => t.Deadline).AsEnumerable();
-
-            return tasksByDeadline.Take(n);
-        }
-
-        /// <summary>
-        /// Each position in the IEnumerable is equal to the number of hours in which the notification should be sent.
-        /// If the task ends in the first half of an hour, the user will get notified between 1h and 1,5h before the task.
-        /// If the task ends in the second half of an hour, the user will get notified between 0,5h and 1h before the task.
-        /// </summary>
-        /// <returns>A list where each position signifies the number of tasks that will end in that hour in the future, between 1 and 7 hours from now.
-        /// </returns>
-        public IEnumerable<int> GetApproachingDeadlines()
-        {   
-            int[] deadlineCount = { 0, 0, 0, 0, 0, 0 };
-
-            TimeSpan timeSpan = new TimeSpan();
-            foreach (Task task in GetAllTasks())
-            {
-                timeSpan = task.Deadline.Subtract(DateTime.Now);
-                if (timeSpan.Hours > 6 || timeSpan.Hours < 1)
-                {
-                    continue;
-                }
-                //The task counts to the closest hour. E.g. 1:26 is in 1 hour, 1:57 is in 2 hours.
-                if (timeSpan.Minutes<30)
-                {
-                    deadlineCount[(timeSpan.Hours - 1)]++;
-                }
-
-                else
-                {
-                    deadlineCount[(timeSpan.Hours)]++; 
-                }
-            }
-            return deadlineCount;
-        }
-
 
         /// <summary>
         /// Method which returns all tasks that end between 1 and 2 hours from the moment it is triggered.
