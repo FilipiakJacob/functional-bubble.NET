@@ -16,7 +16,6 @@ namespace functional_bubble.NET.Classes.Handlers
 {
     public class NotificationHandler
     {
-
         private static readonly int NOTIFICATION_ID = 1000; 
         private static readonly string CHANNEL_ID = "local_notification";
 
