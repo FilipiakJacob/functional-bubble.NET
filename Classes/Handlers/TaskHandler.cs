@@ -203,9 +203,9 @@ namespace functional_bubble.NET.Classes
         public List<Task> GetTasksDueNextHour()
         {
             List<Task> approachingTasks = new List<Task>();
-            IEnumerable<Task> allTasks= GetAllTasks();
-            IEnumerable<Task> tasksSameDay = allTasks.
-                Where(t => t.Deadline.Equals(DateTime.Today)).
+            List<Task> allTasks= GetAllTasks();
+            var tasksSameDay = allTasks.
+                Where(t => t.Deadline.Date.Equals(DateTime.Today)).
                 OrderBy(t => t.Deadline);
             int timeSpan;
             foreach (Task task in tasksSameDay)
