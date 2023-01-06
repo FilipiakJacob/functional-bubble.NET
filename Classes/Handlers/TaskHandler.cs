@@ -211,7 +211,7 @@ namespace functional_bubble.NET.Classes
             foreach (Task task in tasksSameDay)
             {
                 timeSpan = task.Deadline.Hour - DateTime.Now.Hour;
-                if (timeSpan == 1)
+                if (timeSpan == 2)
                 {
                     approachingTasks.Add(task);
                 }
