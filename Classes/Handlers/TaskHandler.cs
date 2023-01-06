@@ -85,17 +85,31 @@ namespace functional_bubble.NET.Classes
         }
 
         /// <summary>
-        /// sorting tasks by priorities and deadline
+        /// sorting tasks by priorities and deadline, but tasks with deadline sub one hour are on top of the list
         /// </summary>
         /// <returns>List<Task> sortedTasks</returns>
         public List<Task> GetSortedTasks()
         {
             List<Task> allTasksList = GetAllTasks();
 
-            //LINQ expression
-            var sortedTasks = allTasksList. //takes allTasks
-                OrderByDescending(t => t.Priority). //order them by priorities (descending bc highest priority is 3)
-                ThenBy(t => t.Deadline).ToList(); //order them by deadline descending
+            // LINQ expressions 
+            var sortedTasks = allTasksList // list of sorted Tasks
+                .Where(t => t.Deadline.Subtract(DateTime.Now).Hours < 1) // getting tasks with deadline under one hour 
+                .OrderByDescending(t => t.Priority) // ordering them by priority ( higher priority = higher place on list )
+                .ThenByDescending(t => t.Deadline) // ordering priority groups by deadline 
+                .ToList(); // getting this sorted tasks and put them to list<Task>
+
+            var temp = allTasksList // temporary list of tasks that is used for sorting rest of the tasks left out of sortedTasks list 
+                .Where(t => t.Deadline.Subtract(DateTime.Now).Hours >= 1) // getting tasks with deadline over one hour 
+                .OrderByDescending(t => t.Priority) // ordering them by priority ( higher priority = higher place on list )
+                .ThenByDescending(t => t.Deadline) // ordering priority groups by deadline 
+                .ToList(); // getting this sorted tasks and put them to list<Task>
+
+            // loop that puts tasks from temp list to the sortedTasks list
+            foreach (Task task in temp)
+            {
+                sortedTasks.Add(task);
+            }
 
             return sortedTasks;
         }
