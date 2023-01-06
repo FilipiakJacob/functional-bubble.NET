@@ -18,16 +18,6 @@ namespace functional_bubble.NET.Classes.Handlers
 
         private static readonly int NOTIFICATION_ID = 1000; 
         private static readonly string CHANNEL_ID = "local_notification";
-        public int taskID;
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="taskID">int taskID - id of the task that is destination of notification</param>
-        public NotificationHandler(int taskID)
-        {
-            this.taskID = taskID;
-        }
 
         /// <summary>
         /// sends notification to the user screaming TEST TEST TEST TEST
@@ -35,7 +25,13 @@ namespace functional_bubble.NET.Classes.Handlers
         public void Notification()
         {
             DeeplinkHandler deeplinkHandler = new DeeplinkHandler();
+            int taskID = RandomTaskDueNextHour();
 
+            if (taskID == 0)
+            {
+                return;
+            }
+            
             var builder = new Notification.Builder(Application.Context, CHANNEL_ID).SetAutoCancel(true)
                 .SetContentTitle("Task Created")
                 .SetContentIntent
@@ -45,6 +41,24 @@ namespace functional_bubble.NET.Classes.Handlers
 
             var nmc = NotificationManager.FromContext(Application.Context);
             nmc.Notify(NOTIFICATION_ID, builder.Build());
+        }
+
+        /// <summary>
+        /// Return id  to random task that is due next hour
+        /// </summary>
+        /// <returns>int id</returns>
+        public int RandomTaskDueNextHour()
+        {
+            TaskHandler taskHandler = new TaskHandler();
+            Random rnd = new Random();
+            List<Task> taskDueHour = taskHandler.GetTasksDueNextHour();
+            if (taskDueHour.Count() > 0)
+            {
+                return taskDueHour
+                    [rnd.Next(taskDueHour.Count())]
+                    .Id;
+            }
+            return 0;
         }
 
     }
