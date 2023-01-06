@@ -17,8 +17,8 @@ namespace functional_bubble.NET.Classes.Handlers
         /// <summary>
         /// Use NavDeepLinkBuilder to create a PendingIntent that deeplinks to a a destination.
         /// </summary>
-        /// <param name="destination">Usually just Resource.Id.rourcename</param>
         /// <param name="context">Context in which the receiver is running</param>
+        /// <param name="destination">Usually just Resource.Id.resourcename</param>
         /// <param name="bundleArgName">DEFAULT = null. If not null, the pending intent sends a bundle of arguments to the target destination of the deeplink. </param>
         /// <param name="bundleArgValue">DEFAULT = 0. This argument is only used if bundleVarType is not null. </param>
         /// <returns>A pending intent. The intent will contain a bundle if argument name was specified, or no bundle if argument name was not specified.</returns>
