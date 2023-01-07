@@ -15,6 +15,7 @@ using AndroidX.Navigation.UI;
 using AndroidX.Work;
 using Android.Content;
 using Java.Security;
+using functional_bubble.NET.Classes.Handlers;
 
 namespace functional_bubble.NET.Classes.Workers
 {
@@ -43,22 +44,8 @@ namespace functional_bubble.NET.Classes.Workers
 
         public void sendNotifications()
         {
-            TaskHandler taskHandler = new TaskHandler();
-            List<Task> tasksDue = taskHandler.GetTasksDueNextHour();
-
-            if (tasksDue.Count == 1)
-            {
-                foreach (Task task in tasksDue)
-                {
-                    //TODO: Send notification containing task title
-                    Console.WriteLine(" HHHHHHHHHHHHHHHHHH " + task.Title);
-                }
-            }
-            if (tasksDue.Count > 1)
-            {
-                //TODO: Send notification contaning the taskDue.Count number
-            }
-
+            NotificationHandler notification = new NotificationHandler();
+            notification.Notification();
         }
     }
 }
