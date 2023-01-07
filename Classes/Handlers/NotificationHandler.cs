@@ -44,11 +44,21 @@ namespace functional_bubble.NET.Classes.Handlers
         }
 
         /// <summary>
-        /// Returns a random notification message 
+        /// Returns a random notification message based on how many tasks
+        /// are there to notify about
         /// </summary>
         /// <returns>string message</returns>
         public string RandomMSG()
         {
+            TaskHandler taskHandler = new TaskHandler();
+            List<Task> taskDueHour = taskHandler.GetTasksDueNextHour();
+
+            if (taskDueHour.Count() > 1) {
+                int numTask = taskDueHour.Count();
+                string msg = $"You have {numTask} tasks left";
+                return msg;
+            }
+
             string[] msgArray = Application.Context.Resources.GetStringArray(Resource.Array.msg_array);
             Random rnd = new Random();
             int num = rnd.Next(msgArray.Length);
