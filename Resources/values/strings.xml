@@ -21,7 +21,7 @@
 	</string-array>
 	<string name="plus_button_desc">A plus icon</string>
 
-  <string name="msg_prompt">Msg</string>
+  <string name="msg_prompt">Priority</string>
   <string-array name="msg_array">
     <item>"Hey! There's a task to do"</item>
     <item>"Just do the task plz"</item>
