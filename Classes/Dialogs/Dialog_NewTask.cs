@@ -139,6 +139,19 @@ namespace functional_bubble.NET
                 timePicker.mOnTimePicked += (object sender, TimePickerDialog.TimeSetEventArgs e) =>
                 {
                     mNewTaskDeadlineTime.Text = mCalendar.twoDigitDate(e.HourOfDay) + ":" + mCalendar.twoDigitDate(e.Minute);
+                    
+                    if (e.HourOfDay == 0)
+                    {
+                        mNewTaskDeadlineTime.Text = "00" + ":" + mCalendar.twoDigitDate(e.Minute);
+                    }
+                    if (e.Minute == 0)
+                    {
+                        mNewTaskDeadlineTime.Text = mCalendar.twoDigitDate(e.HourOfDay) + ":" + "00";
+                    }
+                    if (e.Minute == 0 && e.HourOfDay == 0)
+                    {
+                        mNewTaskDeadlineTime.Text = "00" + ":" + "00";
+                    }
                 };
             };
 
